@@ -12,7 +12,7 @@ To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
 |     80888  |   Francisco Mira        |  francisco.mira96@gmail.com        | franciscomira      |   1   |
 |     86408  |   Diogo Fernandes       | diogo.barradas.fernandes@gmail.com | Fogoid             |   1   |
 |     86460  |   Leandro Salgado       |  lmocs98@gmail.com                 | CallMeLeopoldo     |   2   |
-|            |                         |                                    |                    |   2   |
+|     86495  |   Pedro Barbosa         | pedrobarbosa262@gmail.com          | quickacid          |   2   |
 |            |                         |                                    |                    |   2   |
 
 - **Group 1:**
