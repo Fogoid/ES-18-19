@@ -6,14 +6,14 @@ To run tests execute: mvn clean install
 To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
 
 
-|   Number   |          Name           |            Email        |   GitHub Username  | Group |
-| ---------- | ----------------------- | ----------------------- | -------------------| ----- |
-|     73751  |   José Rosendo          |  j.pd19@hotmail.com     | jotapero           |   1   |
-|            |                         |                         |                    |   1   |
-|            |                         |                         |                    |   1   |
-|            |                         |                         |                    |   2   |
-|            |                         |                         |                    |   2   |
-|            |                         |                         |                    |   2   |
+|   Number   |          Name           |            Email          |   GitHub Username  | Group |
+| ---------- | ----------------------- | -----------------------   | -------------------| ----- |
+|     73751  |   José Rosendo          |  j.pd19@hotmail.com       | jotapero           |   1   |
+|     80888  |   Francisco Mira        | francisco.mira96@gmail.com| franciscomira      |   1   |
+|            |                         |                           |                    |   1   |
+|            |                         |                           |                    |   2   |
+|            |                         |                           |                    |   2   |
+|            |                         |                           |                    |   2   |
 
 - **Group 1:**
 - **Group 2:**
