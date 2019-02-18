@@ -8,7 +8,7 @@ To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
 
 |   Number   |          Name           |            Email        |   GitHub Username  | Group |
 | ---------- | ----------------------- | ----------------------- | -------------------| ----- |
-|            |                         |                         |                    |   1   |
+|     73751  |   José Rosendo          |  j.pd19@hotmail.com     | jotapero           |   1   |
 |            |                         |                         |                    |   1   |
 |            |                         |                         |                    |   1   |
 |            |                         |                         |                    |   2   |
