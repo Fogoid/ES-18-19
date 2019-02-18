@@ -1,4 +1,4 @@
-# Adventure Builder [![Build Status](https://travis-ci.com/tecnico-softeng/prototype-2018.svg?token=fJ1UzWxWjpuNcHWPhqjT&branch=master)](https://travis-ci.com/tecnico-softeng/prototype-2018) [![codecov](https://codecov.io/gh/tecnico-softeng/prototype-2018/branch/master/graph/badge.svg?token=OPjXGqoNEm)](https://codecov.io/gh/tecnico-softeng/prototype-2018)
+﻿# Adventure Builder [![Build Status](https://travis-ci.com/tecnico-softeng/prototype-2018.svg?token=fJ1UzWxWjpuNcHWPhqjT&branch=master)](https://travis-ci.com/tecnico-softeng/prototype-2018) [![codecov](https://codecov.io/gh/tecnico-softeng/prototype-2018/branch/master/graph/badge.svg?token=OPjXGqoNEm)](https://codecov.io/gh/tecnico-softeng/prototype-2018)
 
 
 To run tests execute: mvn clean install
@@ -11,7 +11,7 @@ To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
 |     73751  |   José Rosendo          |   j.pd19@hotmail.com               | jotapero           |   1   |
 |     80888  |   Francisco Mira        |  francisco.mira96@gmail.com        | franciscomira      |   1   |
 |     86408  |   Diogo Fernandes       | diogo.barradas.fernandes@gmail.com | Fogoid             |   1   |
-|            |                         |                                    |                    |   2   |
+|     86460  |   Leandro Salgado       |  lmocs98@gmail.com                 | CallMeLeopoldo     |   2   |
 |            |                         |                                    |                    |   2   |
 |            |                         |                                    |                    |   2   |
 
