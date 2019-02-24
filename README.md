@@ -13,7 +13,7 @@ To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
 |     86408  |   Diogo Fernandes       | diogo.barradas.fernandes@gmail.com | Fogoid             |   1   |
 |     86460  |   Leandro Salgado       |  lmocs98@gmail.com                 | CallMeLeopoldo     |   2   |
 |     86495  |   Pedro Barbosa         | pedrobarbosa262@gmail.com          | quickacid          |   2   |
-|            |                         |                                    |                    |   2   |
+|     73046  |   André Antunes         |  ander.r.antunes@ist.utl.pt        | Antunes10          |   2   |
 
 - **Group 1:**
 - **Group 2:**
