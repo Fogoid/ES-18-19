@@ -1,0 +1,13 @@
+DROP DATABASE advcar;
+DROP DATABASE advhotel;
+DROP DATABASE advbroker;
+DROP DATABASE advactivity;
+DROP DATABASE advbank;
+DROP DATABASE advtax;
+
+CREATE DATABASE advcar;
+CREATE DATABASE advhotel;
+CREATE DATABASE advbroker;
+CREATE DATABASE advactivity;
+CREATE DATABASE advbank;
+CREATE DATABASE advtax;
