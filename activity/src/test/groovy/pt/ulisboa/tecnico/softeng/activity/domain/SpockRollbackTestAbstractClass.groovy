@@ -25,5 +25,5 @@ abstract class SpockRollbackTestAbstractClass {
         }
     }
 
-    def abstract populate4Test()
+    abstract def populate4Test()
 }
