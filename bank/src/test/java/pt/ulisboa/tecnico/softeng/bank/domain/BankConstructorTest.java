@@ -46,8 +46,7 @@ public class BankConstructorTest extends RollbackTestAbstractClass {
 	}
 
 	@Test(expected = BankException.class)
-	public void inconsistentCodeSmaller() {
-		new Bank(BANK_NAME, "BK0");
+	public void inconsistentCodeSmaller() { new Bank(BANK_NAME, "BK0");
 	}
 
 	@Test(expected = BankException.class)
