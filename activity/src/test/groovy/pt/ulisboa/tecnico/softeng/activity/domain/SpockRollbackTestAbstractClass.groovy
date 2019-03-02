@@ -19,7 +19,7 @@ abstract class SpockRollbackTestAbstractClass {
 
     def tearDown() {
         try{
-            FenixFramework.getTransactionManager().rollback()
+            FenixFramework.getTransactionManager().rollback() 
         } catch (IllegalStateException | SecurityException | SystemException e){
             e.printStackTrace()
         }
