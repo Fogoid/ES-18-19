@@ -10,6 +10,7 @@ jmeter.log
 infer-out
 *.iml
 .idea
+.vscode
 .DS_Store
 .springBeans
 local.dev.yml
