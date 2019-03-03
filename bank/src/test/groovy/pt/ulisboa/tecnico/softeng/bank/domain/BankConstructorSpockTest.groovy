@@ -80,7 +80,7 @@ class BankConstructorSpockTest extends SpockRollbackTestAbstractClass {
             new Bank(BANK_NAME, BANK_CODE);
 
             then:
-            false
+            assert false
         }
         catch(BankException be){
             then:
