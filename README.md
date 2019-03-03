@@ -8,15 +8,15 @@ To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
 
 |   Number   |          Name           |               Email                |   GitHub Username  | Group |
 | ---------- | ----------------------- | ---------------------------------- | -------------------| ----- |
-|     73751  |   José Rosendo          |   j.pd19@hotmail.com               | jotapero           |   1   |
+|     73046  |   André Antunes         |  ander.r.antunes@ist.utl.pt        | Antunes10          |   1   |
 |     80888  |   Francisco Mira        |  francisco.mira96@gmail.com        | franciscomira      |   1   |
 |     86408  |   Diogo Fernandes       | diogo.barradas.fernandes@gmail.com | Fogoid             |   1   |
 |     86460  |   Leandro Salgado       |  lmocs98@gmail.com                 | CallMeLeopoldo     |   2   |
 |     86495  |   Pedro Barbosa         | pedrobarbosa262@gmail.com          | quickacid          |   2   |
-|     73046  |   André Antunes         |  ander.r.antunes@ist.utl.pt        | Antunes10          |   2   |
+|     73751  |   José Rosendo          |   j.pd19@hotmail.com               | jotapero           |   2   |
 
-- **Group 1:**
-- **Group 2:**
+- **Group 1:** André Antunes, Francisco Mira, Diogo Fernandes
+- **Group 2:** Leandro Salgado, Pedro Barbosa, José Resendo
 
 ### Infrastructure
 
