@@ -3,7 +3,6 @@ package pt.ulisboa.tecnico.softeng.activity.domain
 import org.joda.time.LocalDate
 import pt.ist.fenixframework.Atomic
 import pt.ist.fenixframework.FenixFramework
-import pt.ulisboa.tecnico.softeng.car.domain.SpockPersistenceTestAbstractClass
 
 
 class ActivityPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
@@ -34,7 +33,7 @@ class ActivityPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
     def thenAssert() {
         assert FenixFramework.getDomainRoot().getActivityProviderSet().size() == 1;
 
-        def providers = new ArrayList<>(FenixFramework.getDomainRoot().getActivityProviderSet());
+        List<ActivityProvider> providers = new ArrayList<>(FenixFramework.getDomainRoot().getActivityProviderSet());
         ActivityProvider provider = providers.get(0);
 
         assert PROVIDER_CODE == provider.getCode();

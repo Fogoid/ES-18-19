@@ -1,4 +1,4 @@
-package pt.ulisboa.tecnico.softeng.car.domain
+package pt.ulisboa.tecnico.softeng.activity.domain
 
 import javax.transaction.NotSupportedException
 import javax.transaction.SystemException
