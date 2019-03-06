@@ -2,7 +2,6 @@ package pt.ulisboa.tecnico.softeng.bank.domain
 
 import pt.ist.fenixframework.FenixFramework
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException
-import pt.ulisboa.tecnico.softeng.car.domain.SpockRollbackTestAbstractClass
 
 class BankConstructorSpockTest extends SpockRollbackTestAbstractClass {
     def BANK_CODE ="BK01";

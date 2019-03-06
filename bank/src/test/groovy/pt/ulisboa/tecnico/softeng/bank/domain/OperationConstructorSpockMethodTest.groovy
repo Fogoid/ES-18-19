@@ -1,6 +1,6 @@
 package pt.ulisboa.tecnico.softeng.bank.domain
 
-import pt.ulisboa.tecnico.softeng.car.domain.SpockRollbackTestAbstractClass
+import pt.ulisboa.tecnico.softeng.bank.domain.SpockRollbackTestAbstractClass
 import pt.ulisboa.tecnico.softeng.bank.domain.Operation.Type;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 
@@ -10,7 +10,6 @@ class OperationConstructorSpockMethodTest  extends SpockRollbackTestAbstractClas
     Bank bank;
     Account account;
 
-    @Override
     def "populate4Test"(){
         bank = new Bank("Money", "BK01");
         def client = new Client(bank, "António");
