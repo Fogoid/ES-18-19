@@ -17,7 +17,7 @@ abstract class SpockRollbackTestAbstractClass extends Specification {
       }
     }
 
-    def tearDown() {
+    def cleanup() {
         try {
             FenixFramework.getTransactionManager().rollback()
         } catch (IllegalStateException | SecurityException | SystemException e) {
