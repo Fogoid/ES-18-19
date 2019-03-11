@@ -1,4 +1,4 @@
-package pt.ulisboa.tecnico.softeng.hotel.domain;
+package pt.ulisboa.tecnico.softeng.hotel.services.local;
 
 import pt.ist.fenixframework.FenixFramework
 import pt.ist.fenixframework.core.WriteOnReadError
