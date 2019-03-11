@@ -3,6 +3,7 @@
 .settings
 target
 jmeter.log
+fenix-framework.properties
 *.jtl
 *.log
 *.hprof
