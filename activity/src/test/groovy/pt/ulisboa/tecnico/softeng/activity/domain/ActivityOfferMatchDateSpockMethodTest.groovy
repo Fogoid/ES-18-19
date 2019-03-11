@@ -2,11 +2,13 @@ package pt.ulisboa.tecnico.softeng.activity.domain
 
 import org.joda.time.LocalDate
 import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException
+import spock.lang.Shared
+import spock.lang.Unroll
 
 class ActivityOfferMatchDateSpockMethodTest extends SpockRollbackTestAbstractClass{
 
-    private final def begin = new LocalDate(2016, 12, 19);
-    private final def end = new LocalDate(2016, 12, 19);
+    @Shared def begin = new LocalDate(2016, 12, 19);
+    @Shared def end = new LocalDate(2016, 12, 19);
 
     private def offer;
 
@@ -21,20 +23,18 @@ class ActivityOfferMatchDateSpockMethodTest extends SpockRollbackTestAbstractCla
         assert offer.matchDate(begin, end);
     }
 
-    def "nullBeginDate"(){
-        when:
-        offer.matchDate(null, end);
+    @Unroll("conflict and non-conflict test: #_beg, #_end")
+    def 'conflict'() {
+        when: 'when renting for a given days'
+        offer.match(_beg, _end)
 
-        then:
+        then: 'check it does not conflict'
         thrown(ActivityException)
-    }
 
-    def "nullEndDate"(){
-        when:
-        offer.matchDate(null, end);
-
-        then:
-        thrown(ActivityException);
+        where:
+        _beg     | _end
+        begin    | null
+        null     |  end
     }
 
     def "beginPlusOne"() {
