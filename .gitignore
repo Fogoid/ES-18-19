@@ -2,8 +2,8 @@
 .project
 .settings
 target
-fenix-framework.properties
 jmeter.log
+fenix-framework.properties
 *.jtl
 *.log
 *.hprof

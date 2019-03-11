@@ -8,6 +8,8 @@ import pt.ulisboa.tecnico.softeng.hotel.domain.Room
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException
 import pt.ulisboa.tecnico.softeng.hotel.services.remote.dataobjects.RestRoomBookingData
 
+import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException
+
 
 class HotelInterfaceReserveRoomSpockMethodTest extends SpockRollbackTestAbstractClass {
 
