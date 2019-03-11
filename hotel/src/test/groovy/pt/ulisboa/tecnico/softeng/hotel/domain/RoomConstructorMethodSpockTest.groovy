@@ -2,12 +2,10 @@ package pt.ulisboa.tecnico.softeng.hotel.domain;
 
 
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException
-
-import java.lang.reflect.Type
-import pt.ulisboa.tecnico.softeng.hotel.domain.SpockRollbackTestAbstractClass;
+import pt.ulisboa.tecnico.softeng.hotel.services.local.SpockRollbackTestAbstractClass;
 
 
-abstract class RoomConstructorMethodSpockTest extends SpockRollbackTestAbstractClass  {
+class RoomConstructorMethodSpockTest extends SpockRollbackTestAbstractClass  {
     Hotel hotel
 
     def populate4Test() {
@@ -27,7 +25,7 @@ abstract class RoomConstructorMethodSpockTest extends SpockRollbackTestAbstractC
 
     def "nullHotel"() {
         when:
-        new Hotel(null, "01", Room.Type.DOUBLE)
+        new Room(null, "01", Room.Type.DOUBLE)
 
         then:
         thrown(HotelException)
