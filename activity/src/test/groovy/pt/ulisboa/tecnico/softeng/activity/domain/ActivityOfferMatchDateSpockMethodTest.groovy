@@ -26,15 +26,15 @@ class ActivityOfferMatchDateSpockMethodTest extends SpockRollbackTestAbstractCla
     @Unroll("conflict and non-conflict test: #_beg, #_end")
     def 'conflict'() {
         when: 'when renting for a given days'
-        offer.match(_beg, _end)
+        offer.matchDate(_beg, _end)
 
         then: 'check it does not conflict'
         thrown(ActivityException)
 
         where:
         _beg     | _end
-        begin    | null
         null     |  end
+        begin    | null
     }
 
     def "beginPlusOne"() {
