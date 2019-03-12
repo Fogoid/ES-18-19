@@ -2,10 +2,12 @@ package pt.ulisboa.tecnico.softeng.bank.domain
 
 import pt.ist.fenixframework.FenixFramework
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException
+import spock.lang.Shared
+import spock.lang.Unroll
 
 class BankConstructorSpockTest extends SpockRollbackTestAbstractClass {
-    def BANK_CODE ="BK01";
-    def BANK_NAME = "Money";
+    @Shared def BANK_CODE ="BK01";
+    @Shared def BANK_NAME = "Money";
 
     def "populate4Test"(){}
 
@@ -22,53 +24,23 @@ class BankConstructorSpockTest extends SpockRollbackTestAbstractClass {
 
     }
 
-    def "nullName"(){
-        when:
-        new Bank(null, BANK_CODE);
 
-        then:
-        thrown(BankException);
-    }
+    @Unroll("conflict and non-conflict test: #_beg, #_end")
+    def 'conflict'() {
+        when: 'when renting for a given days'
+        new Bank(name, code);
 
-    def "emptyName"(){
-        when:
-        new Bank("    ", BANK_CODE);
+        then: 'check it does not conflict'
+        thrown(BankException)
 
-        then:
-        thrown(BankException);
-    }
-
-    def "nullCode"(){
-        when:
-        new Bank(BANK_NAME, null);
-
-        then:
-        thrown(BankException);
-
-    }
-
-    def "emptyCode"(){
-        when:
-        new Bank(BANK_NAME, "    ");
-
-        then:
-        thrown(BankException);
-    }
-
-    def "inconsistentCodeSmaller"(){
-        when:
-        new Bank(BANK_NAME, "BK0")
-
-        then:
-        thrown(BankException);
-    }
-
-    def "inconsistentCodeBigger"(){
-        when:
-        new Bank(BANK_NAME, "BK011");
-
-        then:
-        thrown(BankException);
+        where:
+        name     | code
+        null     | BANK_CODE
+        "    "   | BANK_CODE
+        BANK_NAME| null
+        BANK_NAME| "    "
+        BANK_NAME| "BK0"
+        BANK_NAME| "BK011"
     }
 
     def "notUniqueCode"(){

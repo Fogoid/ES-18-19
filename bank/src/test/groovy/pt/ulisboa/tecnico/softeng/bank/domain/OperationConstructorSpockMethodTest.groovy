@@ -2,13 +2,15 @@ package pt.ulisboa.tecnico.softeng.bank.domain
 
 import pt.ulisboa.tecnico.softeng.bank.domain.SpockRollbackTestAbstractClass
 import pt.ulisboa.tecnico.softeng.bank.domain.Operation.Type;
-import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
+import pt.ulisboa.tecnico.softeng.bank.exception.BankException
+import spock.lang.Shared
+import spock.lang.Unroll;
 
 
 class OperationConstructorSpockMethodTest  extends SpockRollbackTestAbstractClass{
 
     Bank bank;
-    Account account;
+    @Shared Account account;
 
     def "populate4Test"(){
         bank = new Bank("Money", "BK01");
@@ -30,29 +32,22 @@ class OperationConstructorSpockMethodTest  extends SpockRollbackTestAbstractClas
         operation == bank.getOperation(operation.getReference());
     }
 
-    def "nullType"(){
-        when:
-        new Operation(null, account, 1000);
+    @Unroll("conflict and non-conflict test: #type, #acc, #amount")
+    def 'conflict'() {
+        when: 'when creating an operation'
+        new Operation(type, acc, amount );
 
-        then:
-        thrown(BankException);
+        then: 'check it does not conflict'
+        thrown(BankException)
+
+        where:
+        type          | acc      |   amount
+        null          | account  |   1000
+        Type.WITHDRAW | null     |   1000
+        Type.DEPOSIT  | account  |   0
+        Type.WITHDRAW | account  |  -1000
     }
 
-    def "nullAccount"(){
-        when:
-        new Operation(Type.WITHDRAW, null, 1000);
-
-        then:
-        thrown(BankException);
-    }
-
-    def "zeroAmount"(){
-        when:
-        new Operation(Type.DEPOSIT, account, 0);
-
-        then:
-        thrown(BankException);
-    }
 
     def "oneAmount"(){
         when:
@@ -60,13 +55,5 @@ class OperationConstructorSpockMethodTest  extends SpockRollbackTestAbstractClas
 
         then:
         operation == bank.getOperation(operation.getReference())
-    }
-
-    def "negativeAmount"(){
-        when:
-        new Operation(Type.WITHDRAW, account, -1000);
-
-        then:
-        thrown(BankException);
     }
 }
