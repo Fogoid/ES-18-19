@@ -5,12 +5,15 @@ import pt.ulisboa.tecnico.softeng.bank.domain.Bank
 import pt.ulisboa.tecnico.softeng.bank.domain.Client
 import pt.ulisboa.tecnico.softeng.bank.domain.Operation
 import pt.ulisboa.tecnico.softeng.bank.domain.SpockRollbackTestAbstractClass
+import pt.ulisboa.tecnico.softeng.bank.exception.BankException
 import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankOperationData
+import spock.lang.Shared
+import spock.lang.Unroll
 
 class BankInterfaceProcessPaymentMethodTest extends SpockRollbackTestAbstractClass{
 
-    def TRANSACTION_SOURCE = "ADVENTURE"
-    def TRANSACTION_REFERENCE = "REFERENCE"
+    @Shared def TRANSACTION_SOURCE = "ADVENTURE"
+    @Shared def TRANSACTION_REFERENCE = "REFERENCE"
 
     private Bank bank
     private Account account
@@ -32,11 +35,11 @@ class BankInterfaceProcessPaymentMethodTest extends SpockRollbackTestAbstractCla
                 .processPayment(new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
 
         then: "the reference of the new payment has to have the following properties"
-        assert newReference != null
-        assert newReference.startsWith("BK01")
+        newReference != null
+        newReference.startsWith("BK01")
 
-        assert bank.getOperation(newReference) != null
-        assert bank.getOperation(newReference).getType() == Operation.Type.WITHDRAW
+        bank.getOperation(newReference) != null
+        bank.getOperation(newReference).getType() == Operation.Type.WITHDRAW
     }
 
     def "make transfer between to accounts on different banks"() {
@@ -56,5 +59,44 @@ class BankInterfaceProcessPaymentMethodTest extends SpockRollbackTestAbstractCla
         then: "check if balance is correct"
         otherAccount.getBalance() == 900
         account.getBalance() == 400
+    }
+
+    def 'redo an already payed'() {
+        given: 'the account iban'
+        this.account.getIBAN()
+
+        when: 'the same payment processing is made'
+        String firstReference = BankInterface
+                .processPayment(new BankOperationData(this.iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE));
+        String secondReference = BankInterface
+                .processPayment(new BankOperationData(this.iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE));
+
+        then: 'the following is expected'
+        firstReference == secondReference
+        this.account.getBalance() == 400
+    }
+
+    def 'one ammount'(){
+        when: 'a payment is processed with the following attributes'
+        BankInterface.processPayment(new BankOperationData(this.iban, 1, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
+
+        then: 'the following balance is expected'
+        this.account.getBalance() == 499
+    }
+
+    @Unroll("BankInterface.processPayment: #ib #value #tsource #tref")
+    def 'check invalid payments'(){
+        when:
+        BankInterface.processPayment(new BankOperationData(ib, value, tsource, tref))
+
+        then:
+        thrown(BankException)
+
+        where:
+        ib | value | tsource | tref
+        null | 100 | TRANSACTION_SOURCE | TRANSACTION_REFERENCE
+        "  " | 100 | TRANSACTION_SOURCE | TRANSACTION_REFERENCE
+        this.iban | 0 | TRANSACTION_SOURCE | TRANSACTION_REFERENCE
+        "other" | 0 | TRANSACTION_SOURCE | TRANSACTION_REFERENCE
     }
 }
