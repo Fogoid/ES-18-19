@@ -20,37 +20,28 @@ class ActivityMatchAgeMethodTest extends SpockRollbackTestAbstractClass {
 
 		int result = (MAX_AGE - MIN_AGE) / 2
 
-		when:
-		activity.matchAge(result)
-
-		then:
-		true
+		expect:
+		activity.matchAge(result) == true
 	}
 
 	def "successEqualMinAge"() {
-		when:
-		activity.matchAge(MIN_AGE)
-
-		then:
-		true
+		expect:
+		activity.matchAge(MIN_AGE) == true
 	}
 
 	def "lessThanMinAge"() {
-		given:
-		activity.matchAge(MIN_AGE - 1)
-		false
+		expect:
+		activity.matchAge(MIN_AGE - 1)  == false
 	}
 
 	def "successEqualMaxAge"() {
-		given:
-		activity.matchAge(MAX_AGE)
-		false
+		expect:
+		!activity.matchAge(MAX_AGE) == false
 	}
 
 	def "greaterThanMaxAge"() {
-		given:
-		activity.matchAge(MAX_AGE + 1)
-		false
+		expect:
+		activity.matchAge(MAX_AGE + 1)  == false
 	}
 
 }
