@@ -5,6 +5,13 @@ class SpockOperationRevertMethodTest extends SpockRollbackTestAbstractClass{
     private Bank bank
     private Account account
 
+    @Override
+    def populate4Test() {
+        bank = new Bank("Money","BK01")
+        def client = new Client(bank, "António")
+        account = new Account(bank, client)
+    }
+
     def "reversing a deposit"() {
         given: "a new deposit on an account"
         def reference = account.deposit(100).getReference()
@@ -14,9 +21,9 @@ class SpockOperationRevertMethodTest extends SpockRollbackTestAbstractClass{
         def newReference = operation.revert()
 
         then: "the values must be those without the given deposit"
-        assert account.getBalance() == 0
-        assert bank.getOperation(newReference)
-        assert bank.getOperation(reference)
+        account.getBalance() == 0
+        bank.getOperation(newReference) != null
+        bank.getOperation(reference) != null
     }
 
     def "reversing a withdraw"() {
@@ -29,15 +36,8 @@ class SpockOperationRevertMethodTest extends SpockRollbackTestAbstractClass{
         def newReference = operation.revert()
 
         then: "the values must be those without the given withdraw"
-        assert account.getBalance() == 1000
-        assert bank.getOperation(newReference)
-        assert bank.getOperation(reference)
-    }
-
-    @Override
-    def populate4Test() {
-        bank = new Bank("Money","BK01")
-        def client = new Client(bank, "António")
-        account = new Account(bank, client)
+        account.getBalance() == 1000
+        bank.getOperation(newReference) != null
+        bank.getOperation(reference) != null
     }
 }

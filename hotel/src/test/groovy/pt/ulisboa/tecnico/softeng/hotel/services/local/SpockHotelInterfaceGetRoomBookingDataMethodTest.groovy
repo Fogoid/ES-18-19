@@ -5,6 +5,7 @@ import pt.ulisboa.tecnico.softeng.hotel.domain.Hotel
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room
 import pt.ulisboa.tecnico.softeng.hotel.domain.Booking
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type
+import pt.ulisboa.tecnico.softeng.hotel.domain.SpockRollbackTestAbstractClass
 import pt.ulisboa.tecnico.softeng.hotel.services.remote.dataobjects.RestRoomBookingData
 
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException

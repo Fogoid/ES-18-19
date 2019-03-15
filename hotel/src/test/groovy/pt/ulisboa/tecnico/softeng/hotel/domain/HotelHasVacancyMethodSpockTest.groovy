@@ -2,7 +2,6 @@ package pt.ulisboa.tecnico.softeng.hotel.domain
 
 import org.joda.time.LocalDate
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException
-import pt.ulisboa.tecnico.softeng.hotel.services.local.SpockRollbackTestAbstractClass
 
 class HotelHasVacancyMethodSpockTest extends SpockRollbackTestAbstractClass {
     LocalDate arrival = new LocalDate(2016, 12, 19)

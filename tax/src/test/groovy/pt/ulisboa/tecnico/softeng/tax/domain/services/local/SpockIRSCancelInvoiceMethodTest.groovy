@@ -1,15 +1,14 @@
-package services.local
+package pt.ulisboa.tecnico.softeng.tax.domain.services.local
 
-import pt.ulisboa.tecnico.softeng.tax.domain.SpockRollbackTestAbstractClass
 import org.joda.time.LocalDate
-import pt.ulisboa.tecnico.softeng.tax.domain.Buyer;
-import pt.ulisboa.tecnico.softeng.tax.domain.IRS;
-import pt.ulisboa.tecnico.softeng.tax.domain.Invoice;
-import pt.ulisboa.tecnico.softeng.tax.domain.ItemType;
-import pt.ulisboa.tecnico.softeng.tax.domain.RollbackTestAbstractClass;
-import pt.ulisboa.tecnico.softeng.tax.domain.Seller;
-import pt.ulisboa.tecnico.softeng.tax.exception.TaxException;
-import pt.ulisboa.tecnico.softeng.tax.services.local.TaxInterface;
+import pt.ulisboa.tecnico.softeng.tax.domain.Buyer
+import pt.ulisboa.tecnico.softeng.tax.domain.IRS
+import pt.ulisboa.tecnico.softeng.tax.domain.Invoice
+import pt.ulisboa.tecnico.softeng.tax.domain.ItemType
+import pt.ulisboa.tecnico.softeng.tax.domain.Seller
+import pt.ulisboa.tecnico.softeng.tax.domain.SpockRollbackTestAbstractClass
+import pt.ulisboa.tecnico.softeng.tax.exception.TaxException
+import pt.ulisboa.tecnico.softeng.tax.services.local.TaxInterface
 
 class SpockIRSCancelInvoiceMethodTest extends SpockRollbackTestAbstractClass{
 

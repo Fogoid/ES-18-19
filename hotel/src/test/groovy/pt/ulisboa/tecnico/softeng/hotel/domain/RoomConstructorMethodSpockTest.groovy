@@ -2,8 +2,6 @@ package pt.ulisboa.tecnico.softeng.hotel.domain;
 
 
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException
-import pt.ulisboa.tecnico.softeng.hotel.services.local.SpockRollbackTestAbstractClass;
-
 
 class RoomConstructorMethodSpockTest extends SpockRollbackTestAbstractClass  {
     Hotel hotel
