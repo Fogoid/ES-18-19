@@ -3,6 +3,7 @@
 .settings
 target
 fenix-framework.properties
+fenix-framework.properties.example
 jmeter.log
 *.jtl
 *.log
