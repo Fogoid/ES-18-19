@@ -20,8 +20,11 @@ public class ItemTypeController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String itemTypeForm(Model model) {
 		logger.info("itemTypeForm");
+
+		TaxInterface taxInterface = new TaxInterface();
+
 		model.addAttribute("item", new ItemTypeData());
-		model.addAttribute("items", TaxInterface.getItemTypeDataList());
+		model.addAttribute("items", taxInterface.getItemTypeDataList());
 		return "itemsView";
 	}
 
@@ -29,12 +32,14 @@ public class ItemTypeController {
 	public String itemTypeSubmit(Model model, @ModelAttribute ItemTypeData itemTypeData) {
 		logger.info("itemTypeSubmit name:{}, tax:{}", itemTypeData.getName(), itemTypeData.getTax());
 
+		TaxInterface taxInterface = new TaxInterface();
+
 		try {
-			TaxInterface.createItemType(itemTypeData);
+			taxInterface.createItemType(itemTypeData);
 		} catch (TaxException be) {
 			model.addAttribute("error", "Error: it was not possible to create the item type " + itemTypeData.getName());
 			model.addAttribute("item", itemTypeData);
-			model.addAttribute("items", TaxInterface.getItemTypeDataList());
+			model.addAttribute("items", taxInterface.getItemTypeDataList());
 			return "itemsView";
 		}
 

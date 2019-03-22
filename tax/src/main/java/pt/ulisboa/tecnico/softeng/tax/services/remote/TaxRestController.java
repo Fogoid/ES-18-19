@@ -25,8 +25,10 @@ public class TaxRestController {
 				invoiceData.getBuyerNif(), invoiceData.getSellerNif(), invoiceData.getItemType(),
 				invoiceData.getValue(), invoiceData.getDate(), invoiceData.getTime());
 
+		TaxInterface taxInterface = new TaxInterface();
+
 		try {
-			return new ResponseEntity<String>(TaxInterface.submitInvoice(invoiceData), HttpStatus.OK);
+			return new ResponseEntity<String>(taxInterface.submitInvoice(invoiceData), HttpStatus.OK);
 		} catch (TaxException te) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -35,8 +37,11 @@ public class TaxRestController {
 	@RequestMapping(value = "/cancel", method = RequestMethod.POST)
 	public ResponseEntity<String> cancel(@RequestParam String reference) {
 		logger.info("cancel reference:{}", reference);
+
+		TaxInterface taxInterface = new TaxInterface();
+
 		try {
-			TaxInterface.cancelInvoice(reference);
+			taxInterface.cancelInvoice(reference);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (TaxException be) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

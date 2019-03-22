@@ -20,8 +20,11 @@ public class TaxPayerController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String taxPayerForm(Model model) {
 		logger.info("taxPayerForm");
+
+		TaxInterface taxInterface = new TaxInterface();
+
 		model.addAttribute("payer", new TaxPayerData());
-		model.addAttribute("payers", TaxInterface.getTaxPayerDataList());
+		model.addAttribute("payers", taxInterface.getTaxPayerDataList());
 		return "payersView";
 	}
 
@@ -30,12 +33,14 @@ public class TaxPayerController {
 		logger.info("taxPayerSubmit name:{}, address:{}, nif:{}, type:{}", taxPayerData.getName(),
 				taxPayerData.getAddress(), taxPayerData.getNif(), taxPayerData.getType());
 
+		TaxInterface taxInterface = new TaxInterface();
+
 		try {
-			TaxInterface.createTaxPayer(taxPayerData);
+			taxInterface.createTaxPayer(taxPayerData);
 		} catch (TaxException be) {
 			model.addAttribute("error", "Error: it was not possible to create the tax payer " + taxPayerData.getName());
 			model.addAttribute("payer", taxPayerData);
-			model.addAttribute("payers", TaxInterface.getTaxPayerDataList());
+			model.addAttribute("payers", taxInterface.getTaxPayerDataList());
 			return "payersView";
 		}
 
