@@ -20,19 +20,19 @@ public class BankInterface {
 
 	@Atomic(mode = TxMode.READ)
 
-	public static List<BankData> getBanks() {
+	public List<BankData> getBanks() {
 		return FenixFramework.getDomainRoot().getBankSet().stream()
 				.sorted((b1, b2) -> b1.getName().compareTo(b2.getName())).map(b -> new BankData(b))
 				.collect(Collectors.toList());
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void createBank(BankData bankData) {
+	public void createBank(BankData bankData) {
 		new Bank(bankData.getName(), bankData.getCode());
 	}
 
 	@Atomic(mode = TxMode.READ)
-	public static BankData getBankDataByCode(String code) {
+	public BankData getBankDataByCode(String code) {
 		Bank bank = getBankByCode(code);
 		if (bank == null) {
 			return null;
@@ -42,7 +42,7 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void createClient(String code, ClientData client) {
+	public void createClient(String code, ClientData client) {
 		Bank bank = getBankByCode(code);
 		if (bank == null) {
 			throw new BankException();
@@ -52,7 +52,7 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.READ)
-	public static ClientData getClientDataById(String code, String id) {
+	public ClientData getClientDataById(String code, String id) {
 		Bank bank = getBankByCode(code);
 		if (bank == null) {
 			return null;
@@ -67,7 +67,7 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void createAccount(String code, String id) {
+	public void createAccount(String code, String id) {
 		Bank bank = getBankByCode(code);
 		if (bank == null) {
 			throw new BankException();
@@ -82,7 +82,7 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.READ)
-	public static AccountData getAccountData(String iban) {
+	public AccountData getAccountData(String iban) {
 		Account account = getAccountByIban(iban);
 		if (account == null) {
 			throw new BankException();
@@ -92,7 +92,7 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void deposit(String iban, double amount) {
+	public void deposit(String iban, double amount) {
 		Account account = getAccountByIban(iban);
 		if (account == null) {
 			throw new BankException();
@@ -102,7 +102,7 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void withdraw(String iban, double amount) {
+	public void withdraw(String iban, double amount) {
 		Account account = getAccountByIban(iban);
 		if (account == null) {
 			throw new BankException();
@@ -112,7 +112,7 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static String processPayment(BankOperationData bankOperationData) {
+	public String processPayment(BankOperationData bankOperationData) {
 		Operation operation = getOperationBySourceAndReference(bankOperationData.getTransactionSource(),
 				bankOperationData.getTransactionReference());
 		if (operation != null) {
@@ -132,7 +132,7 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static String cancelPayment(String paymentConfirmation) {
+	public String cancelPayment(String paymentConfirmation) {
 		Operation operation = getOperationByReference(paymentConfirmation);
 
 		if (operation == null) {
@@ -146,7 +146,7 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.READ)
-	public static BankOperationData getOperationData(String reference) {
+	public BankOperationData getOperationData(String reference) {
 		Operation operation = getOperationByReference(reference);
 		if (operation != null) {
 			return new BankOperationData(operation);
@@ -155,11 +155,11 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void deleteBanks() {
+	public void deleteBanks() {
 		FenixFramework.getDomainRoot().getBankSet().stream().forEach(b -> b.delete());
 	}
 
-	private static Operation getOperationByReference(String reference) {
+	private Operation getOperationByReference(String reference) {
 		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()) {
 			Operation operation = bank.getOperation(reference);
 			if (operation != null) {
@@ -169,7 +169,7 @@ public class BankInterface {
 		return null;
 	}
 
-	private static Operation getOperationBySourceAndReference(String transactionSource, String transactionReference) {
+	private Operation getOperationBySourceAndReference(String transactionSource, String transactionReference) {
 		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()) {
 			Operation operation = bank.getOperationBySourceAndReference(transactionSource, transactionReference);
 			if (operation != null) {
@@ -179,12 +179,12 @@ public class BankInterface {
 		return null;
 	}
 
-	private static Bank getBankByCode(String code) {
+	private Bank getBankByCode(String code) {
 		return FenixFramework.getDomainRoot().getBankSet().stream().filter(b -> b.getCode().equals(code)).findFirst()
 				.orElse(null);
 	}
 
-	private static Account getAccountByIban(String iban) {
+	private Account getAccountByIban(String iban) {
 		Account account = FenixFramework.getDomainRoot().getBankSet().stream().filter(b -> b.getAccount(iban) != null)
 				.map(b -> b.getAccount(iban)).findFirst().orElse(null);
 		return account;

@@ -20,8 +20,11 @@ public class BankController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String bankForm(Model model) {
 		logger.info("bankForm");
+
+		BankInterface bankInterface = new BankInterface();
+
 		model.addAttribute("bank", new BankData());
-		model.addAttribute("banks", BankInterface.getBanks());
+		model.addAttribute("banks", bankInterface.getBanks());
 		return "banks";
 	}
 
@@ -29,12 +32,14 @@ public class BankController {
 	public String bankSubmit(Model model, @ModelAttribute BankData bank) {
 		logger.info("bankSubmit name:{}, code:{}", bank.getName(), bank.getCode());
 
+		BankInterface bankInterface = new BankInterface();
+
 		try {
-			BankInterface.createBank(bank);
+			bankInterface.createBank(bank);
 		} catch (BankException be) {
 			model.addAttribute("error", "Error: it was not possible to create the bank");
 			model.addAttribute("bank", bank);
-			model.addAttribute("banks", BankInterface.getBanks());
+			model.addAttribute("banks", bankInterface.getBanks());
 			return "banks";
 		}
 
@@ -45,7 +50,9 @@ public class BankController {
 	public String deleteBanks(Model model) {
 		logger.info("deleteBanks");
 
-		BankInterface.deleteBanks();
+		BankInterface bankInterface = new BankInterface();
+
+		bankInterface.deleteBanks();
 
 		return "redirect:/banks";
 	}

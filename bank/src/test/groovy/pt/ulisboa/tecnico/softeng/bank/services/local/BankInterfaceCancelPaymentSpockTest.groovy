@@ -11,9 +11,12 @@ class BankInterfaceCancelPaymentSpockTest extends SpockRollbackTestAbstractClass
 	def bank
 	def account
 	def reference
+	def bankInterface
 
 	@Override
 	def populate4Test() {
+		bankInterface = new BankInterface()
+
 		bank = new Bank('Money','BK01')
 		def client = new Client(bank,'António')
 		account = new Account(bank, client)
@@ -22,7 +25,7 @@ class BankInterfaceCancelPaymentSpockTest extends SpockRollbackTestAbstractClass
 
 	def 'success'() {
 		when:
-		def newReference = BankInterface.cancelPayment(reference)
+		def newReference = bankInterface.cancelPayment(reference)
 
 		then:
 		bank.getOperation(newReference) != null
@@ -31,7 +34,7 @@ class BankInterfaceCancelPaymentSpockTest extends SpockRollbackTestAbstractClass
 	@Unroll('Cancel: #label')
 	def 'problem cancel payment'() {
 		when:
-		BankInterface.cancelPayment(payConf)
+		bankInterface.cancelPayment(payConf)
 
 		then:
 		thrown(BankException)

@@ -16,9 +16,12 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 	def bank
 	def account
 	@Shared def iban
+	def bankInterface
 
 	@Override
 	def populate4Test() {
+		bankInterface = new BankInterface()
+
 		bank = new Bank('Money','BK01')
 		def client = new Client(bank,'António')
 		account = new Account(bank, client)
@@ -28,7 +31,7 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 
 	def 'success'() {
 		when: 'a payment is processed for this account'
-		def newReference = BankInterface.processPayment(new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
+		def newReference = bankInterface.processPayment(new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
 
 		then: 'the operation occurs and a reference is generated'
 		newReference != null
@@ -48,13 +51,13 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 		otherAccount.deposit(1000)
 
 		when:
-		BankInterface.processPayment(new BankOperationData(otherIban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
+		bankInterface.processPayment(new BankOperationData(otherIban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
 
 		then:
 		otherAccount.getBalance() == 900.0
 
 		when:
-		BankInterface.processPayment(new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE + 'PLUS'))
+		bankInterface.processPayment(new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE + 'PLUS'))
 
 		then:
 		account.getBalance() == 400
@@ -62,10 +65,10 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 
 	def 'redo an already payed'() {
 		given: 'a payment to the account'
-		def firstReference = BankInterface.processPayment(new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
+		def firstReference = bankInterface.processPayment(new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
 
 		when: 'when there is a second payment for the same reference'
-		def secondReference = BankInterface.processPayment(new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
+		def secondReference = bankInterface.processPayment(new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
 
 		then: 'the operation is idempotent'
 		secondReference == firstReference
@@ -75,7 +78,7 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 
 	def 'one amount'() {
 		when: 'a payment of 1'
-		BankInterface.processPayment(new BankOperationData(this.iban, 1, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
+		bankInterface.processPayment(new BankOperationData(this.iban, 1, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
 
 		then:
 		account.getBalance() == 499.0
@@ -85,7 +88,7 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 	@Unroll('bank operation data, process payment: #ibn, #val')
 	def 'problem process payment'() {
 		when: 'process payment'
-		BankInterface.processPayment(
+		bankInterface.processPayment(
 				new BankOperationData(ibn, val, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
 
 		then: 'throw exception'
@@ -105,7 +108,7 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 		bank.delete()
 
 		when: 'process payment'
-		BankInterface.processPayment(
+		bankInterface.processPayment(
 				new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
 
 		then: 'an exception is thrown'
