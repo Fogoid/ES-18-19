@@ -27,25 +27,25 @@ public class TaxInterface {
 	private static Logger logger = LoggerFactory.getLogger(TaxInterface.class);
 
 	@Atomic(mode = TxMode.READ)
-	public static List<ItemTypeData> getItemTypeDataList() {
+	public List<ItemTypeData> getItemTypeDataList() {
 		return IRS.getIRSInstance().getItemTypeSet().stream().map(i -> new ItemTypeData(i))
 				.sorted((i1, i2) -> i1.getName().compareTo(i2.getName())).collect(Collectors.toList());
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void createItemType(ItemTypeData itemTypeData) {
+	public void createItemType(ItemTypeData itemTypeData) {
 		new ItemType(IRS.getIRSInstance(), itemTypeData.getName(),
 				itemTypeData.getTax() != null ? itemTypeData.getTax() : -1);
 	}
 
 	@Atomic(mode = TxMode.READ)
-	public static List<TaxPayerData> getTaxPayerDataList() {
+	public List<TaxPayerData> getTaxPayerDataList() {
 		return IRS.getIRSInstance().getTaxPayerSet().stream().map(i -> new TaxPayerData(i))
 				.sorted((i1, i2) -> i1.getNif().compareTo(i2.getNif())).collect(Collectors.toList());
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void createTaxPayer(TaxPayerData taxPayerData) {
+	public void createTaxPayer(TaxPayerData taxPayerData) {
 		if (taxPayerData.getType().equals(Type.BUYER)) {
 			new Buyer(IRS.getIRSInstance(), taxPayerData.getNif(), taxPayerData.getName(), taxPayerData.getAddress());
 		} else {
@@ -54,13 +54,13 @@ public class TaxInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static TaxPayerData getTaxPayerDataByNif(String nif) {
+	public TaxPayerData getTaxPayerDataByNif(String nif) {
 		TaxPayer taxPayer = IRS.getIRSInstance().getTaxPayerByNIF(nif);
 		return new TaxPayerData(taxPayer);
 	}
 
 	@Atomic(mode = TxMode.READ)
-	public static List<InvoiceData> getInvoiceDataList(String nif) {
+	public List<InvoiceData> getInvoiceDataList(String nif) {
 		TaxPayer taxPayer = IRS.getIRSInstance().getTaxPayerByNIF(nif);
 		if (taxPayer == null) {
 			throw new TaxException();
@@ -76,7 +76,7 @@ public class TaxInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void createInvoice(String nif, InvoiceData invoiceData) {
+	public void createInvoice(String nif, InvoiceData invoiceData) {
 		if (invoiceData.getValue() == null || invoiceData.getItemType() == null || invoiceData.getDate() == null
 				|| invoiceData.getBuyerNif() == null && invoiceData.getSellerNif() == null
 						&& invoiceData.getTime() == null) {
@@ -100,7 +100,7 @@ public class TaxInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static String submitInvoice(RestInvoiceData invoiceData) {
+	public String submitInvoice(RestInvoiceData invoiceData) {
 		Invoice invoice = getInvoiceByInvoiceData(invoiceData);
 		if (invoice != null) {
 			return invoice.getReference();
@@ -117,7 +117,7 @@ public class TaxInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void cancelInvoice(String reference) {
+	public void cancelInvoice(String reference) {
 		Invoice invoice = getInvoiceByReference(reference);
 
 		if (invoice != null && invoice.getCancelled()) {
@@ -128,16 +128,16 @@ public class TaxInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
-	public static void deleteIRS() {
+	public void deleteIRS() {
 		FenixFramework.getDomainRoot().getIrs().delete();
 	}
 
-	private static Invoice getInvoiceByReference(String reference) {
+	private Invoice getInvoiceByReference(String reference) {
 		return IRS.getIRSInstance().getInvoiceSet().stream().filter(i -> i.getReference().equals(reference)).findFirst()
 				.orElseThrow(() -> new TaxException());
 	}
 
-	private static Invoice getInvoiceByInvoiceData(RestInvoiceData invoiceData) {
+	private Invoice getInvoiceByInvoiceData(RestInvoiceData invoiceData) {
 		Optional<Invoice> inOptional = IRS.getIRSInstance().getInvoiceSet().stream()
 				.filter(i -> i.getBuyer().getNif().equals(invoiceData.getBuyerNif())
 						&& i.getSeller().getNif().equals(invoiceData.getSellerNif())

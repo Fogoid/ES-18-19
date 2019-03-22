@@ -20,9 +20,11 @@ class TaxInterfaceCancelInvoiceMethodSpockTest extends SpockRollbackTestAbstract
 	def irs
 	def reference
 	def invoice
+	def taxInterface
 
 	@Override
 	def populate4Test() {
+		taxInterface = new TaxInterface()
 		irs = IRS.getIRSInstance()
 
 		def seller = new Seller(irs,SELLER_NIF,'José Vendido','Somewhere')
@@ -35,7 +37,7 @@ class TaxInterfaceCancelInvoiceMethodSpockTest extends SpockRollbackTestAbstract
 
 	def 'success'() {
 		when:
-		TaxInterface.cancelInvoice(reference)
+		taxInterface.cancelInvoice(reference)
 
 		then:
 		invoice.isCancelled()
@@ -44,7 +46,7 @@ class TaxInterfaceCancelInvoiceMethodSpockTest extends SpockRollbackTestAbstract
 	@Unroll('#label')
 	def 'test: '() {
 		when:
-		TaxInterface.cancelInvoice(ref)
+		taxInterface.cancelInvoice(ref)
 
 		then:
 		thrown(TaxException)

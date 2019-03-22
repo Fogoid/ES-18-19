@@ -21,9 +21,12 @@ public class InvoiceController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String invoiceForm(Model model, @PathVariable String nif) {
 		logger.info("invoiceForm nif:{}", nif);
+
+		TaxInterface taxInterface = new TaxInterface();
+
 		model.addAttribute("invoice", new InvoiceData());
-		model.addAttribute("payer", TaxInterface.getTaxPayerDataByNif(nif));
-		model.addAttribute("invoices", TaxInterface.getInvoiceDataList(nif));
+		model.addAttribute("payer", taxInterface.getTaxPayerDataByNif(nif));
+		model.addAttribute("invoices", taxInterface.getInvoiceDataList(nif));
 		return "invoicesView";
 	}
 
@@ -33,13 +36,15 @@ public class InvoiceController {
 				invoiceData.getBuyerNif(), invoiceData.getSellerNif(), invoiceData.getItemType(),
 				invoiceData.getValue(), invoiceData.getDate(), invoiceData.getTime());
 
+		TaxInterface taxInterface = new TaxInterface();
+
 		try {
-			TaxInterface.createInvoice(nif, invoiceData);
+			taxInterface.createInvoice(nif, invoiceData);
 		} catch (TaxException be) {
 			model.addAttribute("error", "Error: it was not possible to create the invoice");
 			model.addAttribute("invoice", invoiceData);
-			model.addAttribute("payer", TaxInterface.getTaxPayerDataByNif(nif));
-			model.addAttribute("invoices", TaxInterface.getInvoiceDataList(nif));
+			model.addAttribute("payer", taxInterface.getTaxPayerDataByNif(nif));
+			model.addAttribute("invoices", taxInterface.getInvoiceDataList(nif));
 			return "invoicesView";
 		}
 

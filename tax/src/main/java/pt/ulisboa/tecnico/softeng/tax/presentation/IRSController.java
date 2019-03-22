@@ -12,7 +12,10 @@ public class IRSController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     public String deleteRentACars(Model model) {
-        TaxInterface.deleteIRS();
+
+        TaxInterface taxInterface = new TaxInterface();
+
+        taxInterface.deleteIRS();
 
         return "redirect:/";
     }

@@ -23,9 +23,11 @@ class TaxInterfaceSubmitInvoiceMethodSpockTest extends SpockRollbackTestAbstract
 	@Shared def date = new LocalDate(2018, 02, 13)
 	@Shared def time = new DateTime(2018, 02, 13, 10, 10)
 	@Shared def irs
+	def taxInterface
 
 	@Override
 	def populate4Test() {
+		taxInterface = new TaxInterface()
 		irs = IRS.getIRSInstance()
 
 		new Seller(irs, SELLER_NIF, 'José Vendido', 'Somewhere')
@@ -36,7 +38,7 @@ class TaxInterfaceSubmitInvoiceMethodSpockTest extends SpockRollbackTestAbstract
 	def 'success'() {
 		given:
 		def invoiceData = new RestInvoiceData(REFERENCE, SELLER_NIF, BUYER_NIF, FOOD, VALUE, date, time)
-		def invoiceReference = TaxInterface.submitInvoice(invoiceData)
+		def invoiceReference = taxInterface.submitInvoice(invoiceData)
 
 		when:
 		def invoice = irs.getTaxPayerByNIF(SELLER_NIF).getInvoiceByReference(invoiceReference)
@@ -57,8 +59,8 @@ class TaxInterfaceSubmitInvoiceMethodSpockTest extends SpockRollbackTestAbstract
 		def invoiceData = new RestInvoiceData(REFERENCE, SELLER_NIF, BUYER_NIF, FOOD, VALUE, date, time)
 
 		when:
-		def invoiceReference = TaxInterface.submitInvoice(invoiceData)
-		def secondInvoiceReference = TaxInterface.submitInvoice(invoiceData)
+		def invoiceReference = taxInterface.submitInvoice(invoiceData)
+		def secondInvoiceReference = taxInterface.submitInvoice(invoiceData)
 
 		then:
 		secondInvoiceReference  ==  invoiceReference
@@ -69,7 +71,7 @@ class TaxInterfaceSubmitInvoiceMethodSpockTest extends SpockRollbackTestAbstract
 		def invoiceData = new RestInvoiceData(REFERENCE, SELLER_NIF, BUYER_NIF, FOOD, VALUE, new LocalDate(1970, 01, 01), new DateTime(1970, 01, 01, 10, 10))
 
 		expect:
-		TaxInterface.submitInvoice(invoiceData)
+		taxInterface.submitInvoice(invoiceData)
 	}
 
 	@Unroll('#reference,  #sel,  #buy,  #food,  #value,  #dt,  #tm')
@@ -78,7 +80,7 @@ class TaxInterfaceSubmitInvoiceMethodSpockTest extends SpockRollbackTestAbstract
 		def invoiceData = new RestInvoiceData(reference,  sel,  buy,  food,  value,  dt,  tm)
 
 		when:
-		TaxInterface.submitInvoice(invoiceData)
+		taxInterface.submitInvoice(invoiceData)
 
 		then:
 		thrown(TaxException)
