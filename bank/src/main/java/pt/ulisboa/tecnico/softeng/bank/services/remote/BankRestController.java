@@ -24,8 +24,11 @@ public class BankRestController {
 		logger.info("processPayment iban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
 				bankOperationData.getIban(), bankOperationData.getValue(), bankOperationData.getTransactionSource(),
 				bankOperationData.getTransactionReference());
+
+		BankInterface bankInterface = new BankInterface();
+
 		try {
-			return new ResponseEntity<String>(BankInterface.processPayment(bankOperationData), HttpStatus.OK);
+			return new ResponseEntity<String>(bankInterface.processPayment(bankOperationData), HttpStatus.OK);
 		} catch (BankException be) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -34,8 +37,11 @@ public class BankRestController {
 	@RequestMapping(value = "/cancel", method = RequestMethod.POST)
 	public ResponseEntity<String> cancelPayment(@RequestParam String reference) {
 		logger.info("cancelPayment reference:{}", reference);
+
+		BankInterface bankInterface = new BankInterface();
+
 		try {
-			return new ResponseEntity<>(BankInterface.cancelPayment(reference), HttpStatus.OK);
+			return new ResponseEntity<>(bankInterface.cancelPayment(reference), HttpStatus.OK);
 		} catch (BankException be) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -44,8 +50,11 @@ public class BankRestController {
 	@RequestMapping(value = "/operation", method = RequestMethod.GET)
 	public ResponseEntity<BankOperationData> getOperationData(@RequestParam String reference) {
 		logger.info("getOperationData reference:{}", reference);
+
+		BankInterface bankInterface = new BankInterface();
+
 		try {
-			BankOperationData result = BankInterface.getOperationData(reference);
+			BankOperationData result = bankInterface.getOperationData(reference);
 			return new ResponseEntity<>(result, HttpStatus.OK);
 		} catch (BankException be) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

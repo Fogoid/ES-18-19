@@ -23,12 +23,14 @@ public class ClientController {
 	public String clientForm(Model model, @PathVariable String code) {
 		logger.info("clientForm bankCode:{}", code);
 
-		BankData bankData = BankInterface.getBankDataByCode(code);
+		BankInterface bankInterface = new BankInterface();
+
+		BankData bankData = bankInterface.getBankDataByCode(code);
 
 		if (bankData == null) {
 			model.addAttribute("error", "Error: it does not exist a bank with the code " + code);
 			model.addAttribute("bank", new BankData());
-			model.addAttribute("banks", BankInterface.getBanks());
+			model.addAttribute("banks", bankInterface.getBanks());
 			return "banks";
 		}
 
@@ -41,12 +43,14 @@ public class ClientController {
 	public String clientSubmit(Model model, @PathVariable String code, @ModelAttribute ClientData client) {
 		logger.info("clientSubmit bankCode:{}, clientName:{}", code, client.getName());
 
+		BankInterface bankInterface = new BankInterface();
+
 		try {
-			BankInterface.createClient(code, client);
+			bankInterface.createClient(code, client);
 		} catch (BankException be) {
 			model.addAttribute("error", "Error: it was not possible to create the client");
 			model.addAttribute("client", client);
-			model.addAttribute("bank", BankInterface.getBankDataByCode(code));
+			model.addAttribute("bank", bankInterface.getBankDataByCode(code));
 			return "clients";
 		}
 
