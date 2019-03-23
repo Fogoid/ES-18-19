@@ -66,7 +66,7 @@ public class HotelInterfaceCancelBookingMethodTest extends RollbackTestAbstractC
 	public void successIntegration() {
 		new Expectations() {
 			{
-				TaxInterface.cancelInvoice(this.anyString);
+				taxInterface.cancelInvoice(this.anyString);
 			}
 		};
 		String cancel = HotelInterface.cancelBooking(this.booking.getReference());
@@ -79,7 +79,7 @@ public class HotelInterfaceCancelBookingMethodTest extends RollbackTestAbstractC
 	public void doesNotExistIntegration() {
 		new Expectations() {
 			{
-				TaxInterface.cancelInvoice(this.anyString);
+				taxInterface.cancelInvoice(this.anyString);
 				this.times = 0;
 			}
 		};

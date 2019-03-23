@@ -60,7 +60,7 @@ public class HotelInterfaceBulkBookingMethodTest extends RollbackTestAbstractCla
 			{
 				BankInterface.processPayment((RestBankOperationData) this.any);
 
-				TaxInterface.submitInvoice((RestInvoiceData) this.any);
+				taxInterface.submitInvoice((RestInvoiceData) this.any);
 			}
 		};
 
@@ -128,7 +128,7 @@ public class HotelInterfaceBulkBookingMethodTest extends RollbackTestAbstractCla
 			{
 				BankInterface.processPayment((RestBankOperationData) this.any);
 
-				TaxInterface.submitInvoice((RestInvoiceData) this.any);
+				taxInterface.submitInvoice((RestInvoiceData) this.any);
 			}
 		};
 
