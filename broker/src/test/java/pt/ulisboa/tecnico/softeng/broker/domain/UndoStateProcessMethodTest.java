@@ -205,7 +205,7 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.setRentingConfirmation(RENTING_CONFIRMATION);
 		new Expectations() {
 			{
-				CarInterface.cancelRenting(RENTING_CONFIRMATION);
+				carInterface.cancelRenting(RENTING_CONFIRMATION);
 				this.result = RENTING_CANCELLATION;
 			}
 		};
@@ -227,7 +227,7 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.setRentingConfirmation(RENTING_CONFIRMATION);
 		new Expectations() {
 			{
-				CarInterface.cancelRenting(RENTING_CONFIRMATION);
+				carInterface.cancelRenting(RENTING_CONFIRMATION);
 				this.result = new CarException();
 			}
 		};
@@ -249,7 +249,7 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.setRentingConfirmation(RENTING_CONFIRMATION);
 		new Expectations() {
 			{
-				CarInterface.cancelRenting(RENTING_CONFIRMATION);
+				carInterface.cancelRenting(RENTING_CONFIRMATION);
 				this.result = new RemoteAccessException();
 			}
 		};

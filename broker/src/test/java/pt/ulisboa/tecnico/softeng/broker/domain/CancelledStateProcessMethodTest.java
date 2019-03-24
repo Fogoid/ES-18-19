@@ -207,7 +207,7 @@ public class CancelledStateProcessMethodTest extends RollbackTestAbstractClass {
 				BankInterface.getOperationData(PAYMENT_CONFIRMATION);
 				BankInterface.getOperationData(PAYMENT_CANCELLATION);
 				ActivityInterface.getActivityReservationData(ACTIVITY_CANCELLATION);
-				CarInterface.getRentingData(RENTING_CANCELLATION);
+				carInterface.getRentingData(RENTING_CANCELLATION);
 			}
 		};
 
@@ -235,7 +235,7 @@ public class CancelledStateProcessMethodTest extends RollbackTestAbstractClass {
 				BankInterface.getOperationData(PAYMENT_CANCELLATION);
 				ActivityInterface.getActivityReservationData(ACTIVITY_CANCELLATION);
 				HotelInterface.getRoomBookingData(ROOM_CANCELLATION);
-				CarInterface.getRentingData(RENTING_CANCELLATION);
+				carInterface.getRentingData(RENTING_CANCELLATION);
 			}
 		};
 

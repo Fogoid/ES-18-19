@@ -70,7 +70,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 				HotelInterface.reserveRoom((RestRoomBookingData) this.any);
 				this.result = AdventureSequenceTest.this.bookingRoomData;
 
-				CarInterface.rentCar((CarInterface.Type) this.any, this.anyString, this.anyString, this.anyString,
+				carInterface.rentCar((CarInterface.Type) this.any, this.anyString, this.anyString, this.anyString,
 						(LocalDate) this.any, (LocalDate) this.any, this.anyString);
 				this.result = AdventureSequenceTest.this.rentingData;
 
@@ -85,7 +85,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 				ActivityInterface.getActivityReservationData(ACTIVITY_CONFIRMATION);
 				this.result = AdventureSequenceTest.this.bookingActivityData;
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 				this.result = AdventureSequenceTest.this.rentingData;
 
 				HotelInterface.getRoomBookingData(ROOM_CONFIRMATION);
@@ -156,7 +156,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 				ActivityInterface.reserveActivity((RestActivityBookingData) this.any);
 				this.result = AdventureSequenceTest.this.bookingActivityData;
 
-				CarInterface.rentCar((CarInterface.Type) this.any, this.anyString, this.anyString, this.anyString,
+				carInterface.rentCar((CarInterface.Type) this.any, this.anyString, this.anyString, this.anyString,
 						(LocalDate) this.any, (LocalDate) this.any, this.anyString);
 				this.result = AdventureSequenceTest.this.rentingData;
 
@@ -171,7 +171,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 				ActivityInterface.getActivityReservationData(ACTIVITY_CONFIRMATION);
 				this.result = AdventureSequenceTest.this.bookingActivityData;
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 				this.result = AdventureSequenceTest.this.rentingData;
 			}
 		};
@@ -277,7 +277,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 				ActivityInterface.reserveActivity((RestActivityBookingData) this.any);
 				this.result = AdventureSequenceTest.this.bookingActivityData;
 
-				CarInterface.rentCar((CarInterface.Type) this.any, this.anyString, this.anyString, this.anyString,
+				carInterface.rentCar((CarInterface.Type) this.any, this.anyString, this.anyString, this.anyString,
 						(LocalDate) this.any, (LocalDate) this.any, this.anyString);
 				this.result = new CarException();
 
@@ -310,7 +310,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 				HotelInterface.reserveRoom((RestRoomBookingData) this.any);
 				this.result = AdventureSequenceTest.this.bookingRoomData;
 
-				CarInterface.rentCar((CarInterface.Type) this.any, this.anyString, this.anyString, this.anyString,
+				carInterface.rentCar((CarInterface.Type) this.any, this.anyString, this.anyString, this.anyString,
 						(LocalDate) this.any, (LocalDate) this.any, this.anyString);
 				this.result = AdventureSequenceTest.this.rentingData;
 
@@ -323,7 +323,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 				HotelInterface.cancelBooking(ROOM_CONFIRMATION);
 				this.result = ROOM_CANCELLATION;
 
-				CarInterface.cancelRenting(RENTING_CONFIRMATION);
+				carInterface.cancelRenting(RENTING_CONFIRMATION);
 				this.result = RENTING_CANCELLATION;
 			}
 		};
@@ -353,7 +353,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 				HotelInterface.reserveRoom((RestRoomBookingData) this.any);
 				this.result = AdventureSequenceTest.this.bookingRoomData;
 
-				CarInterface.rentCar(CarInterface.Type.CAR, this.anyString, this.anyString, this.anyString,
+				carInterface.rentCar(CarInterface.Type.CAR, this.anyString, this.anyString, this.anyString,
 						(LocalDate) this.any, (LocalDate) this.any, this.anyString);
 				this.result = AdventureSequenceTest.this.rentingData;
 
@@ -369,7 +369,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 				HotelInterface.cancelBooking(ROOM_CONFIRMATION);
 				this.result = ROOM_CANCELLATION;
 
-				CarInterface.cancelRenting(RENTING_CONFIRMATION);
+				carInterface.cancelRenting(RENTING_CONFIRMATION);
 				this.result = RENTING_CANCELLATION;
 
 				BankInterface.cancelPayment(PAYMENT_CONFIRMATION);

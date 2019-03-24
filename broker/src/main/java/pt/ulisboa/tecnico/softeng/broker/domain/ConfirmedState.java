@@ -17,6 +17,8 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessE
 public class ConfirmedState extends ConfirmedState_Base {
 	public static int MAX_REMOTE_ERRORS = 20;
 	public static int MAX_BANK_EXCEPTIONS = 5;
+	CarInterface carInterface = new CarInterface();
+
 
 	public ConfirmedState() {
 		super();
@@ -62,7 +64,7 @@ public class ConfirmedState extends ConfirmedState_Base {
 		if (getAdventure().getRentingConfirmation() != null) {
 			RestRentingData rentingData;
 			try {
-				rentingData = CarInterface.getRentingData(getAdventure().getRentingConfirmation());
+				rentingData = carInterface.getRentingData(getAdventure().getRentingConfirmation());
 			} catch (CarException he) {
 				getAdventure().setState(State.UNDO);
 				return;
