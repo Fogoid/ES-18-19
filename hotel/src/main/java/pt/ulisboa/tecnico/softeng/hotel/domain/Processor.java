@@ -19,6 +19,8 @@ public class Processor extends Processor_Base {
 
 	private static final String TRANSACTION_SOURCE = "HOTEL";
 
+	private  TaxInterface taxInterface = new TaxInterface();
+
 	public void delete() {
 		setHotel(null);
 
@@ -35,8 +37,6 @@ public class Processor extends Processor_Base {
 	}
 
 	private void processInvoices() {
-
-		TaxInterface taxInterface = new TaxInterface();
 
 		Set<Booking> failedToProcess = new HashSet<>();
 		for (Booking booking : getBookingSet()) {
