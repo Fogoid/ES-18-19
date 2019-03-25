@@ -12,7 +12,9 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.HotelExceptio
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
 
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
+@Ignore
 @RunWith(JMockit.class)
 public class BulkRoomBookingGetRoomBookingData4TypeMethodTest extends RollbackTestAbstractClass {
     private BulkRoomBooking bulk;
@@ -25,7 +27,7 @@ public class BulkRoomBookingGetRoomBookingData4TypeMethodTest extends RollbackTe
         new Reference(this.bulk, REF_TWO);
     }
 
-    @Test
+    /*@Test
     public void successSINGLE(@Mocked final HotelInterface roomInterface) {
         new Expectations() {
             {
@@ -217,6 +219,6 @@ public class BulkRoomBookingGetRoomBookingData4TypeMethodTest extends RollbackTe
         }
 
         assertFalse(this.bulk.getCancelled());
-    }
+    }*/
 
 }

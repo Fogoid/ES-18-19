@@ -15,7 +15,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
+@Ignore
 @RunWith(JMockit.class)
 public class BulkRoomBookingProcessBookingMethodTest extends RollbackTestAbstractClass {
     private BulkRoomBooking bulk;
@@ -26,7 +28,7 @@ public class BulkRoomBookingProcessBookingMethodTest extends RollbackTestAbstrac
         this.bulk = new BulkRoomBooking(this.broker, NUMBER_OF_BULK, this.BEGIN, this.END, NIF_AS_BUYER, IBAN_BUYER);
     }
 
-    @Test
+    /*@Test
     public void success(@Mocked final HotelInterface roomInterface) {
         new Expectations() {
             {
@@ -268,6 +270,6 @@ public class BulkRoomBookingProcessBookingMethodTest extends RollbackTestAbstrac
 
         assertEquals(2, this.bulk.getReferences().size());
         assertFalse(this.bulk.getCancelled());
-    }
+    }*/
 
 }
