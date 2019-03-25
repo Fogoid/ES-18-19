@@ -1,4 +1,4 @@
-package pt.ulisboa.tecnico.softeng.broker.domain;
+/*package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -556,3 +556,4 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 	}
 
 }
+*/

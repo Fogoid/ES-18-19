@@ -6,9 +6,11 @@ import org.slf4j.LoggerFactory;
 
 import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException;
+import pt.ulisboa.tecnico.softeng.broker.services.remote.CarInterface;
 
 public class Broker extends Broker_Base {
 	private static Logger logger = LoggerFactory.getLogger(Broker.class);
+	private CarInterface carInterface;
 
 	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban) {
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
@@ -22,6 +24,22 @@ public class Broker extends Broker_Base {
 		FenixFramework.getDomainRoot().addBroker(this);
 	}
 
+	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, CarInterface carInterface) {
+		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
+
+		setCode(code);
+		setName(name);
+		setNifAsSeller(nifAsSeller);
+		setNifAsBuyer(nifAsBuyer);
+		setIban(iban);
+
+
+		setCarInterface(carInterface);
+
+
+
+		FenixFramework.getDomainRoot().addBroker(this);
+	}
 	public void delete() {
 		setRoot(null);
 
@@ -89,5 +107,18 @@ public class Broker extends Broker_Base {
 		int counter = super.getCounter() + 1;
 		setCounter(counter);
 		return counter;
+	}
+	/**
+	 * @return the carInterface
+	 */
+	public CarInterface getCarInterface() {
+		return carInterface;
+	}
+
+	/**
+	 * @param carInterface the carInterface to set
+	 */
+	public void setCarInterface(CarInterface carInterface) {
+		this.carInterface = carInterface;
 	}
 }

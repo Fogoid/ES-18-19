@@ -14,7 +14,7 @@ public class RentVehicleState extends RentVehicleState_Base {
 	private static Logger logger = LoggerFactory.getLogger(RentVehicleState.class);
 
 	public static final int MAX_REMOTE_ERRORS = 5;
-	CarInterface carInterface = new CarInterface();
+
 
 
 	@Override
@@ -26,7 +26,7 @@ public class RentVehicleState extends RentVehicleState_Base {
 	public void process() {
 		try {
 			// For now we will only reserve cars
-			RestRentingData rentingData = carInterface.rentCar(Type.CAR, getAdventure().getClient().getDrivingLicense(),
+			RestRentingData rentingData = getAdventure().getBroker().getCarInterface().rentCar(Type.CAR, getAdventure().getClient().getDrivingLicense(),
 					getAdventure().getBroker().getNifAsBuyer(), getAdventure().getBroker().getIban(),
 					getAdventure().getBegin(), getAdventure().getEnd(), getAdventure().getID());
 
