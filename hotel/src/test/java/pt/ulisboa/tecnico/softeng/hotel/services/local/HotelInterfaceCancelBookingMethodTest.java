@@ -41,7 +41,9 @@ public class HotelInterfaceCancelBookingMethodTest extends RollbackTestAbstractC
 
 	@Test
 	public void success() {
-		String cancel = HotelInterface.cancelBooking(this.booking.getReference());
+		HotelInterface hotelInterface = new HotelInterface();
+
+		String cancel = hotelInterface.cancelBooking(this.booking.getReference());
 
 		Assert.assertTrue(this.booking.isCancelled());
 		Assert.assertEquals(cancel, this.booking.getCancellation());
@@ -49,27 +51,35 @@ public class HotelInterfaceCancelBookingMethodTest extends RollbackTestAbstractC
 
 	@Test(expected = HotelException.class)
 	public void doesNotExist() {
-		HotelInterface.cancelBooking("XPTO");
+		HotelInterface hotelInterface = new HotelInterface();
+
+		hotelInterface.cancelBooking("XPTO");
 	}
 
 	@Test(expected = HotelException.class)
 	public void nullReference() {
-		HotelInterface.cancelBooking(null);
+		HotelInterface hotelInterface = new HotelInterface();
+
+		hotelInterface.cancelBooking(null);
 	}
 
 	@Test(expected = HotelException.class)
 	public void emptyReference() {
-		HotelInterface.cancelBooking("");
+		HotelInterface hotelInterface = new HotelInterface();
+
+		hotelInterface.cancelBooking("");
 	}
 
 	@Test
 	public void successIntegration() {
 		new Expectations() {
 			{
-				TaxInterface.cancelInvoice(this.anyString);
+				taxInterface.cancelInvoice(this.anyString);
 			}
 		};
-		String cancel = HotelInterface.cancelBooking(this.booking.getReference());
+		HotelInterface hotelInterface = new HotelInterface();
+
+		String cancel = hotelInterface.cancelBooking(this.booking.getReference());
 
 		Assert.assertTrue(this.booking.isCancelled());
 		Assert.assertEquals(cancel, this.booking.getCancellation());
@@ -79,10 +89,12 @@ public class HotelInterfaceCancelBookingMethodTest extends RollbackTestAbstractC
 	public void doesNotExistIntegration() {
 		new Expectations() {
 			{
-				TaxInterface.cancelInvoice(this.anyString);
+				taxInterface.cancelInvoice(this.anyString);
 				this.times = 0;
 			}
 		};
-		HotelInterface.cancelBooking("XPTO");
+		HotelInterface hotelInterface = new HotelInterface();
+
+		hotelInterface.cancelBooking("XPTO");
 	}
 }

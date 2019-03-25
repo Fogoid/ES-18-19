@@ -20,8 +20,10 @@ public class BrokerController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String brokerForm(Model model) {
 		logger.info("brokerForm");
+
+		BrokerInterface brokerInterface =new BrokerInterface();
 		model.addAttribute("broker", new BrokerData());
-		model.addAttribute("brokers", BrokerInterface.getBrokers());
+		model.addAttribute("brokers", brokerInterface.getBrokers());
 		return "brokers";
 	}
 
@@ -30,12 +32,14 @@ public class BrokerController {
 		logger.info("brokerSubmit name:{}, code:{}, nifAsSeller:{}, nifAsBuyer:{}, iban:{}", brokerData.getName(),
 				brokerData.getCode(), brokerData.getNifAsSeller(), brokerData.getNifAsBuyer(), brokerData.getIban());
 
+		BrokerInterface brokerInterface =new BrokerInterface();
+
 		try {
-			BrokerInterface.createBroker(brokerData);
+			brokerInterface.createBroker(brokerData);
 		} catch (BrokerException be) {
 			model.addAttribute("error", "Error: it was not possible to create the broker");
 			model.addAttribute("broker", brokerData);
-			model.addAttribute("brokers", BrokerInterface.getBrokers());
+			model.addAttribute("brokers", brokerInterface.getBrokers());
 			return "brokers";
 		}
 
@@ -46,7 +50,8 @@ public class BrokerController {
 	public String deleteBrokers(Model model) {
 		logger.info("deleteBrokers");
 
-		BrokerInterface.deleteBrokers();
+		BrokerInterface brokerInterface =new BrokerInterface();
+		brokerInterface.deleteBrokers();
 
 		return "redirect:/brokers";
 	}
