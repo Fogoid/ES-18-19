@@ -48,7 +48,7 @@ public class CancelledState extends CancelledState_Base {
 
 		if (getAdventure().getRoomCancellation() != null) {
 			try {
-				HotelInterface.getRoomBookingData(getAdventure().getRoomCancellation());
+				getAdventure().getBroker().getHotelInterface().getRoomBookingData(getAdventure().getRoomCancellation());
 			} catch (HotelException | RemoteAccessException e) {
 				return;
 			}

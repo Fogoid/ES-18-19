@@ -78,7 +78,7 @@ public class ConfirmedState extends ConfirmedState_Base {
 		if (getAdventure().getRoomConfirmation() != null) {
 			RestRoomBookingData booking;
 			try {
-				booking = HotelInterface.getRoomBookingData(getAdventure().getRoomConfirmation());
+				booking = getAdventure().getBroker().getHotelInterface().getRoomBookingData(getAdventure().getRoomConfirmation());
 			} catch (final HotelException he) {
 				getAdventure().setState(State.UNDO);
 				return;

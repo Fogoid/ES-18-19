@@ -1,5 +1,6 @@
 package pt.ulisboa.tecnico.softeng.broker.domain;
 
+
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +10,20 @@ import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.ActivityInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.BankInterface;
 
+import pt.ulisboa.tecnico.softeng.broker.services.remote.CarInterface;
+import pt.ulisboa.tecnico.softeng.broker.services.remote.HotelInterface;
+import pt.ulisboa.tecnico.softeng.broker.services.remote.TaxInterface;
+
+
+
 public class Broker extends Broker_Base {
 	private static Logger logger = LoggerFactory.getLogger(Broker.class);
 	private BankInterface bankInterface;
 	private ActivityInterface activityInterface;
 
 
+
+	private HotelInterface hotelInterface;
 
 	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban) {
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
@@ -28,7 +37,9 @@ public class Broker extends Broker_Base {
 		FenixFramework.getDomainRoot().addBroker(this);
 	}
 
-	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, BankInterface bankInterface, ActivityInterface activityInterface) {
+
+	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, ActivityInterface activityInterface,BankInterface bankInterface,HotelInterface hotelInterface) {
+
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
 
 		setCode(code);
@@ -37,11 +48,17 @@ public class Broker extends Broker_Base {
 		setNifAsBuyer(nifAsBuyer);
 		setIban(iban);
 
+
 		setBankInterface(bankInterface);
 		setActivityInterface(activityInterface);
 
+		setHotelInterface(hotelInterface);
+
+
 		FenixFramework.getDomainRoot().addBroker(this);
 	}
+
+
 
 	public void delete() {
 		setRoot(null);
@@ -113,6 +130,7 @@ public class Broker extends Broker_Base {
 	}
 
 
+
 	/**
 	 * @return the bankInterface
 	 */
@@ -144,4 +162,24 @@ public class Broker extends Broker_Base {
 
 
 
+
+	public Broker getBroker() {
+		return this;
+	}
+
+	/**
+	 * @return the hotelInterface
+	 */
+	public HotelInterface getHotelInterface() {
+		return this.hotelInterface;
+	}
+
+	/**
+	 * @param hotelInterface the hotelInterface to set
+	 */
+	public void setHotelInterface(HotelInterface hotelInterface) {
+		this.hotelInterface = hotelInterface;
+	}
+
 }
+
