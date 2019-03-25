@@ -60,7 +60,7 @@ public class HotelInterfaceBulkBookingMethodTest extends RollbackTestAbstractCla
 	public void success() {
 		new Expectations() {
 			{
-				BankInterface.processPayment((RestBankOperationData) this.any);
+				bankInterface.processPayment((RestBankOperationData) this.any);
 
 				taxInterface.submitInvoice((RestInvoiceData) this.any);
 			}
@@ -139,7 +139,7 @@ public class HotelInterfaceBulkBookingMethodTest extends RollbackTestAbstractCla
 	public void idempotentBulkBooking() {
 		new Expectations() {
 			{
-				BankInterface.processPayment((RestBankOperationData) this.any);
+				bankInterface.processPayment((RestBankOperationData) this.any);
 
 				taxInterface.submitInvoice((RestInvoiceData) this.any);
 			}
