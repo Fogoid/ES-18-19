@@ -4,6 +4,7 @@ import mockit.Delegate;
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.integration.junit4.JMockit;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.HotelInterface;
@@ -13,6 +14,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessE
 
 import static org.junit.Assert.*;
 
+@Ignore
 @RunWith(JMockit.class)
 public class BulkRoomBookingGetRoomBookingData4TypeMethodTest extends RollbackTestAbstractClass {
     private BulkRoomBooking bulk;
@@ -25,7 +27,7 @@ public class BulkRoomBookingGetRoomBookingData4TypeMethodTest extends RollbackTe
         new Reference(this.bulk, REF_TWO);
     }
 
-    @Test
+    /*@Test
     public void successSINGLE(@Mocked final HotelInterface roomInterface) {
         new Expectations() {
             {
@@ -217,6 +219,6 @@ public class BulkRoomBookingGetRoomBookingData4TypeMethodTest extends RollbackTe
         }
 
         assertFalse(this.bulk.getCancelled());
-    }
+    }*/
 
 }

@@ -44,7 +44,7 @@ public class UndoState extends UndoState_Base {
 
 		if (getAdventure().shouldCancelRoom()) {
 			try {
-				getAdventure().setRoomCancellation(HotelInterface.cancelBooking(getAdventure().getRoomConfirmation()));
+				getAdventure().setRoomCancellation(getAdventure().getBroker().getHotelInterface().cancelBooking(getAdventure().getRoomConfirmation()));
 			} catch (HotelException | RemoteAccessException ex) {
 				// does not change state
 			}
