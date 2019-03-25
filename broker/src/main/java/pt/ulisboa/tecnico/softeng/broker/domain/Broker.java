@@ -6,11 +6,15 @@ import org.slf4j.LoggerFactory;
 
 import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException;
+import pt.ulisboa.tecnico.softeng.broker.services.remote.ActivityInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.BankInterface;
 
 public class Broker extends Broker_Base {
 	private static Logger logger = LoggerFactory.getLogger(Broker.class);
 	private BankInterface bankInterface;
+	private ActivityInterface activityInterface;
+
+
 
 	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban) {
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
@@ -24,7 +28,7 @@ public class Broker extends Broker_Base {
 		FenixFramework.getDomainRoot().addBroker(this);
 	}
 
-	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, BankInterface bankInterface) {
+	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, BankInterface bankInterface, ActivityInterface activityInterface) {
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
 
 		setCode(code);
@@ -34,6 +38,7 @@ public class Broker extends Broker_Base {
 		setIban(iban);
 
 		setBankInterface(bankInterface);
+		setActivityInterface(activityInterface);
 
 		FenixFramework.getDomainRoot().addBroker(this);
 	}
@@ -120,6 +125,21 @@ public class Broker extends Broker_Base {
 	 */
 	public void setBankInterface(BankInterface bankInterface) {
 		this.bankInterface = bankInterface;
+	}
+
+
+	/**
+	 * @return the activityInterface
+	 */
+	public ActivityInterface getActivityInterface() {
+		return activityInterface;
+	}
+
+	/**
+	 * @param activityInterface the activityInterface to set
+	 */
+	public void setActivityInterface(ActivityInterface activityInterface) {
+		this.activityInterface = activityInterface;
 	}
 
 
