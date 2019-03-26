@@ -1,4 +1,4 @@
-/**package pt.ulisboa.tecnico.softeng.broker.domain;
+package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,6 +15,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.dataobjects.RestActivit
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.ActivityException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
 
+@Ignore
 @RunWith(JMockit.class)
 public class ReserveActivityStateProcessMethodTest extends RollbackTestAbstractClass {
 	@Mocked
@@ -33,7 +34,8 @@ public class ReserveActivityStateProcessMethodTest extends RollbackTestAbstractC
 
 		this.adventure.setState(State.RESERVE_ACTIVITY);
 	}
-
+	
+	/*
 	@Test
 	public void successNoBookRoom(@Mocked final ActivityInterface activityInterface) {
 		Adventure sameDayAdventure = new Adventure(this.broker, this.BEGIN, this.BEGIN, this.client, MARGIN);
@@ -200,6 +202,5 @@ public class ReserveActivityStateProcessMethodTest extends RollbackTestAbstractC
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
 	}
-
+	*/
 }
- */
