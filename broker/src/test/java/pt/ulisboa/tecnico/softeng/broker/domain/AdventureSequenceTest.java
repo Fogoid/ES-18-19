@@ -59,6 +59,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 		this.rentingData.setInvoiceReference(INVOICE_REFERENCE);
 	}
 /*
+
 	@Test
 	public void successSequence(@Mocked final TaxInterface taxInterface, @Mocked final BankInterface bankInterface,
 			@Mocked final ActivityInterface activityInterface, @Mocked final HotelInterface roomInterface,
@@ -389,6 +390,8 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 		adventure.process();
 
 		Assert.assertEquals(State.CANCELLED, adventure.getState().getValue());
+<<<<<<< HEAD
 	}
 */
+
 }

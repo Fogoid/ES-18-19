@@ -1,6 +1,7 @@
 package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -36,8 +37,10 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 
 		this.adventure.setState(State.UNDO);
 	}
- /*
-	@Test
+
+
+	/* @Test
+
 	public void successRevertPayment(@Mocked final BankInterface bankInterface) {
 		this.adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION);
 		new Expectations() {
@@ -334,6 +337,8 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.process();
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
+<<<<<<< HEAD
 	}
 */
+
 }

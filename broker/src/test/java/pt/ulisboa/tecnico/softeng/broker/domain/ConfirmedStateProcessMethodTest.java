@@ -51,7 +51,9 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 
 		this.adventure.setState(State.CONFIRMED);
 	}
+
 /*
+
 	@Test
 	public void successAll() {
 		this.adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION);
@@ -555,6 +557,8 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.process();
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
+<<<<<<< HEAD
 	}
 */
+
 }
