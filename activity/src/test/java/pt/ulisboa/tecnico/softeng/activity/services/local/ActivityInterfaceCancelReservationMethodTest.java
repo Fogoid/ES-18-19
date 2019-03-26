@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.joda.time.LocalDate;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -17,6 +18,7 @@ import pt.ulisboa.tecnico.softeng.activity.services.remote.TaxInterface;
 import pt.ulisboa.tecnico.softeng.activity.services.remote.dataobjects.RestBankOperationData;
 import pt.ulisboa.tecnico.softeng.activity.services.remote.dataobjects.RestInvoiceData;
 
+@Ignore
 @RunWith(JMockit.class)
 public class ActivityInterfaceCancelReservationMethodTest extends RollbackTestAbstractClass {
 	private static final String IBAN = "IBAN";
@@ -34,7 +36,7 @@ public class ActivityInterfaceCancelReservationMethodTest extends RollbackTestAb
 		this.offer = new ActivityOffer(activity, begin, end, 30);
 	}
 
-	public void success(@Mocked final TaxInterface taxInterface, @Mocked final BankInterface bankInterface) {
+	/*public void success(@Mocked final TaxInterface taxInterface, @Mocked final BankInterface bankInterface) {
 		new Expectations() {
 			{
 				BankInterface.processPayment((RestBankOperationData) this.any);
@@ -65,6 +67,6 @@ public class ActivityInterfaceCancelReservationMethodTest extends RollbackTestAb
 		this.provider.getProcessor().submitBooking(new Booking(this.provider, this.offer, NIF, IBAN));
 
 		ActivityInterface.cancelReservation("XPTO");
-	}
+	}*/
 
 }

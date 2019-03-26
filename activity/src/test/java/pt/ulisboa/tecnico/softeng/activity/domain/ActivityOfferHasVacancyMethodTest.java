@@ -55,7 +55,7 @@ public class ActivityOfferHasVacancyMethodTest extends RollbackTestAbstractClass
 		Assert.assertTrue(this.offer.hasVacancy());
 	}
 
-	@Test
+	/*@Test
 	public void hasCancelledBookings(@Mocked final TaxInterface taxInterface,
 			@Mocked final BankInterface bankInterface) {
 		new Expectations() {
@@ -93,6 +93,6 @@ public class ActivityOfferHasVacancyMethodTest extends RollbackTestAbstractClass
 		this.provider.getProcessor().submitBooking(booking);
 
 		Assert.assertFalse(this.offer.hasVacancy());
-	}
+	}*/
 
 }
