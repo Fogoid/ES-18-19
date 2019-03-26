@@ -1,4 +1,4 @@
-/**package pt.ulisboa.tecnico.softeng.broker.domain;
+package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -248,5 +248,4 @@ public class CancelledStateProcessMethodTest extends RollbackTestAbstractClass {
 
 		Assert.assertEquals(Adventure.State.CANCELLED, this.adventure.getState().getValue());
 	}*/
-
-}*/
+}
