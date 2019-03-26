@@ -1,8 +1,9 @@
-/*package pt.ulisboa.tecnico.softeng.broker.domain;
+package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.Ignore;
 
 import mockit.Delegate;
 import mockit.Expectations;
@@ -15,6 +16,8 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.dataobjects.RestRenting
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.CarException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
 
+
+@Ignore
 @RunWith(JMockit.class)
 public class RentVehicleStateMethodTest extends RollbackTestAbstractClass {
 	@Mocked
@@ -34,7 +37,7 @@ public class RentVehicleStateMethodTest extends RollbackTestAbstractClass {
 
 		this.adventure.setState(State.RENT_VEHICLE);
 	}
-
+ /*
 	@Test
 	public void successRentVehicle(@Mocked final CarInterface carInterface) {
 		new Expectations() {
@@ -175,5 +178,5 @@ public class RentVehicleStateMethodTest extends RollbackTestAbstractClass {
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
 	}
-
-} */
+*/
+}

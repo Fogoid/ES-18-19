@@ -1,9 +1,10 @@
-/*package pt.ulisboa.tecnico.softeng.broker.domain;
+package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import static org.junit.Assert.assertEquals;
 
 import org.joda.time.LocalDate;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -26,6 +27,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.BankException
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.CarException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.HotelException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.TaxException;
+@Ignore
 
 @RunWith(JMockit.class)
 public class AdventureSequenceTest extends RollbackTestAbstractClass {
@@ -56,7 +58,7 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 		this.rentingData.setPaymentReference(PAYMENT_CONFIRMATION);
 		this.rentingData.setInvoiceReference(INVOICE_REFERENCE);
 	}
-
+/*
 	@Test
 	public void successSequence(@Mocked final TaxInterface taxInterface, @Mocked final BankInterface bankInterface,
 			@Mocked final ActivityInterface activityInterface, @Mocked final HotelInterface roomInterface,
@@ -388,6 +390,5 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 
 		Assert.assertEquals(State.CANCELLED, adventure.getState().getValue());
 	}
-
-}
 */
+}

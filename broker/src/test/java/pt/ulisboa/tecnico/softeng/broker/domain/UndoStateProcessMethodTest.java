@@ -1,9 +1,10 @@
-/*package pt.ulisboa.tecnico.softeng.broker.domain;
+package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import org.junit.Ignore;
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.integration.junit4.JMockit;
@@ -20,20 +21,22 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.HotelExceptio
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.TaxException;
 
+
+@Ignore
 @RunWith(JMockit.class)
 public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 	@Mocked
 	private TaxInterface taxInterface;
 
 	@Override
-	public void populate4Test() { /*
+	public void populate4Test() {
 		this.broker = new Broker("BR01", "eXtremeADVENTURE", BROKER_NIF_AS_SELLER, NIF_AS_BUYER, BROKER_IBAN);
 		this.client = new Client(this.broker, CLIENT_IBAN, CLIENT_NIF, DRIVING_LICENSE, AGE);
 		this.adventure = new Adventure(this.broker, this.BEGIN, this.END, this.client, MARGIN);
 
 		this.adventure.setState(State.UNDO);
 	}
-
+ /*
 	@Test
 	public void successRevertPayment(@Mocked final BankInterface bankInterface) {
 		this.adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION);
@@ -332,6 +335,5 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
 	}
-
-}
 */
+}
