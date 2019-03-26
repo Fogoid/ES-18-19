@@ -1,4 +1,4 @@
-/**package pt.ulisboa.tecnico.softeng.broker.domain;
+package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,6 +15,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.dataobjects.RestBankOpe
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.BankException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
 
+@Ignore
 @RunWith(JMockit.class)
 public class ProcessPaymentStateProcessMethodTest extends RollbackTestAbstractClass {
 	private static final String TRANSACTION_SOURCE = "ADVENTURE";
@@ -30,7 +31,7 @@ public class ProcessPaymentStateProcessMethodTest extends RollbackTestAbstractCl
 
 		this.adventure.setState(State.PROCESS_PAYMENT);
 	}
-
+	/*
 	@Test
 	public void success(@Mocked final BankInterface bankInterface) {
 		new Expectations() {
@@ -163,6 +164,5 @@ public class ProcessPaymentStateProcessMethodTest extends RollbackTestAbstractCl
 
 		Assert.assertEquals(State.CANCELLED, this.adventure.getState().getValue());
 	}
-
+	*/
 }
- */
