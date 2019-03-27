@@ -337,8 +337,6 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.process();
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
-<<<<<<< HEAD
-	}
-*/
+	}*/
 
 }
