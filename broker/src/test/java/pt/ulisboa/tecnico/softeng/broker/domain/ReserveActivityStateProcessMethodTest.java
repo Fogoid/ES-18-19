@@ -35,9 +35,8 @@ public class ReserveActivityStateProcessMethodTest extends RollbackTestAbstractC
 
 		this.adventure.setState(State.RESERVE_ACTIVITY);
 	}
-	
-	/*
-	@Test
+
+	/*@Test
 	public void successNoBookRoom(@Mocked final ActivityInterface activityInterface) {
 		Adventure sameDayAdventure = new Adventure(this.broker, this.BEGIN, this.BEGIN, this.client, MARGIN);
 		sameDayAdventure.setState(State.RESERVE_ACTIVITY);
@@ -202,6 +201,6 @@ public class ReserveActivityStateProcessMethodTest extends RollbackTestAbstractC
 		this.adventure.process();
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
-	}
-	*/
+	}*/
 }
+

@@ -10,9 +10,9 @@ import pt.ulisboa.tecnico.softeng.activity.services.remote.exceptions.BankExcept
 import pt.ulisboa.tecnico.softeng.activity.services.remote.exceptions.RemoteAccessException;
 
 public class BankInterface {
-	private Logger logger = LoggerFactory.getLogger(BankInterface.class);
+	private static Logger logger = LoggerFactory.getLogger(BankInterface.class);
 
-	private String ENDPOINT = "http://localhost:8082";
+	private static String ENDPOINT = "http://localhost:8082";
 
 	public String processPayment(RestBankOperationData bankOperationData) {
 		logger.info("processPayment iban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
