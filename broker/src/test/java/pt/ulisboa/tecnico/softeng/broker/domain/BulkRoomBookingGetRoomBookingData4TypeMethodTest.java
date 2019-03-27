@@ -13,6 +13,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.HotelExceptio
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
 
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 @Ignore
 @RunWith(JMockit.class)

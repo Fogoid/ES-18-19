@@ -3,6 +3,7 @@ package pt.ulisboa.tecnico.softeng.broker.domain;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.Ignore;
 
 import mockit.Delegate;
 import mockit.Expectations;
@@ -14,8 +15,9 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.TaxInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.dataobjects.RestActivityBookingData;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.ActivityException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
-
 import org.junit.Ignore;
+
+@Ignore
 
 @Ignore
 @RunWith(JMockit.class)
@@ -203,5 +205,5 @@ public class ReserveActivityStateProcessMethodTest extends RollbackTestAbstractC
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
 	}*/
-
 }
+

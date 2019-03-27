@@ -33,7 +33,7 @@ public class ConfirmedState extends ConfirmedState_Base {
 	@Override
 	public void process() {
 		try {
-			BankInterface.getOperationData(getAdventure().getPaymentConfirmation());
+			getAdventure().getBroker().getBankInterface().getOperationData(getAdventure().getPaymentConfirmation());
 		} catch (BankException be) {
 			setNumberOfBankExceptions(getNumberOfBankExceptions() + 1);
 			if (getNumberOfBankExceptions() == MAX_BANK_EXCEPTIONS) {

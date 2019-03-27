@@ -3,6 +3,7 @@ package pt.ulisboa.tecnico.softeng.broker.domain;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.Ignore;
 
 import mockit.Delegate;
 import mockit.Expectations;
@@ -32,7 +33,7 @@ public class ProcessPaymentStateProcessMethodTest extends RollbackTestAbstractCl
 
 		this.adventure.setState(State.PROCESS_PAYMENT);
 	}
-
+  
 	/*@Test
 	public void success(@Mocked final BankInterface bankInterface) {
 		new Expectations() {
@@ -165,5 +166,6 @@ public class ProcessPaymentStateProcessMethodTest extends RollbackTestAbstractCl
 
 		Assert.assertEquals(State.CANCELLED, this.adventure.getState().getValue());
 	}*/
-
 }
+
+ 
