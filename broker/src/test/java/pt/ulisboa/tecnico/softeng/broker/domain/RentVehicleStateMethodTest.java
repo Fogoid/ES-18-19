@@ -15,6 +15,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.TaxInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.dataobjects.RestRentingData;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.CarException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
+import org.junit.Ignore;
 
 
 @Ignore
@@ -37,8 +38,10 @@ public class RentVehicleStateMethodTest extends RollbackTestAbstractClass {
 
 		this.adventure.setState(State.RENT_VEHICLE);
 	}
- /*
-	@Test
+
+
+	/*@Test
+
 	public void successRentVehicle(@Mocked final CarInterface carInterface) {
 		new Expectations() {
 			{
@@ -177,6 +180,8 @@ public class RentVehicleStateMethodTest extends RollbackTestAbstractClass {
 		this.adventure.process();
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
+
 	}
 */
+
 }
