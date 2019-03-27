@@ -53,7 +53,7 @@ public class ActivityInterface {
 		}
 	}
 
-	public static RestActivityBookingData getActivityReservationData(String reference) {
+	public RestActivityBookingData getActivityReservationData(String reference) {
 		logger.info("getActivityReservationData reference:{}", reference);
 		RestTemplate restTemplate = new RestTemplate();
 		try {

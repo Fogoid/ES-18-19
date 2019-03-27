@@ -49,7 +49,7 @@ public class ConfirmedState extends ConfirmedState_Base {
 
 		RestActivityBookingData reservation;
 		try {
-			reservation = ActivityInterface.getActivityReservationData(getAdventure().getActivityConfirmation());
+			reservation = getAdventure().getBroker().getActivityInterface().getActivityReservationData(getAdventure().getActivityConfirmation());
 		} catch (ActivityException ae) {
 			getAdventure().setState(State.UNDO);
 			return;

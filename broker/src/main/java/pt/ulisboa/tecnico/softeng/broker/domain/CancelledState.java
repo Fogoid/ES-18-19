@@ -41,7 +41,7 @@ public class CancelledState extends CancelledState_Base {
 
 		if (getAdventure().getActivityCancellation() != null) {
 			try {
-				ActivityInterface.getActivityReservationData(getAdventure().getActivityCancellation());
+				getAdventure().getBroker().getActivityInterface().getActivityReservationData(getAdventure().getActivityCancellation());
 			} catch (ActivityException | RemoteAccessException e) {
 				return;
 			}
