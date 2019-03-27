@@ -18,8 +18,6 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessE
 import org.junit.Ignore;
 
 @Ignore
-
-@Ignore
 @RunWith(JMockit.class)
 public class ReserveActivityStateProcessMethodTest extends RollbackTestAbstractClass {
 	@Mocked

@@ -129,6 +129,7 @@ public class Broker extends Broker_Base {
 
 	public void setCarInterface(CarInterface carInterface) {
 		this.carInterface = carInterface;
+	}
 
 	public BankInterface getBankInterface() {
 		return bankInterface;
