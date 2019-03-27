@@ -15,6 +15,8 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.TaxException;
 
 public class UndoState extends UndoState_Base {
 
+
+
 	@Override
 	public State getValue() {
 		return State.UNDO;
@@ -51,7 +53,7 @@ public class UndoState extends UndoState_Base {
 		if (getAdventure().shouldCancelVehicleRenting()) {
 			try {
 				getAdventure()
-						.setRentingCancellation(CarInterface.cancelRenting(getAdventure().getRentingConfirmation()));
+						.setRentingCancellation(getAdventure().getBroker().getCarInterface().cancelRenting(getAdventure().getRentingConfirmation()));
 			} catch (CarException | RemoteAccessException ex) {
 				// does not change state
 			}

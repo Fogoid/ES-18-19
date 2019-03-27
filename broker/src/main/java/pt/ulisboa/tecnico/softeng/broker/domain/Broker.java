@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 
 import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException;
+import pt.ulisboa.tecnico.softeng.broker.services.remote.CarInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.ActivityInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.BankInterface;
-
 import pt.ulisboa.tecnico.softeng.broker.services.remote.CarInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.HotelInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.TaxInterface;
@@ -17,8 +17,9 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.TaxInterface;
 public class Broker extends Broker_Base {
 	private static Logger logger = LoggerFactory.getLogger(Broker.class);
 	
-  private BankInterface bankInterface;
 	private ActivityInterface activityInterface;
+  private BankInterface bankInterface;
+  private CarInterface carInterface;
 	private HotelInterface hotelInterface;
 	private TaxInterface taxInterface;
 
@@ -34,7 +35,7 @@ public class Broker extends Broker_Base {
 		FenixFramework.getDomainRoot().addBroker(this);
 	}
 
-	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, ActivityInterface activityInterface, BankInterface bankInterface, HotelInterface hotelInterface, TaxInterface taxInterface) {
+	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, ActivityInterface activityInterface, BankInterface bankInterface, CarInterface carInterface,HotelInterface hotelInterface, TaxInterface taxInterface) {
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
 
 		setCode(code);
@@ -45,13 +46,13 @@ public class Broker extends Broker_Base {
 
     setActivityInterface(activityInterface);
 		setBankInterface(bankInterface);
+    setCarInterface(carInterface);	
 		setHotelInterface(hotelInterface);
 		setTaxInterface(taxInterface);
 
 		FenixFramework.getDomainRoot().addBroker(this);
+
 	}
-
-
 
 	public void delete() {
 		setRoot(null);
@@ -121,6 +122,13 @@ public class Broker extends Broker_Base {
 		setCounter(counter);
 		return counter;
 	}
+
+	public CarInterface getCarInterface() {
+		return carInterface;
+	}
+
+	public void setCarInterface(CarInterface carInterface) {
+		this.carInterface = carInterface;
 
 	public BankInterface getBankInterface() {
 		return bankInterface;

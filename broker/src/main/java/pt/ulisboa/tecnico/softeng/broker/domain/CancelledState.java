@@ -17,6 +17,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessE
 public class CancelledState extends CancelledState_Base {
 	private static Logger logger = LoggerFactory.getLogger(CancelledState.class);
 
+
 	@Override
 	public State getValue() {
 		return State.CANCELLED;
@@ -56,7 +57,7 @@ public class CancelledState extends CancelledState_Base {
 
 		if (getAdventure().getRentingCancellation() != null) {
 			try {
-				CarInterface.getRentingData(getAdventure().getRentingCancellation());
+				getAdventure().getBroker().getCarInterface().getRentingData(getAdventure().getRentingCancellation());
 			} catch (CarException | RemoteAccessException e) {
 				return;
 			}

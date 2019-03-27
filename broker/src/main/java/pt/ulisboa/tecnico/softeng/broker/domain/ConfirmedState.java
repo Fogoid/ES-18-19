@@ -18,6 +18,8 @@ public class ConfirmedState extends ConfirmedState_Base {
 	public static int MAX_REMOTE_ERRORS = 20;
 	public static int MAX_BANK_EXCEPTIONS = 5;
 
+
+
 	public ConfirmedState() {
 		super();
 		setNumberOfBankExceptions(0);
@@ -62,7 +64,7 @@ public class ConfirmedState extends ConfirmedState_Base {
 		if (getAdventure().getRentingConfirmation() != null) {
 			RestRentingData rentingData;
 			try {
-				rentingData = CarInterface.getRentingData(getAdventure().getRentingConfirmation());
+				rentingData = getAdventure().getBroker().getCarInterface().getRentingData(getAdventure().getRentingConfirmation());
 			} catch (CarException he) {
 				getAdventure().setState(State.UNDO);
 				return;

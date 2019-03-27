@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import org.junit.Ignore;
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.integration.junit4.JMockit;
@@ -21,6 +22,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessE
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.TaxException;
 import org.junit.Ignore;
 
+
 @Ignore
 @RunWith(JMockit.class)
 public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
@@ -36,7 +38,9 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.setState(State.UNDO);
 	}
 
-	/*@Test
+
+	/* @Test
+
 	public void successRevertPayment(@Mocked final BankInterface bankInterface) {
 		this.adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION);
 		new Expectations() {
@@ -207,7 +211,7 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.setRentingConfirmation(RENTING_CONFIRMATION);
 		new Expectations() {
 			{
-				CarInterface.cancelRenting(RENTING_CONFIRMATION);
+				carInterface.cancelRenting(RENTING_CONFIRMATION);
 				this.result = RENTING_CANCELLATION;
 			}
 		};
@@ -229,7 +233,7 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.setRentingConfirmation(RENTING_CONFIRMATION);
 		new Expectations() {
 			{
-				CarInterface.cancelRenting(RENTING_CONFIRMATION);
+				carInterface.cancelRenting(RENTING_CONFIRMATION);
 				this.result = new CarException();
 			}
 		};
@@ -251,7 +255,7 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.setRentingConfirmation(RENTING_CONFIRMATION);
 		new Expectations() {
 			{
-				CarInterface.cancelRenting(RENTING_CONFIRMATION);
+				carInterface.cancelRenting(RENTING_CONFIRMATION);
 				this.result = new RemoteAccessException();
 			}
 		};
@@ -333,6 +337,8 @@ public class UndoStateProcessMethodTest extends RollbackTestAbstractClass {
 		this.adventure.process();
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
-	}*/
+<<<<<<< HEAD
+	}
+*/
 
 }

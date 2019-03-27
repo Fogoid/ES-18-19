@@ -64,7 +64,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 
 				ActivityInterface.getActivityReservationData(ACTIVITY_CONFIRMATION);
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 
 				HotelInterface.getRoomBookingData(ROOM_CONFIRMATION);
 
@@ -136,7 +136,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 
 				ActivityInterface.getActivityReservationData(ACTIVITY_CONFIRMATION);
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 
 				ConfirmedStateProcessMethodTest.this.activityReservationData.getPaymentReference();
 				this.result = REFERENCE;
@@ -344,7 +344,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 				ConfirmedStateProcessMethodTest.this.activityReservationData.getInvoiceReference();
 				this.result = REFERENCE;
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 				this.result = new CarException();
 			}
 		};
@@ -371,7 +371,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 				ConfirmedStateProcessMethodTest.this.activityReservationData.getInvoiceReference();
 				this.result = REFERENCE;
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 				this.result = new RemoteAccessException();
 			}
 		};
@@ -398,7 +398,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 				ConfirmedStateProcessMethodTest.this.activityReservationData.getInvoiceReference();
 				this.result = REFERENCE;
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 
 				ConfirmedStateProcessMethodTest.this.rentingData.getPaymentReference();
 				this.result = null;
@@ -427,7 +427,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 				ConfirmedStateProcessMethodTest.this.activityReservationData.getInvoiceReference();
 				this.result = REFERENCE;
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 
 				ConfirmedStateProcessMethodTest.this.rentingData.getPaymentReference();
 				this.result = REFERENCE;
@@ -556,5 +556,4 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
 	}*/
-
 }
