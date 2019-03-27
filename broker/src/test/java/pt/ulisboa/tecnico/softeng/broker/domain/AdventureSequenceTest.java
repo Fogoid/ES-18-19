@@ -391,6 +391,5 @@ public class AdventureSequenceTest extends RollbackTestAbstractClass {
 		adventure.process();
 
 		Assert.assertEquals(State.CANCELLED, adventure.getState().getValue());
-	}
-*/
+	}*/
 }
