@@ -8,6 +8,7 @@ import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 
 public class Booking extends Booking_Base {
 	private static final String HOUSING_TYPE = "HOUSING";
+	private Processor processor;
 
 	public Booking(Room room, LocalDate arrival, LocalDate departure, String buyerNif, String buyerIban) {
 		checkArguments(room, arrival, departure, buyerNif, buyerIban);
