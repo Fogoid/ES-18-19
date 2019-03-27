@@ -18,6 +18,7 @@ public class Broker extends Broker_Base {
 	private static Logger logger = LoggerFactory.getLogger(Broker.class);
 
 	private HotelInterface hotelInterface;
+	private TaxInterface taxInterface;
 
 	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban) {
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
@@ -31,7 +32,7 @@ public class Broker extends Broker_Base {
 		FenixFramework.getDomainRoot().addBroker(this);
 	}
 
-	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, HotelInterface hotelInterface) {
+	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, HotelInterface hotelInterface, TaxInterface taxInterface) {
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
 
 		setCode(code);
@@ -41,6 +42,7 @@ public class Broker extends Broker_Base {
 		setIban(iban);
 
 		setHotelInterface(hotelInterface);
+		setTaxInterface(taxInterface);
 
 		FenixFramework.getDomainRoot().addBroker(this);
 	}
@@ -132,6 +134,23 @@ public class Broker extends Broker_Base {
 	public void setHotelInterface(HotelInterface hotelInterface) {
 		this.hotelInterface = hotelInterface;
 	}
+
+
+	/**
+	 * @return the taxInterface
+	 */
+	public TaxInterface getTaxInterface() {
+		return taxInterface;
+	}
+
+	/**
+	 * @param taxInterface the taxInterface to set
+	 */
+	public void setTaxInterface(TaxInterface taxInterface) {
+		this.taxInterface = taxInterface;
+	}
+
+
 
 }
 
