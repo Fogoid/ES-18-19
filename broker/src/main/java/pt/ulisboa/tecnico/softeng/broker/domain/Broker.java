@@ -16,6 +16,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.TaxInterface;
 
 public class Broker extends Broker_Base {
 	private static Logger logger = LoggerFactory.getLogger(Broker.class);
+	private BankInterface bankInterface;
 
 	private HotelInterface hotelInterface;
 	private TaxInterface taxInterface;
@@ -32,7 +33,8 @@ public class Broker extends Broker_Base {
 		FenixFramework.getDomainRoot().addBroker(this);
 	}
 
-	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, HotelInterface hotelInterface, TaxInterface taxInterface) {
+	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, BankInterface bankInterface, HotelInterface hotelInterface, TaxInterface taxInterface) {
+
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
 
 		setCode(code);
@@ -41,6 +43,7 @@ public class Broker extends Broker_Base {
 		setNifAsBuyer(nifAsBuyer);
 		setIban(iban);
 
+		setBankInterface(bankInterface);
 		setHotelInterface(hotelInterface);
 		setTaxInterface(taxInterface);
 
@@ -117,9 +120,21 @@ public class Broker extends Broker_Base {
 		return counter;
 	}
 
-	public Broker getBroker() {
-		return this;
+
+	/**
+	 * @return the bankInterface
+	 */
+	public BankInterface getBankInterface() {
+		return bankInterface;
 	}
+
+	/**
+	 * @param bankInterface the bankInterface to set
+	 */
+	public void setBankInterface(BankInterface bankInterface) {
+		this.bankInterface = bankInterface;
+	}
+
 
 	/**
 	 * @return the hotelInterface

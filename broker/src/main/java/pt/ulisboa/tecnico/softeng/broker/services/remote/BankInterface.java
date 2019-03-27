@@ -10,11 +10,12 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.BankException
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
 
 public class BankInterface {
+
 	private static Logger logger = LoggerFactory.getLogger(BankInterface.class);
+	private  static String ENDPOINT = "http://localhost:8082";
 
-	private static String ENDPOINT = "http://localhost:8082";
+	public String processPayment(RestBankOperationData bankOperationData) {
 
-	public static String processPayment(RestBankOperationData bankOperationData) {
 		logger.info("processPayment iban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
 				bankOperationData.getIban(), bankOperationData.getValue(), bankOperationData.getTransactionSource(),
 				bankOperationData.getTransactionReference());
@@ -39,7 +40,7 @@ public class BankInterface {
 		}
 	}
 
-	public static String cancelPayment(String reference) {
+	public String cancelPayment(String reference) {
 		logger.info("cancelPayment reference:{}", reference);
 
 		RestTemplate restTemplate = new RestTemplate();
@@ -56,7 +57,7 @@ public class BankInterface {
 		}
 	}
 
-	public static RestBankOperationData getOperationData(String reference) {
+	public RestBankOperationData getOperationData(String reference) {
 		logger.info("getOperationData reference:{}", reference);
 
 		RestTemplate restTemplate = new RestTemplate();

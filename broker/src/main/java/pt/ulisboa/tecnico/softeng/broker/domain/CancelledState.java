@@ -26,13 +26,13 @@ public class CancelledState extends CancelledState_Base {
 	public void process() {
 		if (getAdventure().getPaymentCancellation() != null) {
 			try {
-				BankInterface.getOperationData(getAdventure().getPaymentConfirmation());
+				getAdventure().getBroker().getBankInterface().getOperationData(getAdventure().getPaymentConfirmation());
 			} catch (BankException | RemoteAccessException e) {
 				return;
 			}
 
 			try {
-				BankInterface.getOperationData(getAdventure().getPaymentCancellation());
+				getAdventure().getBroker().getBankInterface().getOperationData(getAdventure().getPaymentCancellation());
 			} catch (BankException | RemoteAccessException e) {
 				return;
 			}
