@@ -18,6 +18,9 @@ import org.junit.Ignore;
 
 @Ignore
 
+import org.junit.Ignore;
+
+@Ignore
 @RunWith(JMockit.class)
 public class ReserveActivityStateProcessMethodTest extends RollbackTestAbstractClass {
 	@Mocked

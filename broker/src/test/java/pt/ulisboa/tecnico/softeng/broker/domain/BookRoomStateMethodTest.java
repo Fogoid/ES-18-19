@@ -34,8 +34,9 @@ public class BookRoomStateMethodTest extends RollbackTestAbstractClass {
 
 		this.adventure.setState(State.BOOK_ROOM);
 	}
-/*
-	@Test
+  
+	/*@Test
+
 	public void successBookRoom(@Mocked final HotelInterface hotelInterface) {
 		new Expectations() {
 			{
@@ -184,6 +185,6 @@ public class BookRoomStateMethodTest extends RollbackTestAbstractClass {
 		this.adventure.process();
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
-	}
-*/
+	}*/
+
 }

@@ -16,9 +16,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.CarException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
 import org.junit.Ignore;
 
-
 @Ignore
-
 @RunWith(JMockit.class)
 public class RentVehicleStateMethodTest extends RollbackTestAbstractClass {
 	@Mocked
