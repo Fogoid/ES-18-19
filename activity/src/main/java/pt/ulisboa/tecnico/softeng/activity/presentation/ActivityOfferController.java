@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pt.ulisboa.tecnico.softeng.activity.domain.Activity;
 import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
 import pt.ulisboa.tecnico.softeng.activity.services.local.ActivityInterface;
 import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityData;
@@ -41,7 +42,7 @@ public class ActivityOfferController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String offerSubmit(Model model, @PathVariable String codeProvider, @PathVariable String codeActivity,
-			@ModelAttribute ActivityOfferData offer) {
+							  @ModelAttribute ActivityOfferData offer) {
 		logger.info("offerSubmit codeProvider:{}, codeActivity:{}, begin:{}, end:{}", codeProvider, codeActivity,
 				offer.getBegin(), offer.getEnd());
 
