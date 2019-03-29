@@ -33,7 +33,7 @@ public class ProcessPaymentStateProcessMethodTest extends RollbackTestAbstractCl
 
 		this.adventure.setState(State.PROCESS_PAYMENT);
 	}
-  
+
 	/*@Test
 	public void success(@Mocked final BankInterface bankInterface) {
 		new Expectations() {
@@ -168,4 +168,4 @@ public class ProcessPaymentStateProcessMethodTest extends RollbackTestAbstractCl
 	}*/
 }
 
- 
+
