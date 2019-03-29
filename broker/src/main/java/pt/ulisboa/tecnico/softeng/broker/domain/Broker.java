@@ -7,17 +7,21 @@ import org.slf4j.LoggerFactory;
 
 import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException;
+import pt.ulisboa.tecnico.softeng.broker.services.remote.CarInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.ActivityInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.BankInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.CarInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.HotelInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.TaxInterface;
 
-
 public class Broker extends Broker_Base {
 	private static Logger logger = LoggerFactory.getLogger(Broker.class);
-
+	
+	private ActivityInterface activityInterface;
+  private BankInterface bankInterface;
+  private CarInterface carInterface;
 	private HotelInterface hotelInterface;
+	private TaxInterface taxInterface;
 
 	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban) {
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
@@ -31,7 +35,7 @@ public class Broker extends Broker_Base {
 		FenixFramework.getDomainRoot().addBroker(this);
 	}
 
-	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, HotelInterface hotelInterface) {
+	public Broker(String code, String name, String nifAsSeller, String nifAsBuyer, String iban, ActivityInterface activityInterface, BankInterface bankInterface, CarInterface carInterface,HotelInterface hotelInterface, TaxInterface taxInterface) {
 		checkArguments(code, name, nifAsSeller, nifAsBuyer, iban);
 
 		setCode(code);
@@ -40,11 +44,15 @@ public class Broker extends Broker_Base {
 		setNifAsBuyer(nifAsBuyer);
 		setIban(iban);
 
+    setActivityInterface(activityInterface);
+		setBankInterface(bankInterface);
+    setCarInterface(carInterface);	
 		setHotelInterface(hotelInterface);
+		setTaxInterface(taxInterface);
 
 		FenixFramework.getDomainRoot().addBroker(this);
-	}
 
+	}
 
 	public void delete() {
 		setRoot(null);
@@ -115,22 +123,49 @@ public class Broker extends Broker_Base {
 		return counter;
 	}
 
-	public Broker getBroker() {
-		return this;
+	public CarInterface getCarInterface() {
+		return carInterface;
 	}
 
-	/**
-	 * @return the hotelInterface
-	 */
+	public void setCarInterface(CarInterface carInterface) {
+		this.carInterface = carInterface;
+	}
+
+	public BankInterface getBankInterface() {
+		return bankInterface;
+	}
+
+	public void setBankInterface(BankInterface bankInterface) {
+		this.bankInterface = bankInterface;
+	}
+
+  public ActivityInterface getActivityInterface() {
+		return activityInterface;
+	}
+
+	public void setActivityInterface(ActivityInterface activityInterface) {
+		this.activityInterface = activityInterface;
+	}
+
 	public HotelInterface getHotelInterface() {
 		return this.hotelInterface;
 	}
 
-	/**
-	 * @param hotelInterface the hotelInterface to set
-	 */
-	public void setHotelInterface(HotelInterface hotelInterface) {
+  public void setHotelInterface(HotelInterface hotelInterface) {
 		this.hotelInterface = hotelInterface;
+	}
+
+	public TaxInterface getTaxInterface() {
+		return taxInterface;
+	}
+
+	public void setTaxInterface(TaxInterface taxInterface) {
+		this.taxInterface = taxInterface;
+	}
+  
+ 
+	public Broker getBroker() {
+		return this;
 	}
 
 }

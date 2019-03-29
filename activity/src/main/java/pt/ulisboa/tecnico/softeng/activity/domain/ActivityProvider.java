@@ -24,6 +24,19 @@ public class ActivityProvider extends ActivityProvider_Base {
 		FenixFramework.getDomainRoot().addActivityProvider(this);
 	}
 
+	public ActivityProvider(String code, String name, String nif, String iban, Processor processor) {
+		checkArguments(code, name, nif, iban);
+
+		setCode(code);
+		setName(name);
+		setNif(nif);
+		setIban(iban);
+
+		setProcessor(processor);
+
+		FenixFramework.getDomainRoot().addActivityProvider(this);
+	}
+
 	public void delete() {
 		setRoot(null);
 

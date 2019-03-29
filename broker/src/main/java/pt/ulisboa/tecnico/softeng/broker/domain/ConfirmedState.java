@@ -18,6 +18,8 @@ public class ConfirmedState extends ConfirmedState_Base {
 	public static int MAX_REMOTE_ERRORS = 20;
 	public static int MAX_BANK_EXCEPTIONS = 5;
 
+
+
 	public ConfirmedState() {
 		super();
 		setNumberOfBankExceptions(0);
@@ -31,7 +33,7 @@ public class ConfirmedState extends ConfirmedState_Base {
 	@Override
 	public void process() {
 		try {
-			BankInterface.getOperationData(getAdventure().getPaymentConfirmation());
+			getAdventure().getBroker().getBankInterface().getOperationData(getAdventure().getPaymentConfirmation());
 		} catch (BankException be) {
 			setNumberOfBankExceptions(getNumberOfBankExceptions() + 1);
 			if (getNumberOfBankExceptions() == MAX_BANK_EXCEPTIONS) {
@@ -47,7 +49,7 @@ public class ConfirmedState extends ConfirmedState_Base {
 
 		RestActivityBookingData reservation;
 		try {
-			reservation = ActivityInterface.getActivityReservationData(getAdventure().getActivityConfirmation());
+			reservation = getAdventure().getBroker().getActivityInterface().getActivityReservationData(getAdventure().getActivityConfirmation());
 		} catch (ActivityException ae) {
 			getAdventure().setState(State.UNDO);
 			return;
@@ -62,7 +64,7 @@ public class ConfirmedState extends ConfirmedState_Base {
 		if (getAdventure().getRentingConfirmation() != null) {
 			RestRentingData rentingData;
 			try {
-				rentingData = CarInterface.getRentingData(getAdventure().getRentingConfirmation());
+				rentingData = getAdventure().getBroker().getCarInterface().getRentingData(getAdventure().getRentingConfirmation());
 			} catch (CarException he) {
 				getAdventure().setState(State.UNDO);
 				return;

@@ -4,7 +4,6 @@ import mockit.Delegate;
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.integration.junit4.JMockit;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.HotelInterface;
@@ -16,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 @Ignore
 @RunWith(JMockit.class)
@@ -27,8 +27,8 @@ public class BulkRoomBookingProcessBookingMethodTest extends RollbackTestAbstrac
         this.broker = new Broker("BR01", "eXtremeADVENTURE", BROKER_NIF_AS_SELLER, NIF_AS_BUYER, BROKER_IBAN);
         this.bulk = new BulkRoomBooking(this.broker, NUMBER_OF_BULK, this.BEGIN, this.END, NIF_AS_BUYER, IBAN_BUYER);
     }
-    /*
-    @Test
+
+    /*@Test
     public void success(@Mocked final HotelInterface roomInterface) {
         new Expectations() {
             {

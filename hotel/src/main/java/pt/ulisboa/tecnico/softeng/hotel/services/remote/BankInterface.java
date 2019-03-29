@@ -15,18 +15,18 @@ public class BankInterface {
 	private  final String ENDPOINT = "http://localhost:8082";
 
 	public  String processPayment(RestBankOperationData bankOperationData) {
-		logger.info("processPayment iban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
+		this.logger.info("processPayment iban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
 				bankOperationData.getIban(), bankOperationData.getValue(), bankOperationData.getTransactionSource(),
 				bankOperationData.getTransactionReference());
 
 		RestTemplate restTemplate = new RestTemplate();
 		try {
 			String result = restTemplate.postForObject(
-					ENDPOINT + "/rest/banks/accounts/" + bankOperationData.getIban() + "/processPayment",
+					this.ENDPOINT + "/rest/banks/accounts/" + bankOperationData.getIban() + "/processPayment",
 					bankOperationData, String.class);
 			return result;
 		} catch (HttpClientErrorException e) {
-			logger.info(
+			this.logger.info(
 					"processPayment HttpClientErrorException  iban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
 					bankOperationData.getIban(), bankOperationData.getValue(), bankOperationData.getTransactionSource(),
 					bankOperationData.getTransactionReference());
@@ -44,7 +44,7 @@ public class BankInterface {
 
 		RestTemplate restTemplate = new RestTemplate();
 		try {
-			String result = restTemplate.postForObject(ENDPOINT + "/rest/banks/cancel?reference=" + reference, null,
+			String result = restTemplate.postForObject(this.ENDPOINT + "/rest/banks/cancel?reference=" + reference, null,
 					String.class);
 			return result;
 		} catch (HttpClientErrorException e) {

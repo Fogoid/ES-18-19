@@ -17,6 +17,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessE
 public class CancelledState extends CancelledState_Base {
 	private static Logger logger = LoggerFactory.getLogger(CancelledState.class);
 
+
 	@Override
 	public State getValue() {
 		return State.CANCELLED;
@@ -26,13 +27,13 @@ public class CancelledState extends CancelledState_Base {
 	public void process() {
 		if (getAdventure().getPaymentCancellation() != null) {
 			try {
-				BankInterface.getOperationData(getAdventure().getPaymentConfirmation());
+				getAdventure().getBroker().getBankInterface().getOperationData(getAdventure().getPaymentConfirmation());
 			} catch (BankException | RemoteAccessException e) {
 				return;
 			}
 
 			try {
-				BankInterface.getOperationData(getAdventure().getPaymentCancellation());
+				getAdventure().getBroker().getBankInterface().getOperationData(getAdventure().getPaymentCancellation());
 			} catch (BankException | RemoteAccessException e) {
 				return;
 			}
@@ -40,7 +41,7 @@ public class CancelledState extends CancelledState_Base {
 
 		if (getAdventure().getActivityCancellation() != null) {
 			try {
-				ActivityInterface.getActivityReservationData(getAdventure().getActivityCancellation());
+				getAdventure().getBroker().getActivityInterface().getActivityReservationData(getAdventure().getActivityCancellation());
 			} catch (ActivityException | RemoteAccessException e) {
 				return;
 			}
@@ -56,7 +57,7 @@ public class CancelledState extends CancelledState_Base {
 
 		if (getAdventure().getRentingCancellation() != null) {
 			try {
-				CarInterface.getRentingData(getAdventure().getRentingCancellation());
+				getAdventure().getBroker().getCarInterface().getRentingData(getAdventure().getRentingCancellation());
 			} catch (CarException | RemoteAccessException e) {
 				return;
 			}

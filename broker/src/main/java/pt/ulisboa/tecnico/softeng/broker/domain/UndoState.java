@@ -15,6 +15,8 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.TaxException;
 
 public class UndoState extends UndoState_Base {
 
+
+
 	@Override
 	public State getValue() {
 		return State.UNDO;
@@ -25,7 +27,7 @@ public class UndoState extends UndoState_Base {
 		if (getAdventure().shouldCancelPayment()) {
 			try {
 				getAdventure()
-						.setPaymentCancellation(BankInterface.cancelPayment(getAdventure().getPaymentConfirmation()));
+						.setPaymentCancellation(getAdventure().getBroker().getBankInterface().cancelPayment(getAdventure().getPaymentConfirmation()));
 			} catch (BankException | RemoteAccessException ex) {
 				// does not change state
 			}
@@ -34,7 +36,7 @@ public class UndoState extends UndoState_Base {
 		if (getAdventure().shouldCancelActivity()) {
 			try {
 				getAdventure().setActivityCancellation(
-						ActivityInterface.cancelReservation(getAdventure().getActivityConfirmation()));
+						getAdventure().getBroker().getActivityInterface().cancelReservation(getAdventure().getActivityConfirmation()));
 			} catch (ActivityException | RemoteAccessException ex) {
 				// does not change state
 			}
@@ -51,7 +53,7 @@ public class UndoState extends UndoState_Base {
 		if (getAdventure().shouldCancelVehicleRenting()) {
 			try {
 				getAdventure()
-						.setRentingCancellation(CarInterface.cancelRenting(getAdventure().getRentingConfirmation()));
+						.setRentingCancellation(getAdventure().getBroker().getCarInterface().cancelRenting(getAdventure().getRentingConfirmation()));
 			} catch (CarException | RemoteAccessException ex) {
 				// does not change state
 			}
@@ -59,7 +61,7 @@ public class UndoState extends UndoState_Base {
 
 		if (getAdventure().shouldCancelInvoice()) {
 			try {
-				TaxInterface.cancelInvoice(getAdventure().getInvoiceReference());
+				getAdventure().getBroker().getTaxInterface().cancelInvoice(getAdventure().getInvoiceReference());
 				getAdventure().setInvoiceCancelled(true);
 			} catch (TaxException | RemoteAccessException ex) {
 				// does not change state
