@@ -97,12 +97,29 @@ public class Hotel extends Hotel_Base {
 	}
 
 	public Set<Room> getAvailableRooms(LocalDate arrival, LocalDate departure) {
-		Set<Room> availableRooms = new HashSet<>();
+		Set<Room> availableRooms = new HashSet<>(getBulkBookingRooms(arrival, departure));
+
 		for (Room room : getRoomSet()) {
 			if (room.isFree(room.getType(), arrival, departure)) {
 				availableRooms.add(room);
 			}
 		}
+		return availableRooms;
+	}
+
+	private Set<Room> getBulkBookingRooms(LocalDate arrival, LocalDate departure) {
+		Set<Room> availableRooms = new HashSet<>();
+		Set<Booking> bookings = new HashSet<>();
+
+		for(Room room : getRoomSet()){
+			bookings.addAll(room.getBookingSet());
+		}
+
+		for(Booking booking : bookings) {
+			if (booking.getRoom().isFree(booking.getRoom().getType(), arrival, departure))
+				availableRooms.add(booking.getRoom());
+		}
+
 		return availableRooms;
 	}
 
