@@ -1,7 +1,6 @@
 package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,6 +21,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.BankException
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.CarException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.HotelException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
+import org.junit.Ignore;
 
 @Ignore
 @RunWith(JMockit.class)
@@ -51,8 +51,8 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 
 		this.adventure.setState(State.CONFIRMED);
 	}
-	/*
-	@Test
+
+	/*@Test
 	public void successAll() {
 		this.adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION);
 		this.adventure.setActivityConfirmation(ACTIVITY_CONFIRMATION);
@@ -64,7 +64,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 
 				ActivityInterface.getActivityReservationData(ACTIVITY_CONFIRMATION);
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 
 				HotelInterface.getRoomBookingData(ROOM_CONFIRMATION);
 
@@ -136,7 +136,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 
 				ActivityInterface.getActivityReservationData(ACTIVITY_CONFIRMATION);
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 
 				ConfirmedStateProcessMethodTest.this.activityReservationData.getPaymentReference();
 				this.result = REFERENCE;
@@ -344,7 +344,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 				ConfirmedStateProcessMethodTest.this.activityReservationData.getInvoiceReference();
 				this.result = REFERENCE;
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 				this.result = new CarException();
 			}
 		};
@@ -371,7 +371,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 				ConfirmedStateProcessMethodTest.this.activityReservationData.getInvoiceReference();
 				this.result = REFERENCE;
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 				this.result = new RemoteAccessException();
 			}
 		};
@@ -398,7 +398,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 				ConfirmedStateProcessMethodTest.this.activityReservationData.getInvoiceReference();
 				this.result = REFERENCE;
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 
 				ConfirmedStateProcessMethodTest.this.rentingData.getPaymentReference();
 				this.result = null;
@@ -427,7 +427,7 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 				ConfirmedStateProcessMethodTest.this.activityReservationData.getInvoiceReference();
 				this.result = REFERENCE;
 
-				CarInterface.getRentingData(RENTING_CONFIRMATION);
+				carInterface.getRentingData(RENTING_CONFIRMATION);
 
 				ConfirmedStateProcessMethodTest.this.rentingData.getPaymentReference();
 				this.result = REFERENCE;
@@ -556,5 +556,4 @@ public class ConfirmedStateProcessMethodTest extends RollbackTestAbstractClass {
 
 		Assert.assertEquals(State.UNDO, this.adventure.getState().getValue());
 	}*/
-
 }

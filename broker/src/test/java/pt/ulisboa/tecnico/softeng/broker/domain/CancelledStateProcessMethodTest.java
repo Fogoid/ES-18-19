@@ -1,7 +1,6 @@
 package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -18,6 +17,7 @@ import pt.ulisboa.tecnico.softeng.broker.services.remote.TaxInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.dataobjects.RestBankOperationData;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.BankException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
+import org.junit.Ignore;
 
 @Ignore
 @RunWith(JMockit.class)
@@ -33,9 +33,9 @@ public class CancelledStateProcessMethodTest extends RollbackTestAbstractClass {
 
 		this.adventure.setState(State.CANCELLED);
 	}
-	/*
-	@Ignore
-	@Test
+
+
+	/*@Test
 	public void didNotPayed(@Mocked final BankInterface bankInterface,
 			@Mocked final ActivityInterface activityInterface, @Mocked final HotelInterface hotelInterface) {
 
@@ -168,7 +168,6 @@ public class CancelledStateProcessMethodTest extends RollbackTestAbstractClass {
 		Assert.assertEquals(Adventure.State.CANCELLED, this.adventure.getState().getValue());
 	}
 
-	@Ignore
 	@Test
 	public void cancelledRoom(@Mocked final BankInterface bankInterface,
 			@Mocked final ActivityInterface activityInterface, @Mocked final HotelInterface hotelInterface) {
@@ -211,7 +210,7 @@ public class CancelledStateProcessMethodTest extends RollbackTestAbstractClass {
 				BankInterface.getOperationData(PAYMENT_CONFIRMATION);
 				BankInterface.getOperationData(PAYMENT_CANCELLATION);
 				ActivityInterface.getActivityReservationData(ACTIVITY_CANCELLATION);
-				CarInterface.getRentingData(RENTING_CANCELLATION);
+				carInterface.getRentingData(RENTING_CANCELLATION);
 			}
 		};
 
@@ -220,7 +219,6 @@ public class CancelledStateProcessMethodTest extends RollbackTestAbstractClass {
 		Assert.assertEquals(Adventure.State.CANCELLED, this.adventure.getState().getValue());
 	}
 
-	@Ignore
 	@Test
 	public void cancelledBookAndRenting(@Mocked final BankInterface bankInterface,
 			@Mocked final ActivityInterface activityInterface, @Mocked final HotelInterface hotelInterface,
@@ -240,7 +238,7 @@ public class CancelledStateProcessMethodTest extends RollbackTestAbstractClass {
 				BankInterface.getOperationData(PAYMENT_CANCELLATION);
 				ActivityInterface.getActivityReservationData(ACTIVITY_CANCELLATION);
 				HotelInterface.getRoomBookingData(ROOM_CANCELLATION);
-				CarInterface.getRentingData(RENTING_CANCELLATION);
+				carInterface.getRentingData(RENTING_CANCELLATION);
 			}
 		};
 
@@ -248,5 +246,4 @@ public class CancelledStateProcessMethodTest extends RollbackTestAbstractClass {
 
 		Assert.assertEquals(Adventure.State.CANCELLED, this.adventure.getState().getValue());
 	}*/
-
 }
