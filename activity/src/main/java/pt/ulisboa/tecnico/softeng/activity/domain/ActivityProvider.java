@@ -7,9 +7,25 @@ import org.joda.time.LocalDate;
 
 import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
+import pt.ulisboa.tecnico.softeng.activity.services.local.ActivityInterface;
+import pt.ulisboa.tecnico.softeng.activity.services.remote.BankInterface;
+import pt.ulisboa.tecnico.softeng.activity.services.remote.TaxInterface;
 
 public class ActivityProvider extends ActivityProvider_Base {
 	static final int CODE_SIZE = 6;
+
+	public ActivityProvider(final String code,final String name,final String nif,final String iban, final Processor processor) {
+		checkArguments(code, name, nif, iban);
+		setCode(code);
+		setName(name);
+		setNif(nif);
+		setIban(iban);
+
+		setProcessor(processor);
+
+		FenixFramework.getDomainRoot().addActivityProvider(this);
+
+	}
 
 	public ActivityProvider(String code, String name, String nif, String iban) {
 		checkArguments(code, name, nif, iban);
@@ -19,23 +35,12 @@ public class ActivityProvider extends ActivityProvider_Base {
 		setNif(nif);
 		setIban(iban);
 
-		setProcessor(new Processor());
+		setProcessor(new Processor(new BankInterface(), new TaxInterface()));
 
 		FenixFramework.getDomainRoot().addActivityProvider(this);
 	}
 
-	public ActivityProvider(String code, String name, String nif, String iban, Processor processor) {
-		checkArguments(code, name, nif, iban);
 
-		setCode(code);
-		setName(name);
-		setNif(nif);
-		setIban(iban);
-
-		setProcessor(processor);
-
-		FenixFramework.getDomainRoot().addActivityProvider(this);
-	}
 
 	public void delete() {
 		setRoot(null);

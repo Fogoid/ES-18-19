@@ -3,6 +3,7 @@ package pt.ulisboa.tecnico.softeng.activity.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import pt.ulisboa.tecnico.softeng.activity.services.local.ActivityInterface;
 import pt.ulisboa.tecnico.softeng.activity.services.remote.BankInterface;
 import pt.ulisboa.tecnico.softeng.activity.services.remote.TaxInterface;
 import pt.ulisboa.tecnico.softeng.activity.services.remote.dataobjects.RestBankOperationData;
@@ -14,19 +15,13 @@ import pt.ulisboa.tecnico.softeng.activity.services.remote.exceptions.TaxExcepti
 public class Processor extends Processor_Base {
 	private static final String TRANSACTION_SOURCE = "ACTIVITY";
 
-	private BankInterface bankInterface;
 
-	private TaxInterface taxInterface;
-
-	public Processor() {
-		setBankInterface(new BankInterface());
-		setTaxInterface(new TaxInterface());
-	}
+	private final BankInterface bankInterface;
+	private final TaxInterface taxInterface;
 
 	public Processor(BankInterface bankInterface, TaxInterface taxInterface) {
-		setBankInterface(bankInterface);
-		setTaxInterface(taxInterface);
-
+		this.bankInterface= bankInterface;
+		this.taxInterface=taxInterface;
 	}
 
 	public void delete() {
@@ -89,18 +84,19 @@ public class Processor extends Processor_Base {
 	}
 
 	public BankInterface getBankInterface() {
-		return this.bankInterface;
+		return bankInterface;
 	}
 
-	public void setBankInterface(BankInterface bankinterface) {
-		this.bankInterface = bankinterface;
-	}
+	//public void setBankInterface(BankInterface bankInterface) {
+	//this.bankInterface = bankInterface;
+	//}
 
 	public TaxInterface getTaxInterface() {
 		return taxInterface;
 	}
 
-	public void setTaxInterface(TaxInterface taxInterface) {
-		this.taxInterface = taxInterface;
-	}
+	//public void setTaxInterface(TaxInterface taxInterface) {
+	//this.taxInterface = taxInterface;
+	//}
+
 }
