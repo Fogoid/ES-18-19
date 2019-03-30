@@ -6,17 +6,25 @@ To run tests execute: mvn clean install
 To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
 
 
-|   Number   |          Name           |            Email        |   GitHub Username  | Group |
-| ---------- | ----------------------- | ----------------------- | -------------------| ----- |
-|            |                         |                         |                    |   1   |
-|            |                         |                         |                    |   1   |
-|            |                         |                         |                    |   1   |
-|            |                         |                         |                    |   2   |
-|            |                         |                         |                    |   2   |
-|            |                         |                         |                    |   2   |
+|   Number   |          Name           |            Email                  |   GitHub Username  | Group |
+| ---------- | ----------------------- | --------------------------------- | -------------------| ----- |
+| 73046      |  André Antunes          |andre.r.antunes@ist.utl.pt         |      Antunes10     |   1   |
+| 73751      |  José Rosendo           | j.pd19@hotmail.com                |      jotapero      |   1   |
+| 80888      |  Francisco Mira         |francisco.mira96@gmail.com         |   franciscomira    |   1   |
+| 86408      |  Diogo Fernandes        |diogo.barradas.fernandes@gmail.com |     Fogoid         |   2   |
+| 86460      |  Leandro Salgado        | lmocs98@gmail.com                 |   CallMeLeopoldo   |   2   |
+| 86495      |  Pedro Barbosa          | pedrobarbosa262@gmail.com         |    quickacid       |   2   |
 
 - **Group 1:**
 - **Group 2:**
+
+Issues:
+Diogo Fernandes - 133, 106, 105, 92, 89, 79, 77
+Leandro Salgado - 122, 100, 94, 84 ,81, 71
+André Antunes - 73, 83, 90, 95, 93
+José Rosendo - 101, 98, 97, 97 ,86
+Francisco Mira - 117, 103, 104, 99, 85, 78, 72
+Pedro Barbosa - 116, 115, 102, 96, 88, 82, 76, 75
 
 ### Infrastructure
 
