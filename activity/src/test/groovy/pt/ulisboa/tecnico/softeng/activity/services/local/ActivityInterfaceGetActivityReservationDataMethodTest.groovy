@@ -66,6 +66,7 @@ class ActivityInterfaceGetActivityReservationDataMethodTest extends SpockRollbac
     }
 
 
+    // JFF: duplication / data tables
     def 'nullReference'() {
 
         when:

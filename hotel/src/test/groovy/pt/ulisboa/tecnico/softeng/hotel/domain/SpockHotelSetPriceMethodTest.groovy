@@ -29,6 +29,8 @@ def class SpockHotelSetPriceMethodTest extends SpockRollbackTestAbstractClass{
         price == hotel.getPrice(Room.Type.DOUBLE)
     }
 
+    // JFF: duplication could be avoided using data tables
+
     def 'negativePriceSingle'() {
 
         when:

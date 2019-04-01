@@ -13,7 +13,7 @@ class HotelGetPriceMethodTest extends SpockRollbackTestAbstractClass {
 
     def "sucessSingle"(){
         when:
-       true
+       true    // JFF: in this case, it would be better to use a single expect
 
         then:
         priceSingle == hotel.getPrice(Room.Type.SINGLE)
@@ -22,7 +22,7 @@ class HotelGetPriceMethodTest extends SpockRollbackTestAbstractClass {
 
     def "sucessDouble"(){
         when:
-        true
+        true // JFF: in this case, it would be better to use a single expect
 
         then:
         priceDOuble == hotel.getPrice(Room.Type.DOUBLE)

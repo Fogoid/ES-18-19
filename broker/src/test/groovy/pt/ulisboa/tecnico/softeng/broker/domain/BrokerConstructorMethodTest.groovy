@@ -21,6 +21,8 @@ class BrokerConstructorMethodTest extends SpockRollbackTestAbstractClass {
         broker.getAdventureSet().size()==0
         FenixFramework.getDomainRoot().getBrokerSet().contains(broker)
     }
+
+    // JFF: could have used data tables
     def 'nullCode'() {
         when:
         new Broker(null, BROKER_NAME, BROKER_NIF_AS_SELLER, NIF_AS_BUYER, BROKER_IBAN)

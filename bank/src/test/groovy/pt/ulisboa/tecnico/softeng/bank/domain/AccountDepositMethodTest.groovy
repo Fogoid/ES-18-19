@@ -27,6 +27,7 @@ class AccountDepositMethodTest extends SpockRollbackTestAbstractClass {
 		operation.getValue() - 50 == 0
 	}
 
+	// JFF: could have used a data table
 	def "zero amount"() {
 		when:
 		account.deposit(0)
@@ -39,6 +40,7 @@ class AccountDepositMethodTest extends SpockRollbackTestAbstractClass {
 		given:
 		account.deposit(1)
 
+		// JFF: No test
 	}
 
 	def "negative amount"() {

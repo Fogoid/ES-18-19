@@ -16,6 +16,7 @@ class BuyerConstructorTest extends SpockRollbackTestAbstractClass {
 
     }
 
+    // JFF: UniqueNIF not running as a test; test incorrect
     def "uniqueNIF"(){
         def seller = new Buyer(this.irs, NIF, NAME, ADDRESS);
 

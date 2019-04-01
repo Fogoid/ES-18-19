@@ -37,6 +37,8 @@ def class RoomReserveMethodTest extends SpockRollbackTestAbstractClass {
 		booking.getDeparture() == departure
 	}
 
+
+	// JFF: duplication could have been avoided with data tables
 	def "no double"() {
 		when:
 		room.reserve(Type.DOUBLE,arrival,departure,NIF_BUYER,IBAN_BUYER)

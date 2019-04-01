@@ -40,6 +40,7 @@ def class BookingConflictMethodTest extends SpockRollbackTestAbstractClass {
 		expect:
 		!this.booking.conflict(arrivalDate, departureDate)
 
+		// JFF: a data table here would be clearer. How are the values from the lists being combined?
 		where:
 		arrivalDate << [new LocalDate(2016, 12, 9), arrival.minusDays(10), arrival.minusDays(10),
 						departure.plusDays(4), departure]
@@ -62,6 +63,7 @@ def class BookingConflictMethodTest extends SpockRollbackTestAbstractClass {
 		thrown(HotelException)
 	}
 
+	// JFF: same string as before in Unroll should be avoided
 	@Unroll('this.booking.conflict: #arrivalDate, #departureDate')
 	def 'expected conflicts on booking'() {
 		expect: 'no conflicts'

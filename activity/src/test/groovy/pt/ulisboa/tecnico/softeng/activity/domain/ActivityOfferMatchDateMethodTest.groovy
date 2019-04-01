@@ -20,7 +20,7 @@ class ActivityOfferMatchDateMethodTest extends SpockRollbackTestAbstractClass{
     }
 
     def "success"(){
-        assert offer.matchDate(begin, end);
+        assert offer.matchDate(begin, end); // JFF: assert / ; unnecessary
     }
 
     @Unroll("conflict and non-conflict test: #_beg, #_end")
@@ -37,6 +37,7 @@ class ActivityOfferMatchDateMethodTest extends SpockRollbackTestAbstractClass{
         begin    | null
     }
 
+    // JFF: duplication / data table
     def "beginPlusOne"() {
         assert !offer.matchDate(begin.plusDays(1), end);
     }

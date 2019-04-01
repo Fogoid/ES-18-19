@@ -33,6 +33,7 @@ def class TaxPayerGetTaxesPerYearMethodsTest extends SpockRollbackTestAbstractCl
             new Invoice(50, date, itemType, seller, buyer)
 
 
+            // JFF: no need for types
             when:
             Map<Integer, Double> toPay = seller.getToPayPerYear()
             Map<Integer, Double> taxReturn = buyer.getTaxReturnPerYear()

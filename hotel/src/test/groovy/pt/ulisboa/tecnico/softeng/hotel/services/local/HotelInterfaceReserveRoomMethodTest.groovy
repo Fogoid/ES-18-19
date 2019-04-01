@@ -91,7 +91,7 @@ class HotelInterfaceReserveRoomMethodTest extends SpockRollbackTestAbstractClass
         HotelInterface.reserveRoom(bookingData);
 
         then:
-        thrown(HotelException.class);
+        thrown(HotelException.class); // JFF: semicolon unnecessary; .class unnecessary
 
     }
 }

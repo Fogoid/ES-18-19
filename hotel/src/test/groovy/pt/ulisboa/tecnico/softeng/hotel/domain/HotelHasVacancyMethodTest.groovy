@@ -17,7 +17,7 @@ class HotelHasVacancyMethodTest extends SpockRollbackTestAbstractClass {
         room = new Room(hotel, "01", Room.Type.DOUBLE)
     }
     
-    def 'hasVancacy'(){
+    def 'hasVacancy'(){
         when:
         room = hotel.hasVacancy(Room.Type.DOUBLE, arrival, departure)
         
@@ -26,7 +26,7 @@ class HotelHasVacancyMethodTest extends SpockRollbackTestAbstractClass {
         room.getNumber() == "01"
     }
     
-    def 'noVancacy'(){
+    def 'noVacancy'(){
         when:
         room.reserve(Room.Type.DOUBLE, arrival, departure, NIF_BUYER, IBAN_BUYER)
         
@@ -42,7 +42,9 @@ class HotelHasVacancyMethodTest extends SpockRollbackTestAbstractClass {
         then:
         otherHotel.hasVacancy(Room.Type.DOUBLE, arrival, departure) == null
     }
-    
+
+    //JFF: testes could be merged in a data table
+
     def 'nullType'(){
         when:
         hotel.hasVacancy(null, arrival, departure)

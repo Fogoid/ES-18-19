@@ -4,7 +4,7 @@ package pt.ulisboa.tecnico.softeng.hotel.domain;
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException
 
 class RoomConstructorMethodTest extends SpockRollbackTestAbstractClass  {
-    Hotel hotel
+    Hotel hotel  // JFF: you could have used just def
 
     def populate4Test() {
         hotel = new Hotel("XPTO123", "Lisboa", "NIF", "IBAN", 20.0, 30.0)
@@ -20,6 +20,8 @@ class RoomConstructorMethodTest extends SpockRollbackTestAbstractClass  {
         room.getType() == Room.Type.DOUBLE
         hotel.getRoomSet().size() == 1
     }
+
+    // JFF: duplication could be avoided with data tables
 
     def "nullHotel"() {
         when:

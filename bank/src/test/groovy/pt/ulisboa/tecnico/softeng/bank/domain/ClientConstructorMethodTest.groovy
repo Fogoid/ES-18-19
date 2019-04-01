@@ -20,6 +20,7 @@ class ClientConstructorMethodTest extends SpockRollbackTestAbstractClass {
         bank.getClientSet().contains(client)
     }
 
+    // JFF: could have used data tables
     def "nullBank"(){
         when:
         new Client(null, CLIENT_NAME)

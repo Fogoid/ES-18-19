@@ -29,6 +29,7 @@ def class HotelInterfaceGetRoomBookingDataMethodTest extends SpockRollbackTestAb
         booking = room.reserve(Type.SINGLE, arrival, departure, NIF_BUYER, IBAN_BUYER)
     }
 
+    // JFF: duplication could be avoided using data tables
     def 'success'() {
 
         when:

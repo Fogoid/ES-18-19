@@ -25,6 +25,7 @@ class SellerConstructorTest extends SpockRollbackTestAbstractClass {
 		IRS.getIRSInstance().getTaxPayerByNIF(NIF) == seller
 	}
 
+	// JFF: this is not running as a test
 	def "unique nif"() {
 
 		Seller seller=new Seller(irs,NIF,NAME,ADDRESS)
@@ -42,6 +43,7 @@ class SellerConstructorTest extends SpockRollbackTestAbstractClass {
 
 	}
 
+	// JFF: could have used data tables
 	def "null nif"() {
 		when:
 		new Seller(irs,null,NAME,ADDRESS)

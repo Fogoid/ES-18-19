@@ -42,6 +42,7 @@ class InvoiceConstructorTest extends SpockRollbackTestAbstractClass{
         invoice == buyer.getInvoiceByReference(invoice.getReference());
     }
 
+    //JFF: could have used data tables
     def "nullSeller"(){
         when:
         new Invoice(VALUE, date, itemType, null, buyer);

@@ -61,5 +61,6 @@ class BookingConstructorTest extends SpockRollbackTestAbstractClass {
         given:
         new Booking (room,ARRIVAL,ARRIVAL,NIF_BUYER,IBAN_BUYER)
 
+        // JFF: test incomplete
     }
 }

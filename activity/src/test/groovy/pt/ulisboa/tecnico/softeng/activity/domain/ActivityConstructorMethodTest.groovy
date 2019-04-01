@@ -32,6 +32,7 @@ class ActivityConstructorMethodTest extends SpockRollbackTestAbstractClass {
 
     }
 
+    // JFF: duplication could be avoided with data table
     def 'nullProvider'() {
         when:
         new Activity(null, PROVIDER_NAME, MIN_AGE, MAX_AGE, CAPACITY)

@@ -22,6 +22,7 @@ class OperationConstructorMethodTest extends SpockRollbackTestAbstractClass{
         when:'when a certain operation is created'
         def operation = new Operation(Type.DEPOSIT, account, 1000 );
 
+        // JFF: could have used with(..) {}
         then: "criteria evaluated in the construction of an operation"
         operation.getReference().startsWith(bank.getCode());
         operation.getReference().length() > Bank.CODE_SIZE;

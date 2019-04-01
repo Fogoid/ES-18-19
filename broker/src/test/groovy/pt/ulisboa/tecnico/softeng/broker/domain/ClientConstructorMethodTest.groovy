@@ -28,6 +28,7 @@ class ClientConstructorMethodTest extends SpockRollbackTestAbstractClass {
         AGE == client.getAge()
     }
 
+    //JFF: could have used data tables
     def 'nullBroker'(){
         when:
         new Client(null, CLIENT_IBAN, CLIENT_NIF, DRIVING_LICENSE, AGE)

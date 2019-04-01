@@ -62,6 +62,8 @@ class HotelConstructorTest extends SpockRollbackTestAbstractClass {
         then:
         thrown(HotelException)
     }
+
+    // JFF: the last two tests could be merged in a data table
     def 'negativePriceSingle'(){
         when:
         new Hotel(HOTEL_CODE, HOTEL_NAME, NIF, IBAN, -1.0, PRICE_DOUBLE)

@@ -3,6 +3,7 @@ package pt.ulisboa.tecnico.softeng.broker.domain
 import org.joda.time.LocalDate
 import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException
 
+// JFF: could have used data tables in some tests of this class
 class AdventureConstructorMethodTest extends SpockRollbackTestAbstractClass {
     def BROKER_IBAN = "BROKER_IBAN"
     def NIF_AS_BUYER = "buyerNIF"

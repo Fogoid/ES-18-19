@@ -21,6 +21,7 @@ class BankGetAccountMethodTest extends SpockRollbackTestAbstractClass{
         account==result
     }
 
+    // JFF: could have used data tables
     def ' nullIBAN'(){
         when:
         bank.getAccount(null)

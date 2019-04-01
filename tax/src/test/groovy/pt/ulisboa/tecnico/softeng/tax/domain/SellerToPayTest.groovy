@@ -38,7 +38,7 @@ def class SellerToPayTest extends SpockRollbackTestAbstractClass {
         25.0f == value
     }
 
-
+    // JFF: this could be merged with the above
     def 'yearWithoutInvoices'() {
 
         when:

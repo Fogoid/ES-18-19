@@ -26,6 +26,7 @@ class ActivityProviderConstructorMethodTest extends SpockRollbackTestAbstractCla
         provider.getActivitySet().size()==0;
     }
 
+    // JFF: duplication / data tables
     def 'nullCode'(){
         when:
         new ActivityProvider(null,PROVIDER_NAME,NIF,IBAN)

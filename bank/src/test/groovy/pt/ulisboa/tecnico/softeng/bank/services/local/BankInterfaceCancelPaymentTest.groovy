@@ -29,6 +29,7 @@ class BankInterfaceCancelPaymentTest extends SpockRollbackTestAbstractClass{
         bank.getOperation(newReference)!=null
     }
 
+    // JFF: could have used data tables
     def 'nullReference'(){
         when:
         BankInterface.cancelPayment(null)

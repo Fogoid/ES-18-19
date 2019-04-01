@@ -12,11 +12,11 @@ class IRSGetTaxPayerByNIFTest extends SpockRollbackTestAbstractClass {
         new Buyer(irs, BUYER_NIF, "Manuel Comprado", "Anywhere")
     }
 
+    // JFF: none of the following are running as tests...
     def 'sucessBuyer'(){
         TaxPayer taxPayer = irs.getTaxPayerByNIF(BUYER_NIF)
         taxPayer != null
         BUYER_NIF == taxPayer.getNif()
-
     }
 
     def 'sucessSeller'(){

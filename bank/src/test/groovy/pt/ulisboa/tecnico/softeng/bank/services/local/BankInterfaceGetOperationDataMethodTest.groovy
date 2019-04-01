@@ -36,6 +36,7 @@ class BankInterfaceGetOperationDataMethodTest extends SpockRollbackTestAbstractC
     }
 
 
+    // JFF: could have used data tables
     def 'nullReference'() {
         when:
         BankInterface.getOperationData(null)

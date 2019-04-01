@@ -41,6 +41,7 @@ class SpockIRSCancelInvoiceMethodTest extends SpockRollbackTestAbstractClass{
     }
 
 
+    // JFF: could have used a data table
     def 'nullReference'() {
 
         when:

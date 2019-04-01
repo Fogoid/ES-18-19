@@ -31,6 +31,7 @@ class ActivityProviderFindOfferMethodTest extends SpockRollbackTestAbstractClass
 
     }
 
+    // JFF: duplication / data tables
     def 'nullBeginDate'() {
         when:
         provider.findOffer(null, end, AGE)

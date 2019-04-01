@@ -28,6 +28,8 @@ class AccountWithdrawMethodTest extends SpockRollbackTestAbstractClass {
 		operation.getValue() - 40 == 0
 	}
 
+	// JFF: duplication could be avoided with data tables
+
 	def "negative amount"() {
 		when:
 		account.withdraw(-20)

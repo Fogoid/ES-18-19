@@ -11,6 +11,7 @@ class BankConstructorTest extends SpockRollbackTestAbstractClass {
 
     def "populate4Test"(){}
 
+    // JFF: semi-colons not required
     def "success"(){
         when:
         def bank = new Bank(BANK_NAME, BANK_CODE);

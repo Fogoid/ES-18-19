@@ -1,0 +1,5 @@
+Penalties: -0.2
+        * Commented code left behind
+        * Semicolons and modifiers public are unnecessary
+        * Commits with multiple names
+        * See other comments in code that were not already taken into consideration in the spreadsheet

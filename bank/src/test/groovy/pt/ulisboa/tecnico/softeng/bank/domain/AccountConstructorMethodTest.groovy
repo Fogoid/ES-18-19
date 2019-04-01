@@ -26,6 +26,7 @@ class AccountConstructorMethodTest extends SpockRollbackTestAbstractClass {
 		bank.getClientSet().contains(client)
 	}
 
+	// JFF: could have uped a datatable
 	def "not empty bank argument"() {
 		when:
 		new Account(null, client)

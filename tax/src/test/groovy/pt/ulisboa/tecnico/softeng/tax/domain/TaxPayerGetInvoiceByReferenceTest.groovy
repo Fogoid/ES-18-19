@@ -32,6 +32,7 @@ def class TaxPayerGetInvoiceByReferenceTest extends SpockRollbackTestAbstractCla
         invoice == seller.getInvoiceByReference(invoice.getReference())
     }
 
+    // JFF: could have used data tables
     def 'nullReference'() {
 
         when:

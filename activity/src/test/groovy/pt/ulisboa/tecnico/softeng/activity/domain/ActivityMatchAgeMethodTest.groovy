@@ -15,10 +15,12 @@ class ActivityMatchAgeMethodTest extends SpockRollbackTestAbstractClass {
 
 	}
 
+	// JFF: duplication / data table
 	def "success"() {
 		given:
 
 		int result = (MAX_AGE - MIN_AGE) / 2
+		// JFF: it would be better to use .intdiv(2)
 
 		expect:
 		activity.matchAge(result) == true

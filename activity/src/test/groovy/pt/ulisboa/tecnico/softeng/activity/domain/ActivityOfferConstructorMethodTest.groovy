@@ -29,6 +29,8 @@ class ActivityOfferConstructorMethodTest extends SpockRollbackTestAbstractClass 
 		30 == offer.getPrice()
 	}
 
+	// JFF: duplication / data table
+
 	def "null activity"() {
 		when:
 		new ActivityOffer(null, begin, end,30)
