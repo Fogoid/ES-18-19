@@ -28,7 +28,7 @@ script:
 env:
   global:
     # You can fetch this at https://codecov.io/gh/tecnico-softeng/es18XX-YY-project/settings
-    - CODECOV_TOKEN=c4972989-6afc-417d-a119-623d58821612
+    - CODECOV_TOKEN="c4972989-6afc-417d-a119-623d58821612"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
