@@ -61,6 +61,7 @@ class CancelledStateProcessMethodSpockTest extends SpockRollbackTestAbstractClas
 
    }
 
+    // JFF: could have used data tables
     def 'cancelledPaymentFirstBankException'() {
         given:
         adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION)

@@ -44,7 +44,7 @@ class BulkRoomBookingGetRoomBookingData4TypeMethodSpockTest extends SpockRollbac
         //def bulk = new BulkRoomBooking(broker, NUMBER_OF_BULK, BEGIN, END, NIF_AS_BUYER, CLIENT_IBAN)
         RestRoomBookingData roomBookingData = new RestRoomBookingData()
         roomBookingData.setRoomType(SINGLE)
-        hotelInterface.getRoomBookingData(_) >> { roomBookingData}
+        hotelInterface.getRoomBookingData(_) >> { roomBookingData} // JFF: why is this returned as a closure?
 
                 //assert result != null
         when:
@@ -139,6 +139,7 @@ class BulkRoomBookingGetRoomBookingData4TypeMethodSpockTest extends SpockRollbac
         1 == bulk.getReferences().size()
     }
 
+    // JFF: some tests are not as expected (see solutions)
     @Test
     def "remoteExceptionValueIsResetBySuccess"() {
 

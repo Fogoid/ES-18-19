@@ -31,6 +31,7 @@ class ActivityInterfaceCancelReservationMethodSpockTest extends SpockRollbackTes
         offer = new ActivityOffer(activity,begin,end,30)
     }
 
+    // JFF: mock checks whould be in when block -- see solution
     def 'success'() {
         given:
                 _*bankInterface.processPayment(_ as RestBankOperationData)

@@ -19,6 +19,7 @@ import java.util.Set;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
 
+// JFF: commented code left behind
 class SpockBulkRoomBookingProcessBookingMethodTest extends SpockRollbackTestAbstractClass {
     BulkRoomBooking bulk
     def broker

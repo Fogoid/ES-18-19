@@ -7,6 +7,7 @@ import pt.ulisboa.tecnico.softeng.broker.domain.Adventure.State
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.ActivityException
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
 
+// JFF: class name different from file name
 class ReserveActivityStateMethodSpockTest extends SpockRollbackTestAbstractClass {
     private Broker broker
     private Client client
@@ -16,6 +17,7 @@ class ReserveActivityStateMethodSpockTest extends SpockRollbackTestAbstractClass
     def taxInterface
     def activityInterface
 
+    // JFF: could have used data tables for some of the tests
     @Override
     def populate4Test(){
         taxInterface=Mock(TaxInterface)

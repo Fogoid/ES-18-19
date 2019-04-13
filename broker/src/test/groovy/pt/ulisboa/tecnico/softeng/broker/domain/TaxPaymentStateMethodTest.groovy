@@ -13,6 +13,7 @@ class TaxPaymentStateMethodTest extends  SpockRollbackTestAbstractClass {
 
     private Adventure adventure
 
+    // JFF: some tests could use data tables
     def populate4Test() {
         bankInterface = Mock(BankInterface)
         taxInterface = Mock(TaxInterface)

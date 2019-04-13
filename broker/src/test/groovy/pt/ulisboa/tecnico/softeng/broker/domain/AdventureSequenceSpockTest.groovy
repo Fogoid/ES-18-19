@@ -57,6 +57,7 @@ class AdventureSequenceSpockTest extends SpockRollbackTestAbstractClass {
 		this.rentingData.setInvoiceReference(INVOICE_REFERENCE)
     }
 
+    // JFF: could have used a data table
     def "success sequence"() {
         given:
         activityInterface.reserveActivity(_) >> this.bookingActivityData

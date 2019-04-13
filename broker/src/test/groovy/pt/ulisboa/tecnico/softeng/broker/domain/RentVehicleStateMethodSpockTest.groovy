@@ -58,6 +58,7 @@ class RentVehicleStateMethodSpockTest extends SpockRollbackTestAbstractClass {
         Adventure.State.PROCESS_PAYMENT == adventure.getState().getValue()
     }
 
+    // JFF: could have used data tables
     @Test
     def "carException"() {
 

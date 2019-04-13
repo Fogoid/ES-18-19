@@ -60,6 +60,7 @@ def class ConfirmedStateProcessMethodSpockTest extends SpockRollbackTestAbstract
 		adventure.setState(State.CONFIRMED)
 	}
 
+	// JFF: results of interactions not being used
 	def 'successAll'() {
 
 		given:
@@ -230,6 +231,7 @@ def class ConfirmedStateProcessMethodSpockTest extends SpockRollbackTestAbstract
 		adventure.getState().getValue() == State.UNDO
 	}
 
+	// JFF: why are the three sets outside the given block?
 	def 'car exception'() {
 		adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION)
 		adventure.setActivityConfirmation(ACTIVITY_CONFIRMATION)

@@ -19,6 +19,7 @@ def class ProcessPaymentStateProcessMethodSpockTest extends SpockRollbackTestAbs
 	def PAYMENT_CONFIRMATION
 
 
+	// JFF: could have used a data table
 	@Override
 	def 'populate4Test'() {
 

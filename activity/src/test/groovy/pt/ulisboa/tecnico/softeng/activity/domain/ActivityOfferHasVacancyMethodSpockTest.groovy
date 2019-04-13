@@ -69,6 +69,7 @@ class ActivityOfferHasVacancyMethodSpockTest extends SpockRollbackTestAbstractCl
 
     @Test
 
+	// JFF: the idea here was to check that the mock methods are called when the booking is cancelled
 	def "hasCancelledBookings"() {
 
 		given:

@@ -18,6 +18,7 @@ class UndoStateProcessMethodSpockTest extends SpockRollbackTestAbstractClass {
 
 
 
+    // JFF: could have used data tables
     def populate4Test() {
          hotelInterface = Mock(HotelInterface)
         bankInterface = Mock(BankInterface)
