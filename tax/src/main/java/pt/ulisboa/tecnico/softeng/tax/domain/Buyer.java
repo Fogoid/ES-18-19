@@ -27,17 +27,23 @@ public class Buyer extends Buyer_Base {
 		super.delete();
 	}
 
-	public double taxReturn(int year) {
+	public long taxReturn(int year) {
 		if (year < 1970) {
 			throw new TaxException();
 		}
 
-		double result = 0;
+		long result = 0;
 		for (Invoice invoice : getInvoiceSet()) {
 			if (!invoice.isCancelled() && invoice.getDate().getYear() == year) {
-				result = result + invoice.getIva() * PERCENTAGE / 100;
+				System.out.println("ESTE É O RESULTADO DE IVA");
+				System.out.println(invoice.getIva());
+				System.out.println("ESTE É O RESULTADO DE IVA EM LONG");
+				System.out.println(convert_double_to_long(invoice.getIva()));
+				result = result + convert_double_to_long(invoice.getIva()) * PERCENTAGE/100;
 			}
 		}
+		System.out.println("RESULTADO DE TAX RETURN:");
+		System.out.println(result);
 		return result;
 	}
 
@@ -57,7 +63,21 @@ public class Buyer extends Buyer_Base {
 
 	public Map<Integer, Double> getTaxReturnPerYear() {
 		return getInvoiceSet().stream().map(i -> i.getDate().getYear()).distinct()
-				.collect(Collectors.toMap(y -> y, y -> taxReturn(y)));
+				.collect(Collectors.toMap(y -> y, y -> convert_long_to_double(taxReturn(y))));
+	}
+
+	public double convert_long_to_double(long money){
+		System.out.println("ESTE É O VALOR DE MONEY EM LONG");
+		System.out.println(money);
+		double currency = money/1000.0;
+		System.out.println("ESTE É O RESULTADO DO TAX RETURN POR ANO EM DOUBLE, VINDO DA CONVERSÃO");
+		System.out.println(currency);
+		return currency;
+	}
+
+	public long convert_double_to_long(double money){
+		long currency = (long)money*1000;
+		return currency;
 	}
 
 }

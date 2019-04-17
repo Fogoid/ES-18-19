@@ -13,17 +13,17 @@ public class RestInvoiceData {
 	private String sellerNif;
 	private String buyerNif;
 	private String itemType;
-	private Double value;
+	private double value;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate date;
-	private Double iva;
+	private double iva;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
 	private DateTime time;
 
 	public RestInvoiceData() {
 	}
 
-	public RestInvoiceData(String reference, String sellerNif, String buyerNif, String itemType, Double value,
+	public RestInvoiceData(String reference, String sellerNif, String buyerNif, String itemType, long value,
 			LocalDate date, DateTime time) {
 		if (reference == null) {
 			throw new TaxException();
@@ -42,7 +42,7 @@ public class RestInvoiceData {
 		this.sellerNif = invoice.getSeller().getNif();
 		this.buyerNif = invoice.getBuyer().getNif();
 		this.itemType = invoice.getItemType().getName();
-		this.value = invoice.getValue();
+		this.value = convert_long_to_double(invoice.getValue());
 		this.date = invoice.getDate();
 		this.iva = invoice.getIva();
 		this.time = invoice.getTime();
@@ -80,11 +80,11 @@ public class RestInvoiceData {
 		this.itemType = itemType;
 	}
 
-	public Double getValue() {
+	public double getValue() {
 		return this.value;
 	}
 
-	public void setValue(Double value) {
+	public void setValue(long value) {
 		this.value = value;
 	}
 
@@ -96,11 +96,11 @@ public class RestInvoiceData {
 		this.date = date;
 	}
 
-	public Double getIva() {
+	public double getIva() {
 		return this.iva;
 	}
 
-	public void setIva(Double iva) {
+	public void setIva(long iva) {
 		this.iva = iva;
 	}
 
@@ -110,6 +110,11 @@ public class RestInvoiceData {
 
 	public void setTime(DateTime time) {
 		this.time = time;
+	}
+
+	public double convert_long_to_double(long money){
+		double currency = money/1000.0;
+		return currency;
 	}
 
 }
