@@ -34,7 +34,7 @@ public class HotelInterface {
 	@Atomic(mode = TxMode.WRITE)
 	public static void createHotel(HotelData hotelData) {
 		new Hotel(hotelData.getCode(), hotelData.getName(), hotelData.getNif(), hotelData.getIban(),
-				hotelData.getPriceSingle(), hotelData.getPriceDouble(), new Processor(new BankInterface(), new TaxInterface()));
+				convert_double_to_long(hotelData.getPriceSingle()), convert_double_to_long(hotelData.getPriceDouble()), new Processor(new BankInterface(), new TaxInterface()));
 	}
 
 	@Atomic(mode = TxMode.READ)
@@ -157,6 +157,11 @@ public class HotelInterface {
 			}
 		}
 		return availableRooms;
+	}
+
+	private static long convert_double_to_long(double money) {
+		long currency = (long)money*1000;
+		return currency;
 	}
 
 	private static Hotel getHotelByCode(String code) {
