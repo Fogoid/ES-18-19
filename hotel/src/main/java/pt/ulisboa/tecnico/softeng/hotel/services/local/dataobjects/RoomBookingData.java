@@ -37,13 +37,18 @@ public class RoomBookingData {
 		this.roomType = booking.getRoom().getType().name();
 		this.arrival = booking.getArrival();
 		this.departure = booking.getDeparture();
-		this.price = booking.getPrice();
+		this.price = convert_long_to_float(booking.getPrice());
 		this.buyerNif = booking.getBuyerNif();
 		this.buyerIban = booking.getBuyerIban();
 		this.cancellationDate = booking.getCancellationDate();
 		this.paymentReference = booking.getPaymentReference();
 		this.invoiceReference = booking.getInvoiceReference();
 		this.adventureId = booking.getAdventureId();
+	}
+
+	public double convert_long_to_float(long money){
+		double currency = money/1000;
+		return currency;
 	}
 
 	public String getReference() {
