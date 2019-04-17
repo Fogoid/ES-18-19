@@ -114,14 +114,6 @@ public class TaxInterface {
 		invoice = new Invoice(convert_double_to_long(invoiceData.getValue()), invoiceData.getDate(), itemType, seller, buyer,
 				invoiceData.getTime());
 
-		System.out.println("DRUMROLLS PLEASE");
-		System.out.println(invoice == null);
-		System.out.println(convert_double_to_long(invoiceData.getValue()));
-		System.out.println(buyer == null);
-
-		System.out.println("ESTA É A REFERENCIA DO SEGUINTE INVOICE");
-		System.out.println((invoice.getReference()));
-
 		return invoice.getReference();
 	}
 
