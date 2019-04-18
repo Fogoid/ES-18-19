@@ -62,17 +62,29 @@ public class TaxInterface {
 	@Atomic(mode = TxMode.READ)
 	public static List<InvoiceData> getInvoiceDataList(String nif) {
 		TaxPayer taxPayer = IRS.getIRSInstance().getTaxPayerByNIF(nif);
+
 		if (taxPayer == null) {
 			throw new TaxException();
 		}
+		for (Invoice invoice : taxPayer.getInvoice_buyerSet()) {
+			if(invoice.getBuyer().getNif().equals(nif)){
+				return ((TaxPayer) taxPayer).getInvoice_buyerSet().stream().map(i -> new InvoiceData(i))
+						.sorted((i1, i2) -> i1.getSellerNif().compareTo(i2.getSellerNif())).collect(Collectors.toList());
+			}
 
+		}
+		return ((TaxPayer) taxPayer).getInvoice_sellerSet().stream().map(i -> new InvoiceData(i))
+				.sorted((i1, i2) -> i1.getBuyerNif().compareTo(i2.getBuyerNif())).collect(Collectors.toList());
+
+
+		/*
 		if (taxPayer instanceof Buyer) {
-			return ((Buyer) taxPayer).getInvoiceSet().stream().map(i -> new InvoiceData(i))
+			return ((TaxPayer) taxPayer).getInvoice_buyerSet().stream().map(i -> new InvoiceData(i))
 					.sorted((i1, i2) -> i1.getSellerNif().compareTo(i2.getSellerNif())).collect(Collectors.toList());
 		} else {
-			return ((Seller) taxPayer).getInvoiceSet().stream().map(i -> new InvoiceData(i))
+			return ((TaxPayer) taxPayer).getInvoice_sellerSet().stream().map(i -> new InvoiceData(i))
 					.sorted((i1, i2) -> i1.getBuyerNif().compareTo(i2.getBuyerNif())).collect(Collectors.toList());
-		}
+		}*/
 	}
 
 	@Atomic(mode = TxMode.WRITE)
@@ -86,14 +98,14 @@ public class TaxInterface {
 		TaxPayer taxPayer = IRS.getIRSInstance().getTaxPayerByNIF(nif);
 		ItemType itemType = IRS.getIRSInstance().getItemTypeByName(invoiceData.getItemType());
 
-		Seller seller;
-		Buyer buyer;
+		TaxPayer seller;
+		TaxPayer buyer;
 		if (invoiceData.getSellerNif() != null) {
-			seller = (Seller) IRS.getIRSInstance().getTaxPayerByNIF(invoiceData.getSellerNif());
-			buyer = (Buyer) taxPayer;
+			seller = (TaxPayer) IRS.getIRSInstance().getTaxPayerByNIF(invoiceData.getSellerNif());
+			buyer = (TaxPayer) taxPayer;
 		} else {
-			seller = (Seller) taxPayer;
-			buyer = (Buyer) IRS.getIRSInstance().getTaxPayerByNIF(invoiceData.getBuyerNif());
+			seller = (TaxPayer) taxPayer;
+			buyer = (TaxPayer) IRS.getIRSInstance().getTaxPayerByNIF(invoiceData.getBuyerNif());
 		}
 
 		new Invoice(invoiceData.getValue(), invoiceData.getDate(), itemType, seller, buyer);
@@ -106,8 +118,8 @@ public class TaxInterface {
 			return invoice.getReference();
 		}
 
-		Seller seller = (Seller) IRS.getIRSInstance().getTaxPayerByNIF(invoiceData.getSellerNif());
-		Buyer buyer = (Buyer) IRS.getIRSInstance().getTaxPayerByNIF(invoiceData.getBuyerNif());
+		TaxPayer seller = (TaxPayer) IRS.getIRSInstance().getTaxPayerByNIF(invoiceData.getSellerNif());
+		TaxPayer buyer = (TaxPayer) IRS.getIRSInstance().getTaxPayerByNIF(invoiceData.getBuyerNif());
 		ItemType itemType = IRS.getIRSInstance().getItemTypeByName(invoiceData.getItemType());
 
 		invoice = new Invoice(invoiceData.getValue(), invoiceData.getDate(), itemType, seller, buyer,
