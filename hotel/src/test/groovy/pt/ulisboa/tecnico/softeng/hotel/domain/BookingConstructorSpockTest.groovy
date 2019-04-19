@@ -18,6 +18,8 @@ class BookingConstructorSpockTest extends SpockRollbackTestAbstractClass {
     def NIF_BUYER = '123456789'
     @Shared
     def IBAN_BUYER = 'IBAN_BUYER'
+    @Shared
+    def PROVIDER_IBAN = 'ProviderIban'
     def room
 
     @Override
@@ -28,7 +30,7 @@ class BookingConstructorSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'success'() {
         when: 'a booking is created'
-        def booking = new Booking(this.room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        def booking = new Booking(this.room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         then: 'it correctly instantiates its fields'
         booking.getReference().startsWith(this.room.getHotel().getCode())
@@ -40,29 +42,31 @@ class BookingConstructorSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'arrival and departure in same day'() {
         when: 'a booking is created with departure equal to arrival'
-        def booking = new Booking(this.room, ARRIVAL, ARRIVAL, NIF_BUYER, IBAN_BUYER)
+        def booking = new Booking(this.room, ARRIVAL, ARRIVAL, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         then: 'it is created'
         this.room.getBookingSet().size() == 1
     }
 
-    @Unroll('one of the following arguments is not allowed: #room | #arrival | #departure | #buyerNif | #buyerIban')
+    @Unroll('one of the following arguments is not allowed: #room | #arrival | #departure | #buyerNif | #buyerIban, #providerIban')
     def 'incorrect input parameters'() {
         when: 'a booking is created with incorrect inputs'
-        new Booking(room, arrival, departure, buyerNif, buyerIban)
+        new Booking(room, arrival, departure, buyerNif, buyerIban, providerIban)
 
         then: 'a HotelException is thrown'
         def error = thrown(HotelException)
 
         where:
-        room      | arrival | departure            | buyerNif  | buyerIban
-        null      | ARRIVAL | DEPARTURE            | NIF_BUYER | IBAN_BUYER
-        this.room | null    | DEPARTURE            | NIF_BUYER | IBAN_BUYER
-        this.room | ARRIVAL | null                 | NIF_BUYER | IBAN_BUYER
-        this.room | ARRIVAL | ARRIVAL.minusDays(1) | NIF_BUYER | IBAN_BUYER
-        this.room | ARRIVAL | DEPARTURE            | null      | IBAN_BUYER
-        this.room | ARRIVAL | DEPARTURE            | ' '       | IBAN_BUYER
-        this.room | ARRIVAL | DEPARTURE            | NIF_BUYER | null
-        this.room | ARRIVAL | DEPARTURE            | NIF_BUYER | '   '
+        room      | arrival | departure            | buyerNif  | buyerIban  | providerIban
+        null      | ARRIVAL | DEPARTURE            | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        this.room | null    | DEPARTURE            | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        this.room | ARRIVAL | null                 | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        this.room | ARRIVAL | ARRIVAL.minusDays(1) | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        this.room | ARRIVAL | DEPARTURE            | null      | IBAN_BUYER | PROVIDER_IBAN
+        this.room | ARRIVAL | DEPARTURE            | ' '       | IBAN_BUYER | PROVIDER_IBAN
+        this.room | ARRIVAL | DEPARTURE            | NIF_BUYER | null       | PROVIDER_IBAN
+        this.room | ARRIVAL | DEPARTURE            | NIF_BUYER | '   '      | PROVIDER_IBAN
+        this.room | ARRIVAL | DEPARTURE            | NIF_BUYER | IBAN_BUYER | null
+        this.room | ARRIVAL | DEPARTURE            | NIF_BUYER | IBAN_BUYER | '   '
     }
 }

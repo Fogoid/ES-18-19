@@ -8,8 +8,8 @@ import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 public class Booking extends Booking_Base {
     private static final String HOUSING_TYPE = "HOUSING";
 
-    public Booking(Room room, LocalDate arrival, LocalDate departure, String buyerNif, String buyerIban) {
-        checkArguments(room, arrival, departure, buyerNif, buyerIban);
+    public Booking(Room room, LocalDate arrival, LocalDate departure, String buyerNif, String buyerIban, String providerIban) {
+        checkArguments(room, arrival, departure, buyerNif, buyerIban, providerIban);
 
         setReference(room.getHotel().getCode() + room.getHotel().getCounter());
         setArrival(arrival);
@@ -17,6 +17,7 @@ public class Booking extends Booking_Base {
         setPrice(room.getHotel().getPrice(room.getType()) * Days.daysBetween(arrival, departure).getDays());
         setBuyerNif(buyerNif);
         setBuyerIban(buyerIban);
+        setProviderIban(providerIban);
         setProviderNif(room.getHotel().getNif());
         setProcessor(room.getHotel().getProcessor());
         setTime(DateTime.now());
@@ -34,9 +35,9 @@ public class Booking extends Booking_Base {
         deleteDomainObject();
     }
 
-    private void checkArguments(Room room, LocalDate arrival, LocalDate departure, String buyerNIF, String buyerIban) {
+    private void checkArguments(Room room, LocalDate arrival, LocalDate departure, String buyerNIF, String buyerIban, String providerIban) {
         if (room == null || arrival == null || departure == null || buyerNIF == null || buyerNIF.trim().length() == 0
-                || buyerIban == null || buyerIban.trim().length() == 0) {
+                || buyerIban == null || buyerIban.trim().length() == 0 || providerIban == null || providerIban.trim().length() == 0) {
             throw new HotelException();
         }
 
