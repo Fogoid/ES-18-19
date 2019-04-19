@@ -51,7 +51,7 @@ public class Processor extends Processor_Base {
 					}
 				}
 				RestInvoiceData invoiceData = new RestInvoiceData(booking.getProviderNif(), booking.getBuyerNif(),
-						booking.getType(), booking.getAmount(), booking.getDate(), booking.getTime());
+						booking.getType(), convert_long_to_double(booking.getAmount()), booking.getDate(), booking.getTime());
 				try {
 					booking.setInvoiceReference(this.taxInterface.submitInvoice(invoiceData));
 				} catch (TaxException | RemoteAccessException ex) {
@@ -79,6 +79,11 @@ public class Processor extends Processor_Base {
 		for (Booking booking : failedToProcess) {
 			addBooking(booking);
 		}
+	}
+
+	public double convert_long_to_double(long money){
+		double currency = money/1000.0;
+		return currency;
 	}
 
 }

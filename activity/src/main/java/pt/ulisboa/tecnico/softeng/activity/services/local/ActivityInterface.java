@@ -82,7 +82,7 @@ public class ActivityInterface {
 		}
 
 		new ActivityOffer(activity, offer.getBegin(), offer.getEnd(),
-				offer.getAmount() != null ? offer.getAmount() : -1);
+				offer.getAmount() != null ? convert_double_to_long(offer.getAmount()) : -1);
 	}
 
 	@Atomic(mode = TxMode.WRITE)
@@ -179,6 +179,11 @@ public class ActivityInterface {
 
 		return provider.getActivitySet().stream().filter(a -> a.getCode().equals(codeActivity)).findFirst()
 				.orElse(null);
+	}
+
+	public long convert_double_to_long(double money){
+		long currency = (long)money*1000;
+		return currency;
 	}
 
 }
