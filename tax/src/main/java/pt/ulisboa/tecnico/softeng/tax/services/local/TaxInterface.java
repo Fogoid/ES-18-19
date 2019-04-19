@@ -91,7 +91,7 @@ public class TaxInterface {
 	public static void createInvoice(String nif, InvoiceData invoiceData) {
 		if (invoiceData.getValue() == null || invoiceData.getItemType() == null || invoiceData.getDate() == null
 				|| invoiceData.getBuyerNif() == null && invoiceData.getSellerNif() == null
-						&& invoiceData.getTime() == null) {
+				&& invoiceData.getTime() == null) {
 			throw new TaxException();
 		}
 
@@ -108,7 +108,7 @@ public class TaxInterface {
 			buyer = (TaxPayer) IRS.getIRSInstance().getTaxPayerByNIF(invoiceData.getBuyerNif());
 		}
 
-		new Invoice(invoiceData.getValue(), invoiceData.getDate(), itemType, seller, buyer);
+		new Invoice(convert_double_to_long(invoiceData.getValue()), invoiceData.getDate(), itemType, seller, buyer);
 	}
 
 	@Atomic(mode = TxMode.WRITE)
@@ -122,7 +122,7 @@ public class TaxInterface {
 		TaxPayer buyer = (TaxPayer) IRS.getIRSInstance().getTaxPayerByNIF(invoiceData.getBuyerNif());
 		ItemType itemType = IRS.getIRSInstance().getItemTypeByName(invoiceData.getItemType());
 
-		invoice = new Invoice(invoiceData.getValue(), invoiceData.getDate(), itemType, seller, buyer,
+		invoice = new Invoice(convert_double_to_long(invoiceData.getValue()), invoiceData.getDate(), itemType, seller, buyer,
 				invoiceData.getTime());
 
 		return invoice.getReference();
@@ -154,10 +154,16 @@ public class TaxInterface {
 				.filter(i -> i.getBuyer().getNif().equals(invoiceData.getBuyerNif())
 						&& i.getSeller().getNif().equals(invoiceData.getSellerNif())
 						&& i.getItemType().getName().equals(invoiceData.getItemType())
-						&& i.getValue() == invoiceData.getValue().doubleValue()
+						&& i.getValue() == invoiceData.getValue()
 						&& i.getTime().getMillis() == invoiceData.getTime().getMillis())
 				.findFirst();
 
 		return inOptional.orElse(null);
 	}
+
+public static long convert_double_to_long(double money){
+		long currency = (long)money*1000;
+		return currency;
+	}
+
 }

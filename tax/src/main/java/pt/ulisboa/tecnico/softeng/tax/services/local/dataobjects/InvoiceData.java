@@ -40,7 +40,7 @@ public class InvoiceData {
 		this.sellerNif = invoice.getSeller().getNif();
 		this.buyerNif = invoice.getBuyer().getNif();
 		this.itemType = invoice.getItemType().getName();
-		this.value = invoice.getValue();
+		this.value = convert_long_to_double(invoice.getValue());
 		this.date = invoice.getDate();
 		this.iva = invoice.getIva();
 		this.time = invoice.getTime();
@@ -110,4 +110,8 @@ public class InvoiceData {
 		this.time = time;
 	}
 
+	public double convert_long_to_double(long money){
+		double currency = money/1000.0;
+		return currency;
+	}
 }
