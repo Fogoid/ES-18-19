@@ -38,7 +38,7 @@ class ActivityInterfaceGetActivityReservationDataMethodSpockTest extends SpockRo
 
 	def 'success'() {
 		given:
-		booking = new Booking(provider,offer,'123456789','IBAN')
+		booking = new Booking(provider,offer,'123456789','IBAN', 'ProviderIban')
 
 		when:
 		RestActivityBookingData data = activityInterface.getActivityReservationData(booking.getReference())
@@ -55,7 +55,7 @@ class ActivityInterfaceGetActivityReservationDataMethodSpockTest extends SpockRo
 
 	def 'success cancelled'() {
 		given: 'a cancelled booking'
-		booking = new Booking(provider,offer,'123456789','IBAN')
+		booking = new Booking(provider,offer,'123456789','IBAN', 'providerIban')
 		provider.getProcessor().submitBooking(booking)
 		booking.cancel()
 

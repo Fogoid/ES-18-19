@@ -6,6 +6,7 @@ import pt.ulisboa.tecnico.softeng.activity.services.remote.TaxInterface
 
 class ActivityOfferGetBookingMethodSpockTest extends SpockRollbackTestAbstractClass {
 	def IBAN = 'IBAN'
+	def PROVIDER_IBAN = 'ProviderIban'
 	def NIF = '123456789'
 	def provider
 	def offer
@@ -24,7 +25,7 @@ class ActivityOfferGetBookingMethodSpockTest extends SpockRollbackTestAbstractCl
 
 	def 'success'() {
 		when:
-		def booking = new Booking(provider, offer, NIF, IBAN)
+		def booking = new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN)
 
 		then: 'the booking can be obtained through the confirmation reference'
 		offer.getBooking(booking.getReference()) == booking
@@ -32,7 +33,7 @@ class ActivityOfferGetBookingMethodSpockTest extends SpockRollbackTestAbstractCl
 
 	def 'success cancelled'() {
 		given:
-		def booking = new Booking(provider, offer, NIF, IBAN)
+		def booking = new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN)
 
 		when:
 		booking.cancel()
