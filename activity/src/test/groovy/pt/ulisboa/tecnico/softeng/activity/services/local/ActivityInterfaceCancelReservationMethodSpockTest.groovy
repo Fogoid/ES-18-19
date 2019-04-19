@@ -13,6 +13,7 @@ import pt.ulisboa.tecnico.softeng.activity.services.remote.TaxInterface
 
 class ActivityInterfaceCancelReservationMethodSpockTest extends SpockRollbackTestAbstractClass {
     def IBAN = "IBAN"
+    def PROVIDER_IBAN = 'ProviderIban'
     def NIF = "123456789"
     def provider
     def offer
@@ -38,7 +39,7 @@ class ActivityInterfaceCancelReservationMethodSpockTest extends SpockRollbackTes
 
     def 'success'() {
         given: 'a booking'
-        def booking = new Booking(provider, offer, NIF, IBAN)
+        def booking = new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN)
         and: 'and a booking that was submitted'
         provider.getProcessor().submitBooking(booking)
 
@@ -55,7 +56,7 @@ class ActivityInterfaceCancelReservationMethodSpockTest extends SpockRollbackTes
 
     def 'booking does not exist'() {
         given:
-        provider.getProcessor().submitBooking(new Booking(provider, offer, NIF, IBAN))
+        provider.getProcessor().submitBooking(new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN))
 
         when:
         activityInterface.cancelReservation("XPTO")

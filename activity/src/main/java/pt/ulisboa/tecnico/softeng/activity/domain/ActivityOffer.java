@@ -82,8 +82,8 @@ public class ActivityOffer extends ActivityOffer_Base {
 	}
 
 	public Booking book(ActivityProvider provider, ActivityOffer activityOffer, int age, String nif, String iban,
-			String adventureId) {
-		Booking booking = new Booking(provider, activityOffer, age, nif, iban);
+			String adventureId, String providerIban) {
+		Booking booking = new Booking(provider, activityOffer, age, nif, iban, providerIban);
 		booking.setAdventureId(adventureId);
 		provider.getProcessor().submitBooking(booking);
 		return booking;
