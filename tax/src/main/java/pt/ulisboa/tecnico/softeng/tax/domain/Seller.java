@@ -17,7 +17,7 @@ public class Seller extends Seller_Base {
 		irs.addTaxPayer(this);
 	}
 
-	@Override
+	/*@Override
 	public void delete() {
 		for (Invoice invoice : getInvoiceSet()) {
 			invoice.delete();
@@ -38,9 +38,9 @@ public class Seller extends Seller_Base {
 			}
 		}
 		return result;
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public Invoice getInvoiceByReference(String invoiceReference) {
 		if (invoiceReference == null || invoiceReference.isEmpty()) {
 			throw new TaxException();
@@ -52,11 +52,11 @@ public class Seller extends Seller_Base {
 			}
 		}
 		return null;
-	}
+	}*/
 
-	public Map<Integer, Double> getToPayPerYear() {
+	/*public Map<Integer, Double> getToPayPerYear() {
 		return getInvoiceSet().stream().map(i -> i.getDate().getYear()).distinct()
 				.collect(Collectors.toMap(y -> y, y -> toPay(y)));
-	}
+	}*/
 
 }

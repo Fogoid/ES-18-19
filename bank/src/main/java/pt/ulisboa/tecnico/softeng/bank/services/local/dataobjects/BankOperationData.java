@@ -7,7 +7,8 @@ import pt.ulisboa.tecnico.softeng.bank.domain.Operation;
 public class BankOperationData {
 	private String reference;
 	private String type;
-	private String iban;
+	private String sourceIban;
+	private String targetIban;
 	private Double value;
 	private DateTime time;
 	private String transactionSource;
@@ -19,15 +20,15 @@ public class BankOperationData {
 	public BankOperationData(Operation operation) {
 		this.reference = operation.getReference();
 		this.type = operation.getType().name();
-		this.iban = operation.getAccount().getIBAN();
+		this.sourceIban = operation.getAccount().getIBAN();
 		this.value = operation.getValue();
 		this.time = operation.getTime();
 		this.transactionSource = operation.getTransactionSource();
 		this.transactionReference = operation.getTransactionReference();
 	}
 
-	public BankOperationData(String iban, double value, String transactionSource, String transactionReference) {
-		this.iban = iban;
+	public BankOperationData(String sourceIban, double value, String transactionSource, String transactionReference) {
+		this.sourceIban = sourceIban;
 		this.value = value;
 		this.transactionSource = transactionSource;
 		this.transactionReference = transactionReference;
@@ -49,12 +50,20 @@ public class BankOperationData {
 		this.type = type;
 	}
 
-	public String getIban() {
-		return this.iban;
+	public String getSourceIban() {
+		return this.sourceIban;
 	}
 
-	public void setIban(String iban) {
-		this.iban = iban;
+	public void setSourceIban(String sourceIban) {
+		this.sourceIban = sourceIban;
+	}
+
+	public String getTargetIban() {
+		return this.targetIban;
+	}
+
+	public void setTargetIban(String targetIban) {
+		this.targetIban = targetIban;
 	}
 
 	public Double getValue() {

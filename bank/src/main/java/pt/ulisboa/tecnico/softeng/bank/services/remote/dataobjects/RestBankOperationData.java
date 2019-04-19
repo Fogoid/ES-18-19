@@ -9,7 +9,8 @@ import pt.ulisboa.tecnico.softeng.bank.domain.Operation;
 public class RestBankOperationData {
 	private String reference;
 	private String type;
-	private String iban;
+	private String sourceIban;
+	private String targetIban;
 	private Double value;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
 	private DateTime time;
@@ -22,7 +23,7 @@ public class RestBankOperationData {
 	public RestBankOperationData(Operation operation) {
 		this.reference = operation.getReference();
 		this.type = operation.getType().name();
-		this.iban = operation.getAccount().getIBAN();
+		this.sourceIban = operation.getAccount().getIBAN();
 		this.value = operation.getValue();
 		this.time = operation.getTime();
 		this.transactionSource = operation.getTransactionSource();
@@ -30,7 +31,7 @@ public class RestBankOperationData {
 	}
 
 	public RestBankOperationData(String iban, double value, String transactionSource, String transactionReference) {
-		this.iban = iban;
+		this.sourceIban = iban;
 		this.value = value;
 		this.transactionSource = transactionSource;
 		this.transactionReference = transactionReference;
@@ -52,12 +53,20 @@ public class RestBankOperationData {
 		this.type = type;
 	}
 
-	public String getIban() {
-		return this.iban;
+	public String getSourceIban() {
+		return this.sourceIban;
 	}
 
-	public void setIban(String iban) {
-		this.iban = iban;
+	public void setSourceIban(String sourceIban) {
+		this.sourceIban = sourceIban;
+	}
+
+	public String getTargetIban() {
+		return this.targetIban;
+	}
+
+	public void setTargetIban(String targetIban) {
+		this.targetIban = targetIban;
 	}
 
 	public Double getValue() {

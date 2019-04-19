@@ -8,6 +8,7 @@ import pt.ulisboa.tecnico.softeng.tax.domain.IRS
 import pt.ulisboa.tecnico.softeng.tax.domain.ItemType
 import pt.ulisboa.tecnico.softeng.tax.domain.Seller
 import pt.ulisboa.tecnico.softeng.tax.domain.SpockRollbackTestAbstractClass
+import pt.ulisboa.tecnico.softeng.tax.domain.TaxPayer
 import pt.ulisboa.tecnico.softeng.tax.exception.TaxException
 import pt.ulisboa.tecnico.softeng.tax.services.remote.dataobjects.RestInvoiceData
 import spock.lang.Shared
@@ -28,8 +29,8 @@ class TaxInterfaceSubmitInvoiceMethodSpockTest extends SpockRollbackTestAbstract
 	def populate4Test() {
 		irs = IRS.getIRSInstance()
 
-		new Seller(irs, SELLER_NIF, 'José Vendido', 'Somewhere')
-		new Buyer(irs, BUYER_NIF, 'Manuel Comprado', 'Anywhere')
+		new TaxPayer(irs, SELLER_NIF, 'José Vendido', 'Somewhere')
+		new TaxPayer(irs, BUYER_NIF, 'Manuel Comprado', 'Anywhere')
 		new ItemType(irs, FOOD, TAX)
 	}
 

@@ -28,6 +28,7 @@ public class Buyer extends Buyer_Base {
 	}
 
 	public long taxReturn(int year) {
+  
 		if (year < 1970) {
 			throw new TaxException();
 		}
@@ -69,5 +70,4 @@ public class Buyer extends Buyer_Base {
 		long currency = (long)money*1000;
 		return currency;
 	}
-
 }
