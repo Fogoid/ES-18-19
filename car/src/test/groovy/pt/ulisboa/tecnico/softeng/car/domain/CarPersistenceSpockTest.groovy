@@ -18,6 +18,7 @@ class CarPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
     def NIF = 'NIF'
     def IBAN = 'IBAN'
     def IBAN_BUYER = 'IBAN'
+    def PROVIDER_IBAN = 'ProviderIban'
 
     @Override
     def whenCreateInDatabase() {
@@ -28,7 +29,7 @@ class CarPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
         def rentACar = new RentACar(NAME1, NIF, IBAN, processor)
         def car = new Car(PLATE_CAR1, 10, 10, rentACar)
         def motorcycle = new Motorcycle(PLATE_CAR2, 20, 5, rentACar)
-        car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID)
+        car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
     }
 
     @Override
@@ -68,6 +69,7 @@ class CarPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
                 assert renting.getClientIban().equals(IBAN)
                 assert renting.getTime() != null
                 assert renting.getProcessor() != null
+                assert renting.getProviderIban().equals(PROVIDER_IBAN)
             }
             if (vehicle instanceof Motorcycle) {
                 assert vehicle.getRentingSet().size() == 0

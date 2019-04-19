@@ -20,6 +20,7 @@ class RentACarInterfaceGetRentingDataMethodSpockTest extends SpockRollbackTestAb
     def NIF = 'NIF'
     def IBAN = 'IBAN'
     def IBAN_BUYER = 'IBAN'
+    def PROVIDER_IBAN = 'ProviderIban'
     def car
     def rentACarInterface
 
@@ -38,7 +39,7 @@ class RentACarInterfaceGetRentingDataMethodSpockTest extends SpockRollbackTestAb
 
     def 'success'() {
         given: 'renting a car is assumed to have happened'
-        def renting = car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID)
+        def renting = car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 
         when: 'fetching the renting data'
         def rentingData = rentACarInterface.getRentingData(renting.getReference())

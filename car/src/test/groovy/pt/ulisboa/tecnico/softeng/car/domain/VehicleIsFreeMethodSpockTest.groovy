@@ -16,6 +16,7 @@ class VehicleIsFreeMethodSpockTest extends SpockRollbackTestAbstractClass {
 	def NIF='NIF'
 	def IBAN='IBAN'
 	def IBAN_BUYER='IBAN'
+	def PROVIDER_IBAN = 'ProviderIban'
 	@Shared def date1= LocalDate.parse('2018-01-06')
 	@Shared def date2= LocalDate.parse('2018-01-07')
 	@Shared def date3= LocalDate.parse('2018-01-08')
@@ -50,8 +51,8 @@ class VehicleIsFreeMethodSpockTest extends SpockRollbackTestAbstractClass {
 	@Unroll('#begin, #end')
 	def 'bookings were made'() {
 		given: 'the car is booked'
-		car.rent(DRIVING_LICENSE, date2, date2, NIF, IBAN_BUYER, ADVENTURE_ID)
-		car.rent(DRIVING_LICENSE, date3, date4, NIF, IBAN_BUYER, ADVENTURE_ID)
+		car.rent(DRIVING_LICENSE, date2, date2, NIF, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
+		car.rent(DRIVING_LICENSE, date3, date4, NIF, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 
 		expect: 'the car is not free'
 		!car.isFree(begin, end)

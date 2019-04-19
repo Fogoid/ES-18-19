@@ -18,6 +18,7 @@ class RentACarInterfaceRentMethodSpockTest extends SpockRollbackTestAbstractClas
     def NIF = 'NIF'
     def IBAN = 'IBAN'
     def IBAN_BUYER = 'IBAN'
+    def PROVIDER_IBAN = 'ProviderIban'
     def rentACar
     def car
     def rentACarInterface
@@ -38,7 +39,7 @@ class RentACarInterfaceRentMethodSpockTest extends SpockRollbackTestAbstractClas
         car = new Car(PLATE_CAR, 10, 10, rentACar)
 
         when: 'when renting the car'
-        def reference = rentACarInterface.rent(Car, DRIVING_LICENSE, NIF, IBAN_BUYER, BEGIN, END, ADVENTURE_ID)
+        def reference = rentACarInterface.rent(Car, DRIVING_LICENSE, NIF, IBAN_BUYER, BEGIN, END, ADVENTURE_ID, PROVIDER_IBAN)
 
         then: 'then it should succeed: get a renting reference and car becomes not free'
         reference != null
@@ -48,7 +49,7 @@ class RentACarInterfaceRentMethodSpockTest extends SpockRollbackTestAbstractClas
     @Unroll('no car/motorcycle: #name')
     def 'exceptions'() {
         when: 'if the rent-a-car has no vehicles'
-        rentACarInterface.rent(type, DRIVING_LICENSE, NIF, IBAN_BUYER, BEGIN, END, ADVENTURE_ID)
+        rentACarInterface.rent(type, DRIVING_LICENSE, NIF, IBAN_BUYER, BEGIN, END, ADVENTURE_ID, PROVIDER_IBAN)
 
         then: 'renting a vehicle should throw an exception'
         thrown(CarException)
@@ -64,7 +65,7 @@ class RentACarInterfaceRentMethodSpockTest extends SpockRollbackTestAbstractClas
         rentACar.delete()
 
         when: 'trying to rent a car'
-        rentACarInterface.rent(Car, DRIVING_LICENSE, NIF, IBAN_BUYER, BEGIN, END, ADVENTURE_ID)
+        rentACarInterface.rent(Car, DRIVING_LICENSE, NIF, IBAN_BUYER, BEGIN, END, ADVENTURE_ID, PROVIDER_IBAN)
 
         then: 'throws an exception'
         thrown(CarException)

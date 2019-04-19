@@ -25,6 +25,7 @@ class ProcessorSubmitRentingMethodSpockTest extends SpockRollbackTestAbstractCla
     def NIF_CUSTOMER = 'NIF1'
     def IBAN = 'IBAN'
     def IBAN_CUSTOMER = 'IBAN'
+    def PROVIDER_IBAN = 'ProviderIban'
     def rentACar
     def car
     def rentingOne
@@ -40,8 +41,8 @@ class ProcessorSubmitRentingMethodSpockTest extends SpockRollbackTestAbstractCla
 
         rentACar = new RentACar(RENT_A_CAR_NAME, NIF, IBAN, processor)
         car = new Car(PLATE_CAR, 10, 10, rentACar)
-        rentingOne = new Renting(DRIVING_LICENSE, date0, date1, car, NIF_CUSTOMER, IBAN_CUSTOMER)
-        rentingTwo = new Renting(DRIVING_LICENSE, date2, date3, car, NIF_CUSTOMER, IBAN_CUSTOMER)
+        rentingOne = new Renting(DRIVING_LICENSE, date0, date1, car, NIF_CUSTOMER, IBAN_CUSTOMER, PROVIDER_IBAN)
+        rentingTwo = new Renting(DRIVING_LICENSE, date2, date3, car, NIF_CUSTOMER, IBAN_CUSTOMER, PROVIDER_IBAN)
     }
 
     def 'success'() {

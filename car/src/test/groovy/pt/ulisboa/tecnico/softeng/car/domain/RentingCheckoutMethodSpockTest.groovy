@@ -17,6 +17,7 @@ class RentingCheckoutMethodSpockTest extends SpockRollbackTestAbstractClass {
 	def NIF='NIF'
 	def IBAN='IBAN'
 	def IBAN_BUYER='IBAN'
+	def PROVIDER_IBAN = 'ProviderIban'
 	def car
 
 	@Override
@@ -31,7 +32,7 @@ class RentingCheckoutMethodSpockTest extends SpockRollbackTestAbstractClass {
 
 	def 'checkout'() {
 		given: 'given a renting'
-		def renting = car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID)
+		def renting = car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 
 		when: 'when checking out with a valid number of km'
 		renting.checkout(100)
@@ -42,7 +43,7 @@ class RentingCheckoutMethodSpockTest extends SpockRollbackTestAbstractClass {
 
 	def 'fail checkout'() {
 		given: 'given a renting'
-		def renting = car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID)
+		def renting = car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 
 		when: 'when checking out with a negative number of km'
 		renting.checkout(-10)

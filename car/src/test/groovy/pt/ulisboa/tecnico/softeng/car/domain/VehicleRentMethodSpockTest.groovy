@@ -19,6 +19,7 @@ class VehicleRentMethodSpockTest extends SpockRollbackTestAbstractClass {
 	def NIF = 'NIF'
 	def IBAN = 'IBAN'
 	def IBAN_BUYER = 'IBAN'
+	def PROVIDER_IBAN = 'ProviderIban'
 
 	def rentACar
 
@@ -34,10 +35,10 @@ class VehicleRentMethodSpockTest extends SpockRollbackTestAbstractClass {
 	def 'double rent'() {
 		given: 'given a car is rented'
 		def car = new Car(PLATE_CAR,10,10, rentACar)
-		car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID)
+		car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 
 		when: 'rentingOne it twice'
-		car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID)
+		car.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 
 		then: 'throws an exception'
 		thrown(CarException)
@@ -49,7 +50,7 @@ class VehicleRentMethodSpockTest extends SpockRollbackTestAbstractClass {
 		def car = new Car(PLATE_CAR,10,10,rentACar)
 
 		when: 'wrong parameters for renting'
-		car.rent(DRIVING_LICENSE, begin, end, NIF + "1", IBAN_BUYER, ADVENTURE_ID)
+		car.rent(DRIVING_LICENSE, begin, end, NIF + "1", IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 
 		then: 'throws an exception'
 		thrown(CarException)
