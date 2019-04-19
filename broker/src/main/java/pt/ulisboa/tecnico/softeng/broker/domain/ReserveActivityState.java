@@ -24,7 +24,7 @@ public class ReserveActivityState extends ReserveActivityState_Base {
                             getAdventure().getBroker().getIban(), getAdventure().getID()));
 
             getAdventure().setActivityConfirmation(result.getReference());
-            getAdventure().incAmountToPay(result.getPrice());
+            getAdventure().incAmountToPay(convert_double_to_long(result.getPrice()));
         } catch (ActivityException ae) {
             getAdventure().setState(State.UNDO);
             return;
@@ -46,5 +46,8 @@ public class ReserveActivityState extends ReserveActivityState_Base {
             getAdventure().setState(State.BOOK_ROOM);
         }
     }
-
+    public long convert_double_to_long(double money){
+        long currency = (long)money*1000;
+        return currency;
+    }
 }

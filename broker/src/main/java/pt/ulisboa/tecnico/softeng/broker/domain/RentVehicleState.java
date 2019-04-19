@@ -25,7 +25,7 @@ public class RentVehicleState extends RentVehicleState_Base {
                     getAdventure().getBegin(), getAdventure().getEnd(), getAdventure().getID());
 
             getAdventure().setRentingConfirmation(rentingData.getReference());
-            getAdventure().incAmountToPay(rentingData.getPrice());
+            getAdventure().incAmountToPay(convert_double_to_long(rentingData.getPrice()));
         } catch (CarException ce) {
             getAdventure().setState(State.UNDO);
             return;
@@ -38,6 +38,11 @@ public class RentVehicleState extends RentVehicleState_Base {
         }
 
         getAdventure().setState(State.PROCESS_PAYMENT);
+    }
+
+    public long convert_double_to_long(double money){
+        long currency = (long)money*1000;
+        return currency;
     }
 
 }

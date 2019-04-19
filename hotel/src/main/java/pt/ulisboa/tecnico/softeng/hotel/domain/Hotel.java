@@ -161,10 +161,10 @@ public class Hotel extends Hotel_Base {
 	}
 
 	public Booking reserveRoom(Room.Type type, LocalDate arrival, LocalDate departure, String buyerNif,
-			String buyerIban, String adventureId) {
+			String buyerIban, String adventureId, String providerIban) {
 		Room room = hasVacancy(type, arrival, departure);
 		if (room != null) {
-			Booking newBooking = room.reserve(type, arrival, departure, buyerNif, buyerIban);
+			Booking newBooking = room.reserve(type, arrival, departure, buyerNif, buyerIban, providerIban);
 			newBooking.setAdventureId(adventureId);
 
 			return newBooking;

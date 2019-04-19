@@ -63,7 +63,7 @@ public class HotelRestController {
 		logger.info("bulk number:{}, arrival:{}, departure:{}, nif:{}, iban:{}, bulkId:{}", number, arrival, departure,
 				nif, iban, bulkId);
 		try {
-			return new ResponseEntity<>(hi.bulkBooking(number, arrival, departure, nif, iban, bulkId)
+			return new ResponseEntity<>(hi.bulkBooking(number, arrival, departure, nif, iban, bulkId, "providerIban")
 					.stream().toArray(size -> new String[size]), HttpStatus.OK);
 		} catch (HotelException be) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

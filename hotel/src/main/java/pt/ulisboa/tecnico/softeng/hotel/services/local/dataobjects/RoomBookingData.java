@@ -24,6 +24,7 @@ public class RoomBookingData {
 	private String buyerNif;
 	private String buyerIban;
 	private String adventureId;
+	private String providerIban;
 
 	public RoomBookingData() {
 	}
@@ -40,6 +41,7 @@ public class RoomBookingData {
 		this.price = convert_long_to_float(booking.getPrice());
 		this.buyerNif = booking.getBuyerNif();
 		this.buyerIban = booking.getBuyerIban();
+		this.providerIban = booking.getProviderIban();
 		this.cancellationDate = booking.getCancellationDate();
 		this.paymentReference = booking.getPaymentReference();
 		this.invoiceReference = booking.getInvoiceReference();
@@ -121,6 +123,14 @@ public class RoomBookingData {
 
 	public void setBuyerIban(String buyerIban) {
 		this.buyerIban = buyerIban;
+	}
+
+	public String getProviderIban() {
+		return this.providerIban;
+	}
+
+	public void setProviderIban(String providerIban) {
+		this.providerIban = providerIban;
 	}
 
 	public String getAdventureId() {

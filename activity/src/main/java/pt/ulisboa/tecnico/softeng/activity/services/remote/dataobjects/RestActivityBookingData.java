@@ -42,7 +42,7 @@ public class RestActivityBookingData {
 		this.age = booking.getAge();
 		this.adventureId = booking.getAdventureId();
 		this.cancellationDate = booking.getCancellationDate();
-		this.price = booking.getAmount();
+		this.price = convert_long_to_double(booking.getAmount());
 		this.paymentReference = booking.getPaymentReference();
 		this.invoiceReference = booking.getInvoiceReference();
 	}
@@ -167,4 +167,8 @@ public class RestActivityBookingData {
 		this.invoiceReference = invoiceReference;
 	}
 
+	public double convert_long_to_double(long money){
+		double currency = money/1000.0;
+		return currency;
+	}
 }
