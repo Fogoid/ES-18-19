@@ -130,27 +130,27 @@ public class RentACarInterface {
 
     @Atomic(mode = Atomic.TxMode.WRITE)
     public String rent(final String code, final String plate, final String drivingLicense, final String buyerNIF, final String buyerIBAN,
-                       final LocalDate begin, final LocalDate end, final String adventureId) {
+                       final LocalDate begin, final LocalDate end, final String adventureId, final String providerIban) {
 
         final Renting renting = getReting4AdventureId(adventureId);
         if (renting != null) {
             return renting.getReference();
         }
 
-        return getVehicle(code, plate).rent(drivingLicense, begin, end, buyerNIF, buyerIBAN, adventureId)
+        return getVehicle(code, plate).rent(drivingLicense, begin, end, buyerNIF, buyerIBAN, adventureId, providerIban)
                 .getReference();
     }
 
     @Atomic(mode = Atomic.TxMode.WRITE)
     public RestRentingData rent(final String type, final String license, final String nif, final String iban, final LocalDate begin, final LocalDate end,
-                                final String adventureId) {
+                                final String adventureId, final String providerIban) {
         final Renting renting = getReting4AdventureId(adventureId);
         if (renting != null) {
             return new RestRentingData(renting);
         }
 
         return new RestRentingData(
-                rent(type.equals("CAR") ? Car.class : Motorcycle.class, license, nif, iban, begin, end, adventureId));
+                rent(type.equals("CAR") ? Car.class : Motorcycle.class, license, nif, iban, begin, end, adventureId, providerIban));
 
     }
 
@@ -217,7 +217,7 @@ public class RentACarInterface {
     }
 
     private Renting rent(final Class<? extends Vehicle> vehicleType, final String drivingLicense, final String buyerNif, final String buyerIban,
-                         final LocalDate begin, final LocalDate end, final String adventureId) {
+                         final LocalDate begin, final LocalDate end, final String adventureId, final String providerIban) {
         final Set<Vehicle> availableVehicles;
 
         if (vehicleType == Car.class) {
@@ -227,7 +227,7 @@ public class RentACarInterface {
         }
 
         return availableVehicles.stream().findFirst()
-                .map(v -> v.rent(drivingLicense, begin, end, buyerNif, buyerIban, adventureId))
+                .map(v -> v.rent(drivingLicense, begin, end, buyerNif, buyerIban, adventureId, providerIban))
                 .orElseThrow(CarException::new);
     }
 

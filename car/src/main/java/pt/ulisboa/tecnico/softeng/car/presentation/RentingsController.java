@@ -50,7 +50,7 @@ public class RentingsController {
 
         try {
             rentACarInterface.rent(code, plate, renting.getDrivingLicense(), renting.getBuyerNIF(),
-                    renting.getBuyerIBAN(), renting.getBegin(), renting.getEnd(), renting.getAdventureId());
+                    renting.getBuyerIBAN(), renting.getBegin(), renting.getEnd(), renting.getAdventureId(), renting.getProviderIban());
         } catch (CarException be) {
             model.addAttribute("error", "Error: it was not possible to rent the vehicle");
             model.addAttribute("rentacar", rentACarInterface.getRentACarData(code));

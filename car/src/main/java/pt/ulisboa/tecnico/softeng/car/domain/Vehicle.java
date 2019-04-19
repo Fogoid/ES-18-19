@@ -98,12 +98,12 @@ public abstract class Vehicle extends Vehicle_Base {
 	 * @return
 	 */
 	public Renting rent(String drivingLicense, LocalDate begin, LocalDate end, String buyerNIF, String buyerIBAN,
-			String adventureId) {
+			String adventureId, String providerIban) {
 		if (!isFree(begin, end)) {
 			throw new CarException();
 		}
 
-		Renting renting = new Renting(drivingLicense, begin, end, this, buyerNIF, buyerIBAN);
+		Renting renting = new Renting(drivingLicense, begin, end, this, buyerNIF, buyerIBAN, providerIban);
 		this.addRenting(renting);
 		renting.setAdventureId(adventureId);
 

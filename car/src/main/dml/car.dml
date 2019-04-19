@@ -44,6 +44,7 @@ class Renting {
 	int kilometers;
 	String clientNif;
 	String clientIban;
+	String providerIban;
 	double price;
 	String paymentReference;
 	String invoiceReference;
