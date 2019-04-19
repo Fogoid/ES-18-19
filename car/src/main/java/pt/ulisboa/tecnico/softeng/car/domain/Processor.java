@@ -53,7 +53,7 @@ public class Processor extends Processor_Base {
 				}
 
 				RestInvoiceData invoiceData = new RestInvoiceData(renting.getVehicle().getRentACar().getNif(),
-						renting.getClientNif(), renting.getType(), renting.getPrice(), renting.getBegin(),
+						renting.getClientNif(), renting.getType(), convert_long_to_double(renting.getPrice()), renting.getBegin(),
 						renting.getTime());
 				try {
 					renting.setInvoiceReference(this.taxInterface.submitInvoice(invoiceData));
@@ -82,6 +82,11 @@ public class Processor extends Processor_Base {
 		for (Renting renting : failedToProcess) {
 			addRenting(renting);
 		}
+	}
+
+	public double convert_long_to_double(long money){
+		double currency = money/1000.0;
+		return currency;
 	}
 
 }
