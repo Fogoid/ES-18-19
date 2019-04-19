@@ -99,7 +99,7 @@ public class ActivityInterface {
 			if (!offers.isEmpty()) {
 				Booking newBooking = offers.get(0).book(provider, offers.get(0), activityBookingData.getAge(),
 						activityBookingData.getNif(), activityBookingData.getIban(),
-						activityBookingData.getAdventureId());
+						activityBookingData.getAdventureId(), activityBookingData.getProviderIban());
 				return new RestActivityBookingData(newBooking);
 			}
 		}
@@ -114,7 +114,7 @@ public class ActivityInterface {
 			throw new ActivityException();
 		}
 
-		new Booking(offer.getActivity().getActivityProvider(), offer, bookingData.getNif(), bookingData.getIban());
+		new Booking(offer.getActivity().getActivityProvider(), offer, bookingData.getNif(), bookingData.getIban(), bookingData.getProviderIban());
 	}
 
 	@Atomic(mode = TxMode.WRITE)
