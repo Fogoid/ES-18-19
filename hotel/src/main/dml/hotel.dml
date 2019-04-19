@@ -44,6 +44,7 @@ class Booking {
 	long price;
 	String buyerNif;
 	String buyerIban;
+	String providerIban;
 	String providerNif;
 	String paymentReference;
 	String invoiceReference;
