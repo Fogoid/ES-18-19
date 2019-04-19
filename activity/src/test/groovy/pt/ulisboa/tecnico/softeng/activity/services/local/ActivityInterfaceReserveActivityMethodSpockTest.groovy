@@ -13,6 +13,7 @@ import pt.ulisboa.tecnico.softeng.activity.services.remote.dataobjects.RestActiv
 
 class ActivityInterfaceReserveActivityMethodSpockTest extends SpockRollbackTestAbstractClass {
     def IBAN = "IBAN"
+    def PROVIDER_IBAN = 'ProviderIban'
     def NIF = "123456789"
     def MIN_AGE = 18
     def MAX_AGE = 50
@@ -45,6 +46,8 @@ class ActivityInterfaceReserveActivityMethodSpockTest extends SpockRollbackTestA
         activityBookingData.setEnd(new LocalDate(2018, 12, 20))
         activityBookingData.setIban(IBAN)
         activityBookingData.setNif(NIF)
+        activityBookingData.setProviderIban(PROVIDER_IBAN)
+
     }
 
     def 'success'() {

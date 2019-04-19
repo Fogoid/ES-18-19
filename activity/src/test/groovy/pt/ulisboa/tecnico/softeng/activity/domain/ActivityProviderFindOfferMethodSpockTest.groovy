@@ -125,7 +125,7 @@ class ActivityProviderFindOfferMethodSpockTest extends SpockRollbackTestAbstract
 		def otherActivityOffer = new ActivityOffer(otherActivity, begin, end, 30)
 
 		when:
-		new Booking(provider,otherActivityOffer,'123456789','IBAN')
+		new Booking(provider,otherActivityOffer,'123456789','IBAN', 'ProviderIban')
 
 		and:
 		def offers = provider.findOffer(begin, end, AGE)

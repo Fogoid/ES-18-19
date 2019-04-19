@@ -8,6 +8,7 @@ import pt.ulisboa.tecnico.softeng.activity.services.remote.TaxInterface
 
 class ActivityOfferHasVacancyMethodSpockTest extends SpockRollbackTestAbstractClass {
 	def IBAN = "IBAN"
+	def PROVIDER_IBAN = 'ProviderIban'
 	def NIF = "123456789"
 	def provider
 	def offer
@@ -35,7 +36,7 @@ class ActivityOfferHasVacancyMethodSpockTest extends SpockRollbackTestAbstractCl
 	def 'success'() {
 		when:
 		1.upto(n) {
-			new Booking(provider, offer, NIF, IBAN)
+			new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN)
 		}
 
 		then:
@@ -50,9 +51,9 @@ class ActivityOfferHasVacancyMethodSpockTest extends SpockRollbackTestAbstractCl
 
 	def 'has cancelled bookings'() {
 		given:
-		provider.getProcessor().submitBooking(new Booking(provider, offer, NIF, IBAN))
-		provider.getProcessor().submitBooking(new Booking(provider, offer, NIF, IBAN))
-		def booking = new Booking(provider, offer, NIF, IBAN)
+		provider.getProcessor().submitBooking(new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN))
+		provider.getProcessor().submitBooking(new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN))
+		def booking = new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN)
 		provider.getProcessor().submitBooking(booking)
 
 		when:
@@ -66,16 +67,16 @@ class ActivityOfferHasVacancyMethodSpockTest extends SpockRollbackTestAbstractCl
 
 	def 'has cancelled bookings but full'() {
 		given:
-		provider.getProcessor().submitBooking(new Booking(provider, offer, NIF, IBAN))
-		provider.getProcessor().submitBooking(new Booking(provider, offer, NIF, IBAN))
-		def booking = new Booking(provider, offer, NIF, IBAN)
+		provider.getProcessor().submitBooking(new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN))
+		provider.getProcessor().submitBooking(new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN))
+		def booking = new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN)
 		provider.getProcessor().submitBooking(booking)
 
 		when:
 		booking.cancel()
 
 		and:
-		def booking2 = new Booking(provider, offer, NIF, IBAN)
+		def booking2 = new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN)
 		provider.getProcessor().submitBooking(booking2)
 
 		then:

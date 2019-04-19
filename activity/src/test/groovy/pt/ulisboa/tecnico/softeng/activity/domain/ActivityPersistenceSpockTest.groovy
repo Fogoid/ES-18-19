@@ -12,6 +12,7 @@ class ActivityPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
 	def PROVIDER_NAME = 'Wicket'
 	def PROVIDER_CODE = 'A12345'
 	def IBAN = 'IBAN'
+	def PROVIDER_IBAN = 'ProviderIban'
 	def NIF = 'NIF'
 	def BUYER_IBAN = 'IBAN2'
 	def BUYER_NIF = 'NIF2'
@@ -28,7 +29,7 @@ class ActivityPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
 		def activity = new Activity(activityProvider,ACTIVITY_NAME,18,65,CAPACITY)
 
 		def offer = new ActivityOffer(activity,this.begin,this.end,AMOUNT)
-		offer.book(activityProvider,offer,54,BUYER_NIF,BUYER_IBAN,ADVENTURE_ID)
+		offer.book(activityProvider,offer,54,BUYER_NIF,BUYER_IBAN,ADVENTURE_ID, PROVIDER_IBAN)
 	}
 
 	@Override
@@ -84,6 +85,7 @@ class ActivityPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
 			booking.getType() == 'SPORT'
 			booking.getBuyerNif() == BUYER_NIF
 			booking.getIban() == BUYER_IBAN
+			booking.getProviderIban() == PROVIDER_IBAN
 			booking.getProviderNif() == NIF
 			booking.getAmount() == AMOUNT
 			booking.getAdventureId() == ADVENTURE_ID

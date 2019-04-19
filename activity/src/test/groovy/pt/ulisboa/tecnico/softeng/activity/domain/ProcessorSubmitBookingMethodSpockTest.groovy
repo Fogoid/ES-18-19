@@ -14,6 +14,7 @@ class ProcessorSubmitBookingMethodSpockTest extends SpockRollbackTestAbstractCla
     def PAYMENT_REFERENCE = 'PaymentReference'
     def AMOUNT = 30
     def IBAN = 'IBAN'
+    def PROVIDER_IBAN = 'ProviderIban'
     def NIF = '123456789'
 
     def provider
@@ -36,8 +37,8 @@ class ProcessorSubmitBookingMethodSpockTest extends SpockRollbackTestAbstractCla
         def begin = new LocalDate(2016, 12, 19)
         def end = new LocalDate(2016, 12, 21)
         offer = new ActivityOffer(activity, begin, end, AMOUNT)
-        booking = new Booking(provider, offer, NIF, IBAN)
-        booking2 = new Booking(provider, offer, NIF, IBAN)
+        booking = new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN)
+        booking2 = new Booking(provider, offer, NIF, IBAN, PROVIDER_IBAN)
     }
 
     def 'success'() {

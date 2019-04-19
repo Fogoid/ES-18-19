@@ -10,6 +10,7 @@ public class RestActivityBookingData {
 	private String reference;
 	private String nif;
 	private String iban;
+	private String providerIban;
 	private String name;
 	private String code;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -35,6 +36,7 @@ public class RestActivityBookingData {
 		this.code = booking.getActivityOffer().getActivity().getActivityProvider().getCode();
 		this.nif = booking.getBuyerNif();
 		this.iban = booking.getIban();
+		this.providerIban = booking.getProviderIban();
 		this.begin = booking.getActivityOffer().getBegin();
 		this.end = booking.getActivityOffer().getEnd();
 		this.age = booking.getAge();
@@ -67,6 +69,14 @@ public class RestActivityBookingData {
 
 	public void setIban(String iban) {
 		this.iban = iban;
+	}
+
+	public String getProviderIban() {
+		return this.providerIban;
+	}
+
+	public void setProviderIban(String providerIban) {
+		this.providerIban = providerIban;
 	}
 
 	public String getName() {
