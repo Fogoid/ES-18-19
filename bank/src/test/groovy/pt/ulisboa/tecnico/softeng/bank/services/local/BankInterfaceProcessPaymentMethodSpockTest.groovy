@@ -22,7 +22,7 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 		bank = new Bank('Money','BK01')
 		def client = new Client(bank,'António')
 		account = new Account(bank, client)
-		account.deposit(500)
+		account.deposit(500000)
 		iban = account.getIBAN()
 	}
 
@@ -35,8 +35,8 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 		newReference.startsWith('BK01')
 		bank.getOperation(newReference) != null
 		bank.getOperation(newReference).getType() == Operation.Type.WITHDRAW
-		bank.getOperation(newReference).getValue() == 100.0
-		account.getBalance() == 400.0
+		bank.getOperation(newReference).getValue() == 100000
+		account.getBalance() == 400000
 	}
 
 	def 'success two banks'() {

@@ -98,7 +98,7 @@ public class BankInterface {
 			throw new BankException();
 		}
 
-		account.deposit(amount);
+		account.deposit(convert_double_to_long(amount));
 	}
 
 	@Atomic(mode = TxMode.WRITE)
@@ -108,7 +108,7 @@ public class BankInterface {
 			throw new BankException();
 		}
 
-		account.withdraw(amount);
+		account.withdraw(convert_double_to_long(amount));
 	}
 
 	@Atomic(mode = TxMode.WRITE)
@@ -122,7 +122,7 @@ public class BankInterface {
 		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()) {
 			Account account = bank.getAccount(bankOperationData.getSourceIban());
 			if (account != null) {
-				Operation newOperation = account.withdraw(bankOperationData.getValue());
+				Operation newOperation = account.withdraw(convert_double_to_long(bankOperationData.getValue()));
 				newOperation.setTransactionSource(bankOperationData.getTransactionSource());
 				newOperation.setTransactionReference(bankOperationData.getTransactionReference());
 				return newOperation.getReference();
@@ -188,6 +188,11 @@ public class BankInterface {
 		Account account = FenixFramework.getDomainRoot().getBankSet().stream().filter(b -> b.getAccount(iban) != null)
 				.map(b -> b.getAccount(iban)).findFirst().orElse(null);
 		return account;
+	}
+
+	public static long convert_double_to_long(double money){
+		long currency = (long)money*1000;
+		return currency;
 	}
 
 }
