@@ -4,6 +4,7 @@ import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import pt.ulisboa.tecnico.softeng.broker.domain.Adventure;
+import pt.ulisboa.tecnico.softeng.broker.services.remote.HotelInterface;
 
 public class AdventureData {
 	private String id;
@@ -17,6 +18,7 @@ public class AdventureData {
 	private Boolean vehicle;
 	private Double amount;
 	private Adventure.State state;
+	private HotelInterface.Type roomType;
 
 	private String paymentConfirmation;
 	private String paymentCancellation;
@@ -37,6 +39,7 @@ public class AdventureData {
 		this.margin = adventure.getMargin();
 		this.vehicle = adventure.getRentVehicle();
 		this.state = adventure.getState().getValue();
+		this.roomType = adventure.getRoomType();
 
 		this.paymentConfirmation = adventure.getPaymentConfirmation();
 		this.paymentCancellation = adventure.getPaymentCancellation();
@@ -166,4 +169,11 @@ public class AdventureData {
 		this.vehicle = vehicle;
 	}
 
+	public HotelInterface.Type getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(HotelInterface.Type roomType) {
+		this.roomType = roomType;
+	}
 }

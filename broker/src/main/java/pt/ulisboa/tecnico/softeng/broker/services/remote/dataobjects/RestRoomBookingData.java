@@ -29,9 +29,9 @@ public class RestRoomBookingData {
 	public RestRoomBookingData() {
 	}
 
-	public RestRoomBookingData(Type single, LocalDate arrival, LocalDate departure, String nifAsBuyer, String iban,
+	public RestRoomBookingData(Type type, LocalDate arrival, LocalDate departure, String nifAsBuyer, String iban,
 			String adventureId) {
-		this.roomType = single.toString();
+		this.roomType = type.toString();
 		this.arrival = arrival;
 		this.departure = departure;
 		this.buyerNif = nifAsBuyer;
