@@ -35,7 +35,7 @@ class SellerConstructorSpockTest extends SpockRollbackTestAbstractClass {
 		new TaxPayer(this.irs,NIF,NAME,ADDRESS)
 
 		then: "an exception is thrown"
-		//def error = thrown(TaxException)
+		def error = thrown(TaxException)
 		IRS.getIRSInstance().getTaxPayerByNIF(NIF) == seller
 	}
 
