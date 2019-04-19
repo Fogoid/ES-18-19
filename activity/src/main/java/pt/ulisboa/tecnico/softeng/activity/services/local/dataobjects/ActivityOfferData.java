@@ -33,7 +33,7 @@ public class ActivityOfferData {
 		this.begin = offer.getBegin();
 		this.end = offer.getEnd();
 		this.capacity = offer.getCapacity();
-		this.amount = offer.getAmount();
+		this.amount = convert_long_to_double(offer.getAmount());
 		this.reservations = offer.getBookingSet().stream().map(b -> new RestActivityBookingData(b))
 				.collect(Collectors.toList());
 	}
@@ -110,4 +110,8 @@ public class ActivityOfferData {
 		this.name = name;
 	}
 
+	public double convert_long_to_double(long money){
+		double currency = money/1000.0;
+		return currency;
+	}
 }

@@ -117,9 +117,9 @@ public class RentACarInterface {
 
         final RentACar rentACar = getRentACar(code);
         if (vehicleData.getType() == Vehicle.Type.CAR) {
-            new Car(vehicleData.getPlate(), vehicleData.getKilometers(), vehicleData.getPrice(), rentACar);
+            new Car(vehicleData.getPlate(), vehicleData.getKilometers(), convert_double_to_long(vehicleData.getPrice()), rentACar);
         } else {
-            new Motorcycle(vehicleData.getPlate(), vehicleData.getKilometers(), vehicleData.getPrice(), rentACar);
+            new Motorcycle(vehicleData.getPlate(), vehicleData.getKilometers(), convert_double_to_long(vehicleData.getPrice()), rentACar);
         }
     }
 
@@ -231,4 +231,8 @@ public class RentACarInterface {
                 .orElseThrow(CarException::new);
     }
 
+    public long convert_double_to_long(double money){
+        long currency = (long)money*1000;
+        return currency;
+    }
 }

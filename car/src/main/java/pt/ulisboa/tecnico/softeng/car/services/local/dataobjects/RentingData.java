@@ -40,7 +40,7 @@ public class RentingData {
 		this.paymentReference = renting.getPaymentReference();
 		this.invoiceReference = renting.getInvoiceReference();
 		this.cancellationReference = renting.getCancellationReference();
-		this.price = renting.getPrice();
+		this.price = convert_long_to_double(renting.getPrice());
 		this.adventureId = renting.getAdventureId();
 		this.providerIban = renting.getProviderIban();
 	}
@@ -173,5 +173,10 @@ public class RentingData {
 
 	public void setAdventureId(String adventureId) {
 		this.adventureId = adventureId;
+	}
+
+	public double convert_long_to_double(long money){
+		double currency = money/1000.0;
+		return currency;
 	}
 }
