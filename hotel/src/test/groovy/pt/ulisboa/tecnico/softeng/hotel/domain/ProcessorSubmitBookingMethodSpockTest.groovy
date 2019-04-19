@@ -20,6 +20,7 @@ class ProcessorSubmitBookingMethodSpockTest extends SpockRollbackTestAbstractCla
     def NIF_HOTEL = "123456700"
     def NIF_BUYER = "123456789"
     def IBAN_BUYER = "IBAN_BUYER"
+    def PROVIDER_IBAN = "ProviderIban"
 
     def hotel
     def room
@@ -37,8 +38,8 @@ class ProcessorSubmitBookingMethodSpockTest extends SpockRollbackTestAbstractCla
 
         hotel = new Hotel("XPTO123", "Lisboa", NIF_HOTEL, "IBAN", 20000, 30000, processor)
         room = new Room(hotel, "01", Room.Type.SINGLE)
-        booking = new Booking(room, arrival, departure, NIF_BUYER, IBAN_BUYER)
-        booking2 = new Booking(room, arrivalTwo, departureTwo, NIF_BUYER, IBAN_BUYER)
+        booking = new Booking(room, arrival, departure, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
+        booking2 = new Booking(room, arrivalTwo, departureTwo, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
     }
 
     def 'success'() {

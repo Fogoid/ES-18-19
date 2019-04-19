@@ -15,6 +15,7 @@ class HotelPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
     def CLIENT_NIF = '123458789'
     def CLIENT_IBAN = 'IBANC'
     def ADVENTURE_ID = 'AdventureId'
+    def PROVIDER_IBAN = 'ProviderIban'
 
     def arrival = new LocalDate(2017, 12, 15)
     def departure = new LocalDate(2017, 12, 19)
@@ -23,7 +24,7 @@ class HotelPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
     def whenCreateInDatabase() {
         def hotel = new Hotel(HOTEL_CODE, HOTEL_NAME, HOTEL_NIF, HOTEL_IBAN, 10000, 20000, new Processor(new BankInterface(), new TaxInterface()))
         new Room(hotel, ROOM_NUMBER, Type.DOUBLE)
-        hotel.reserveRoom(Type.DOUBLE, arrival, departure, CLIENT_NIF, CLIENT_IBAN, ADVENTURE_ID)
+        hotel.reserveRoom(Type.DOUBLE, arrival, departure, CLIENT_NIF, CLIENT_IBAN, ADVENTURE_ID, PROVIDER_IBAN)
     }
 
     @Override
@@ -64,6 +65,7 @@ class HotelPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
         assert booking.getRoom() == room
         assert booking.getTime() != null
         assert booking.getProcessor() != null
+        assert booking.getProviderIban().equals(PROVIDER_IBAN)
     }
 
     @Override

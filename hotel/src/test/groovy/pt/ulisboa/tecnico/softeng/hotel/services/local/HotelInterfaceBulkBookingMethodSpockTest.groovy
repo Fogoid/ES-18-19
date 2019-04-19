@@ -26,6 +26,8 @@ class HotelInterfaceBulkBookingMethodSpockTest extends SpockRollbackTestAbstract
     def ARRIVAL = new LocalDate(2016, 12, 19)
     @Shared
     def DEPARTURE = new LocalDate(2016, 12, 21)
+    @Shared
+    def PROVIDER_IBAN = 'ProviderIban'
 
     def hotel
     def bankInterfaceOne
@@ -62,7 +64,7 @@ class HotelInterfaceBulkBookingMethodSpockTest extends SpockRollbackTestAbstract
 
         when: 'bulkbooking rooms'
         def references = HotelInterface.bulkBooking(number, ARRIVAL, DEPARTURE, NIF_BUYER,
-                IBAN_BUYER, BULK_ID)
+                IBAN_BUYER, BULK_ID, PROVIDER_IBAN)
 
         then: 'references are returned'
         references.size() == refSize
@@ -77,7 +79,7 @@ class HotelInterfaceBulkBookingMethodSpockTest extends SpockRollbackTestAbstract
     def 'unsuccess'() {
         when: 'bulkbooking rooms'
         def references = HotelInterface.bulkBooking(9, ARRIVAL, DEPARTURE, NIF_BUYER,
-                IBAN_BUYER, BULK_ID)
+                IBAN_BUYER, BULK_ID, PROVIDER_IBAN)
 
         then: 'an exception is thrown'
         thrown(HotelException)
@@ -93,40 +95,42 @@ class HotelInterfaceBulkBookingMethodSpockTest extends SpockRollbackTestAbstract
         hotel = new Hotel('XPTO124', 'Paris', 'NIF', 'IBAN', 27000, 37000, new Processor(Mock(BankInterface), Mock(TaxInterface)))
 
         when: 'doing a bulkbooking'
-        HotelInterface.bulkBooking(3, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, BULK_ID)
+        HotelInterface.bulkBooking(3, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, BULK_ID, PROVIDER_IBAN)
 
         then: 'a HotelException is thrown'
         thrown(HotelException)
     }
 
-    @Unroll('invalid arguments: #number | #arrival | #departure | #nif | #iban')
+    @Unroll('invalid arguments: #number | #arrival | #departure | #nif | #iban | #providerIban')
     def 'invalid arguments'() {
         when: 'a bulkbooking is done with an invalid argument'
-        HotelInterface.bulkBooking(number, arrival, departure, nif, iban, BULK_ID)
+        HotelInterface.bulkBooking(number, arrival, departure, nif, iban, BULK_ID, providerIban)
 
         then: 'a HotelException is thrown'
         thrown(HotelException)
 
         where:
-        number | arrival | departure | nif       | iban
-        -1     | ARRIVAL | DEPARTURE | NIF_BUYER | IBAN_BUYER
-        0      | ARRIVAL | DEPARTURE | NIF_BUYER | IBAN_BUYER
-        2      | null    | DEPARTURE | NIF_BUYER | IBAN_BUYER
-        2      | ARRIVAL | null      | NIF_BUYER | IBAN_BUYER
-        2      | ARRIVAL | DEPARTURE | null      | IBAN_BUYER
-        2      | ARRIVAL | DEPARTURE | '  '      | IBAN_BUYER
-        2      | ARRIVAL | DEPARTURE | NIF_BUYER | null
-        2      | ARRIVAL | DEPARTURE | NIF_BUYER | '   '
+        number | arrival | departure | nif       | iban       | providerIban
+        -1     | ARRIVAL | DEPARTURE | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        0      | ARRIVAL | DEPARTURE | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        2      | null    | DEPARTURE | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        2      | ARRIVAL | null      | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        2      | ARRIVAL | DEPARTURE | null      | IBAN_BUYER | PROVIDER_IBAN
+        2      | ARRIVAL | DEPARTURE | '  '      | IBAN_BUYER | PROVIDER_IBAN
+        2      | ARRIVAL | DEPARTURE | NIF_BUYER | null       | PROVIDER_IBAN
+        2      | ARRIVAL | DEPARTURE | NIF_BUYER | '   '      | PROVIDER_IBAN
+        2      | ARRIVAL | DEPARTURE | NIF_BUYER | IBAN_BUYER | null
+        2      | ARRIVAL | DEPARTURE | NIF_BUYER | IBAN_BUYER | '   '
     }
 
     def 'idempotent bulk booking'() {
         given: 'a bulkboooking of 4 rooms'
         def references = HotelInterface.bulkBooking(4, ARRIVAL, DEPARTURE, NIF_BUYER,
-                IBAN_BUYER, BULK_ID)
+                IBAN_BUYER, BULK_ID, PROVIDER_IBAN)
 
         when: 'do a bulkboooking with the same id'
         def equalReferences = HotelInterface.bulkBooking(4, ARRIVAL, DEPARTURE, NIF_BUYER,
-                IBAN_BUYER, BULK_ID)
+                IBAN_BUYER, BULK_ID, PROVIDER_IBAN)
 
         then: 'returns the same references'
         HotelInterface.getAvailableRooms(4, ARRIVAL, DEPARTURE).size() == 4

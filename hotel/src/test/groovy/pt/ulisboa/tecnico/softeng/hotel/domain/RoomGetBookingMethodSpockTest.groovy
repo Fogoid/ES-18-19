@@ -10,6 +10,7 @@ class RoomGetBookingMethodSpockTest extends SpockRollbackTestAbstractClass {
     def IBAN_BUYER = 'IBAN_BUYER';
     def ARRIVAL = new LocalDate(2016, 12, 19)
     def DEPARTURE = new LocalDate(2016, 12, 24)
+    def PROVIDER_IBAN = "ProviderIban"
 
     def hotel
     def room
@@ -23,7 +24,7 @@ class RoomGetBookingMethodSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'success'() {
         given: 'a booking'
-        booking = room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        booking = room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         expect: 'get booking using cancellation reference'
         room.getBooking(booking.getReference()) == booking
@@ -31,7 +32,7 @@ class RoomGetBookingMethodSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'success cancelled'() {
         given: 'booking is cancelled'
-        booking = room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        booking = room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
         booking.cancel()
 
         expect: 'get booking using cancellation reference'

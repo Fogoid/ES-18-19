@@ -12,6 +12,7 @@ class BookingConflictMethodSpockTest extends SpockRollbackTestAbstractClass {
     def NIF_HOTEL = '123456700'
     def NIF_BUYER = '123456789'
     def IBAN_BUYER = 'IBAN_BUYER'
+    def PROVIDER_IBAN = 'ProviderIban'
     def booking
     def room
 
@@ -24,7 +25,7 @@ class BookingConflictMethodSpockTest extends SpockRollbackTestAbstractClass {
     @Unroll('from #arrival to #departure should not overlap with period from 2016, 12, 19 to 2016, 12, 24')
     def 'dates do not overlap'() {
         given: 'a booking'
-        booking = new Booking(room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        booking = new Booking(room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         expect: 'it does not conflic with non overlapping dates'
         booking.conflict(arrival, departure) == result
@@ -39,7 +40,7 @@ class BookingConflictMethodSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'no conflict because it is cancelled'() {
         given: 'a booking'
-        booking = new Booking(room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        booking = new Booking(room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         and: 'the booking is cancelled'
         booking.cancel()
@@ -50,7 +51,7 @@ class BookingConflictMethodSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'arguments are inconsistent'() {
         given: 'a booking'
-        booking = new Booking(room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        booking = new Booking(room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         when: 'start date is later than end date'
         booking.conflict(new LocalDate(2016, 12, 15), new LocalDate(2016, 12, 9))
@@ -61,7 +62,7 @@ class BookingConflictMethodSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'begin equals end day'() {
         given: 'a booking'
-        booking = new Booking(room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        booking = new Booking(room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         expect: 'it conflicts same day not overlapping'
         booking.conflict(new LocalDate(2016, 12, 9), new LocalDate(2016, 12, 9))
@@ -70,7 +71,7 @@ class BookingConflictMethodSpockTest extends SpockRollbackTestAbstractClass {
     @Unroll('from #arrival to #departure should not overlap with period from 2016, 12, 19 to 2016, 12, 24')
     def 'dates do overlap'() {
         given: 'a booking'
-        booking = new Booking(room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        booking = new Booking(room, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         expect: 'it does conflic with overlapping dates'
         booking.conflict(arrival, departure) == result

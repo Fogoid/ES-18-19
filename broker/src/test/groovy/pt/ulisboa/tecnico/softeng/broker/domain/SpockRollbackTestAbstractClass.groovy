@@ -1,4 +1,4 @@
-package pt.ulisboa.tecnico.softeng.broker.domain;
+package pt.ulisboa.tecnico.softeng.broker.domain
 
 import javax.transaction.NotSupportedException
 import javax.transaction.SystemException
@@ -6,6 +6,7 @@ import javax.transaction.SystemException
 import pt.ist.fenixframework.FenixFramework
 import pt.ist.fenixframework.core.WriteOnReadError
 import spock.lang.Specification
+
 
 
 abstract class SpockRollbackTestAbstractClass extends Specification implements SharedDefinitions {

@@ -70,7 +70,7 @@ public class HotelInterface {
 			throw new HotelException();
 		}
 
-		new Booking(room, booking.getArrival(), booking.getDeparture(), booking.getBuyerNif(), booking.getBuyerIban());
+		new Booking(room, booking.getArrival(), booking.getDeparture(), booking.getBuyerNif(), booking.getBuyerIban(), booking.getProviderIban());
 	}
 
 	@Atomic(mode = TxMode.WRITE)
@@ -85,7 +85,7 @@ public class HotelInterface {
 		for (Hotel hotel : FenixFramework.getDomainRoot().getHotelSet()) {
 			return new RestRoomBookingData(hotel.reserveRoom(type, roomBookingData.getArrival(),
 					roomBookingData.getDeparture(), roomBookingData.getBuyerNif(), roomBookingData.getBuyerIban(),
-					roomBookingData.getAdventureId()));
+					roomBookingData.getAdventureId(), roomBookingData.getProviderIban()));
 		}
 		throw new HotelException();
 	}
@@ -118,7 +118,7 @@ public class HotelInterface {
 
 	@Atomic(mode = TxMode.WRITE)
 	public static Set<String> bulkBooking(int number, LocalDate arrival, LocalDate departure, String buyerNif,
-			String buyerIban, String bulkId) {
+			String buyerIban, String bulkId, String providerIban) {
 		Set<Booking> bookings = getBookings4BulkId(bulkId);
 		if (!bookings.isEmpty()) {
 			return bookings.stream().map(Booking::getReference).collect(Collectors.toSet());
@@ -135,7 +135,7 @@ public class HotelInterface {
 
 		Set<String> references = new HashSet<>();
 		for (int i = 0; i < number; i++) {
-			Booking booking = rooms.get(i).reserve(rooms.get(i).getType(), arrival, departure, buyerNif, buyerIban);
+			Booking booking = rooms.get(i).reserve(rooms.get(i).getType(), arrival, departure, buyerNif, buyerIban, providerIban);
 			booking.setBulkId(bulkId);
 			references.add(booking.getReference());
 		}

@@ -19,6 +19,7 @@ class HotelHasVacancyMethodSpockTest extends SpockRollbackTestAbstractClass {
     def ARRIVAL = new LocalDate(2016, 12, 19)
     @Shared
     def DEPARTURE = new LocalDate(2016, 12, 21)
+    def PROVIDER_IBAN = 'ProviderIban'
 
     def hotel
     def room
@@ -40,7 +41,7 @@ class HotelHasVacancyMethodSpockTest extends SpockRollbackTestAbstractClass {
 
     def "no vacancy"() {
         given: "a booking"
-        room.reserve(Type.DOUBLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER);
+        room.reserve(Type.DOUBLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         when: "looking for a vacancy in the same period"
         room = hotel.hasVacancy(Type.DOUBLE, ARRIVAL, DEPARTURE)
