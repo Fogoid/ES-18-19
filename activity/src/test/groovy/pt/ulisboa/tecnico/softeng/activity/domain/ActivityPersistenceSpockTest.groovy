@@ -94,7 +94,6 @@ class ActivityPersistenceSpockTest extends SpockPersistenceTestAbstractClass {
 			booking.getProcessor() != null
 		}
 	}
-
 	@Override
 	def deleteFromDatabase() {
 		for (def activityProvider : FenixFramework.getDomainRoot().getActivityProviderSet()) {

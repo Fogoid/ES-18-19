@@ -171,5 +171,4 @@ public class RestActivityBookingData {
 		double currency = money/1000.0;
 		return currency;
 	}
-
 }

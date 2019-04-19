@@ -80,7 +80,6 @@ public class ActivityOffer extends ActivityOffer_Base {
 		}
 		return null;
 	}
-
 	public Booking book(ActivityProvider provider, ActivityOffer activityOffer, int age, String nif, String iban,
 			String adventureId, String providerIban) {
 		Booking booking = new Booking(provider, activityOffer, age, nif, iban, providerIban);

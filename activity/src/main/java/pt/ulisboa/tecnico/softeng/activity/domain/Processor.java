@@ -85,5 +85,4 @@ public class Processor extends Processor_Base {
 		double currency = money/1000.0;
 		return currency;
 	}
-
 }

@@ -37,7 +37,6 @@ public class ActivityInterface {
 		if (provider == null) {
 			return null;
 		}
-
 		return new ActivityProviderData(provider);
 	}
 
