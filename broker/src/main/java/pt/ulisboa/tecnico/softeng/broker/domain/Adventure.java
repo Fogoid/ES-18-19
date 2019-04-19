@@ -29,7 +29,7 @@ public class Adventure extends Adventure_Base {
         broker.addAdventure(this);
         setBroker(broker);
 
-        setCurrentAmount(0.0);
+        setCurrentAmount(0);
         setTime(DateTime.now());
 
         setState(State.RESERVE_ACTIVITY);
@@ -70,7 +70,7 @@ public class Adventure extends Adventure_Base {
         return getClient().getIban();
     }
 
-    public void incAmountToPay(double toPay) {
+    public void incAmountToPay(long toPay) {
         setCurrentAmount(getCurrentAmount() + toPay);
     }
 

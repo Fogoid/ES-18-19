@@ -38,7 +38,7 @@ public class BookRoomState extends BookRoomState_Base {
         }
 
         getAdventure().setRoomConfirmation(bookingData.getReference());
-        getAdventure().incAmountToPay(bookingData.getPrice());
+        getAdventure().incAmountToPay(convert_double_to_long(bookingData.getPrice()));
 
 
         if (getAdventure().shouldRentVehicle()) {
@@ -46,6 +46,11 @@ public class BookRoomState extends BookRoomState_Base {
         } else {
             getAdventure().setState(State.PROCESS_PAYMENT);
         }
+    }
+
+    public long convert_double_to_long(double money){
+        long currency = (long)money*1000;
+        return currency;
     }
 
 }
