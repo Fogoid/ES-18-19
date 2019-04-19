@@ -16,6 +16,7 @@ class HotelInterfaceCancelBookingMethodSpockTest extends SpockRollbackTestAbstra
     def IBAN_BUYER = "IBAN_BUYER"
     def ARRIVAL = new LocalDate(2016, 12, 19)
     def DEPARTURE = new LocalDate(2016, 12, 21)
+    def PROVIDER_IBAN = 'ProcessorIban'
     def hotel
     def room
     def booking
@@ -33,7 +34,7 @@ class HotelInterfaceCancelBookingMethodSpockTest extends SpockRollbackTestAbstra
         hotel = new Hotel("XPTO123", "Paris", "NIF", "IBAN",
                 20000, 30000, processor)
         room = new Room(hotel, "01", Type.DOUBLE)
-        booking = room.reserve(Type.DOUBLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        booking = room.reserve(Type.DOUBLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
     }
 
     def 'success'() {

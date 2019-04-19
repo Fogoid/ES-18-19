@@ -19,6 +19,8 @@ class RoomReserveMethodSpockTest extends SpockRollbackTestAbstractClass {
     def ARRIVAL = new LocalDate(2016, 12, 19)
     @Shared
     def DEPARTURE = new LocalDate(2016, 12, 24)
+    @Shared
+    def PROVIDER_IBAN = 'ProviderIban'
     def room;
 
     @Override
@@ -29,7 +31,7 @@ class RoomReserveMethodSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'success'() {
         when: 'a booking for an available room occurs'
-        Booking booking = room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        Booking booking = room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         then:
         room.getBookingSet().size() == 1
@@ -40,7 +42,7 @@ class RoomReserveMethodSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'no double'() {
         when: 'a booking for an unavailable room occurs'
-        room.reserve(Type.DOUBLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        room.reserve(Type.DOUBLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         then: 'a HotelException is thrown'
         def error = thrown(HotelException)
@@ -48,30 +50,31 @@ class RoomReserveMethodSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'room is already reserved'() {
         given: 'a booking for a room'
-        room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         when: 'when a booking is done for the same period'
-        room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
 
         then: 'an HotelException is thrown'
         def error = thrown(HotelException)
         room.getBookingSet().size() == 1
     }
 
-    @Unroll('one of the arguments is invalid: #type | #arrival | #departure | #buyerNIF | #buyerIban')
+    @Unroll('one of the arguments is invalid: #type | #arrival | #departure | #buyerNIF | #buyerIban | #providerIban')
     def 'incorrect arguments'() {
         when: 'a reserve is done with an incorrect argument'
-        room.reserve(type, arrival, departure, buyerNIF, buyerIban)
+        room.reserve(type, arrival, departure, buyerNIF, buyerIban, providerIban)
 
         then: 'an HotelException is thrown'
         def error = thrown(HotelException)
 
         where:
-        type        | arrival | departure | buyerNIF  | buyerIban
-        null        | ARRIVAL | DEPARTURE | NIF_BUYER | IBAN_BUYER
-        Type.SINGLE | null    | DEPARTURE | NIF_BUYER | IBAN_BUYER
-        Type.SINGLE | ARRIVAL | null      | NIF_BUYER | IBAN_BUYER
-        Type.SINGLE | ARRIVAL | DEPARTURE | null      | IBAN_BUYER
-        Type.SINGLE | ARRIVAL | DEPARTURE | NIF_BUYER | null
+        type        | arrival | departure | buyerNIF  | buyerIban  | providerIban
+        null        | ARRIVAL | DEPARTURE | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        Type.SINGLE | null    | DEPARTURE | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        Type.SINGLE | ARRIVAL | null      | NIF_BUYER | IBAN_BUYER | PROVIDER_IBAN
+        Type.SINGLE | ARRIVAL | DEPARTURE | null      | IBAN_BUYER | PROVIDER_IBAN
+        Type.SINGLE | ARRIVAL | DEPARTURE | NIF_BUYER | null       | PROVIDER_IBAN
+        Type.SINGLE | ARRIVAL | DEPARTURE | NIF_BUYER | IBAN_BUYER | null
     }
 }

@@ -18,6 +18,7 @@ class HotelInterfaceGetRoomBookingDataMethodSpockTest extends SpockRollbackTestA
     def NIF_HOTEL = '123456700'
     def NIF_BUYER = '123456789'
     def IBAN_BUYER = 'IBAN_BUYER'
+    def PROVIDER_IBAN = 'ProcessorIban'
     def hotel
     def room
     def booking
@@ -26,7 +27,7 @@ class HotelInterfaceGetRoomBookingDataMethodSpockTest extends SpockRollbackTestA
     def populate4Test() {
         hotel = new Hotel('XPTO123', 'Lisboa', NIF_HOTEL, 'IBAN', 20000, 30000, new Processor(new BankInterface(), new TaxInterface()))
         room = new Room(hotel, '01', Type.SINGLE)
-        booking = room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER)
+        booking = room.reserve(Type.SINGLE, ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, PROVIDER_IBAN)
     }
 
     def 'success'() {

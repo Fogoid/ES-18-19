@@ -18,6 +18,7 @@ class HotelInterfaceReserveRoomMethodSpockTest extends SpockRollbackTestAbstract
     def NIF_BUYER = '123456700'
     def IBAN_BUYER = 'IBAN_CUSTOMER'
     def IBAN_HOTEL = 'IBAN_HOTEL'
+    def PROVIDER_IBAN = 'ProcessorIban'
     def ADVENTURE_ID = 'AdventureId'
 
     def room
@@ -31,7 +32,7 @@ class HotelInterfaceReserveRoomMethodSpockTest extends SpockRollbackTestAbstract
 
     def 'success'() {
         given: 'a booking data'
-        def bookingData = new RestRoomBookingData("SINGLE", ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, ADVENTURE_ID)
+        def bookingData = new RestRoomBookingData("SINGLE", ARRIVAL, DEPARTURE, NIF_BUYER, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 
         when: 'a reservation is done'
         bookingData = HotelInterface.reserveRoom(bookingData)
@@ -44,12 +45,12 @@ class HotelInterfaceReserveRoomMethodSpockTest extends SpockRollbackTestAbstract
     def 'no vacancy'() {
         given: 'the single room is booked'
         def bookingData = new RestRoomBookingData("SINGLE", ARRIVAL, new LocalDate(2016, 12, 25),
-                NIF_BUYER, IBAN_BUYER, ADVENTURE_ID)
+                NIF_BUYER, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
         HotelInterface.reserveRoom(bookingData)
 
         when: 'booking during the same period'
         bookingData = new RestRoomBookingData("SINGLE", ARRIVAL, new LocalDate(2016, 12, 25), NIF_BUYER,
-                IBAN_BUYER, ADVENTURE_ID + "1")
+                IBAN_BUYER, ADVENTURE_ID + "1", PROVIDER_IBAN)
         HotelInterface.reserveRoom(bookingData)
 
         then: 'throws an HotelException'
@@ -62,7 +63,7 @@ class HotelInterfaceReserveRoomMethodSpockTest extends SpockRollbackTestAbstract
             hotel.delete()
         }
         def bookingData = new RestRoomBookingData("SINGLE", ARRIVAL, DEPARTURE, NIF_BUYER,
-                IBAN_BUYER, ADVENTURE_ID)
+                IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 
         when: 'reserve a room'
         HotelInterface.reserveRoom(bookingData)
@@ -77,7 +78,7 @@ class HotelInterfaceReserveRoomMethodSpockTest extends SpockRollbackTestAbstract
             room.delete();
         }
         def bookingData = new RestRoomBookingData("SINGLE", ARRIVAL, new LocalDate(2016, 12, 25),
-                NIF_BUYER, IBAN_BUYER, ADVENTURE_ID);
+                NIF_BUYER, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN);
 
         when: 'reserve a room'
         HotelInterface.reserveRoom(bookingData);
