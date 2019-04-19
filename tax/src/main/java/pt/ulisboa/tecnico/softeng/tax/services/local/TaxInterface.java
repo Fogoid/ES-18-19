@@ -91,7 +91,7 @@ public class TaxInterface {
 	public static void createInvoice(String nif, InvoiceData invoiceData) {
 		if (invoiceData.getValue() == null || invoiceData.getItemType() == null || invoiceData.getDate() == null
 				|| invoiceData.getBuyerNif() == null && invoiceData.getSellerNif() == null
-						&& invoiceData.getTime() == null) {
+				&& invoiceData.getTime() == null) {
 			throw new TaxException();
 		}
 
@@ -114,7 +114,6 @@ public class TaxInterface {
 	@Atomic(mode = TxMode.WRITE)
 	public static String submitInvoice(RestInvoiceData invoiceData) {
 		Invoice invoice = getInvoiceByInvoiceData(invoiceData);
-		System.out.println(invoice == null);
 		if (invoice != null) {
 			return invoice.getReference();
 		}
@@ -162,7 +161,7 @@ public class TaxInterface {
 		return inOptional.orElse(null);
 	}
 
-	public static long convert_double_to_long(double money){
+public static long convert_double_to_long(double money){
 		long currency = (long)money*1000;
 		return currency;
 	}

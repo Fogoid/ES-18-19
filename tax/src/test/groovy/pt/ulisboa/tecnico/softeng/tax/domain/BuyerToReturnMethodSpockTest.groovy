@@ -38,7 +38,7 @@ class BuyerToReturnMethodSpockTest extends SpockRollbackTestAbstractClass {
 
 		where:
 		year | val
-		2018 | 1250
+		2018 | 1.25
 		2017 | 0.00f
 	}
 
@@ -67,7 +67,7 @@ class BuyerToReturnMethodSpockTest extends SpockRollbackTestAbstractClass {
 		def value = buyer.taxReturn(1970)
 
 		then:
-		500 == value
+		0.5 == value
 	}
 
 	def 'ignore cancelled'() {
@@ -82,7 +82,7 @@ class BuyerToReturnMethodSpockTest extends SpockRollbackTestAbstractClass {
 		def value = buyer.taxReturn(2018)
 
 		then:
-		750 == value
+		0.75 == value
 	}
 
 }

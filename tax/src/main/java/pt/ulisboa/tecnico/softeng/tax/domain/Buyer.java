@@ -18,7 +18,7 @@ public class Buyer extends Buyer_Base {
 		irs.addTaxPayer(this);
 	}
 
-	@Override
+	/*@Override
 	public void delete() {
 		for (Invoice invoice : getInvoiceSet()) {
 			invoice.delete();
@@ -69,5 +69,5 @@ public class Buyer extends Buyer_Base {
 	public long convert_double_to_long(double money){
 		long currency = (long)money*1000;
 		return currency;
-	}
+	}*/
 }
