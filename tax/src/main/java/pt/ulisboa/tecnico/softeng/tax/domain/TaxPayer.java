@@ -30,7 +30,7 @@ public class TaxPayer extends TaxPayer_Base {
 
 	public void delete() {
 		for (Invoice invoice : getInvoice_buyerSet()) {
-				invoice.delete();
+			invoice.delete();
 		}
 		for (Invoice invoice : getInvoice_sellerSet()) {
 			invoice.delete();
@@ -53,12 +53,12 @@ public class TaxPayer extends TaxPayer_Base {
 			throw new TaxException();
 		}
 
-		/*if (irs.getTaxPayerByNIF(NIF) != null) {
+		if (irs.getTaxPayerByNIF(NIF) != null) {
 			throw new TaxException();
-		}*/
+		}
 
 	}
-   /**SELLER CODE*/
+	/**SELLER CODE*/
 	public double toPay(int year) {
 		if (year < 1970) {
 			throw new TaxException();
