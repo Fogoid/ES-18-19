@@ -21,6 +21,7 @@ class RentACarInterfaceCancelRentingMethodSpockTest extends SpockRollbackTestAbs
 	def NIF='NIF'
 	def IBAN='IBAN'
 	def IBAN_BUYER='IBAN'
+	def PROVIDER_IBAN = 'ProviderIban'
 	def rentACar
 	def car
 	def renting
@@ -38,7 +39,7 @@ class RentACarInterfaceCancelRentingMethodSpockTest extends SpockRollbackTestAbs
 
 		car = new Car(PLATE_CAR,10,10,rentACar)
 
-		renting = car.rent(DRIVING_LICENSE, BEGIN, END, NIF, IBAN_BUYER, ADVENTURE_ID)
+		renting = car.rent(DRIVING_LICENSE, BEGIN, END, NIF, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 	}
 
 	def 'success'() {

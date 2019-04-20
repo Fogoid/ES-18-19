@@ -21,6 +21,7 @@ public class RentingData {
 	private Double price;
 	private String buyerNIF;
 	private String buyerIBAN;
+	private String providerIban;
 	private Vehicle.Type type;
 	private String typeValue;
 	private Integer kilometers;
@@ -41,6 +42,7 @@ public class RentingData {
 		this.cancellationReference = renting.getCancellationReference();
 		this.price = convert_long_to_double(renting.getPrice());
 		this.adventureId = renting.getAdventureId();
+		this.providerIban = renting.getProviderIban();
 	}
 
 	/**
@@ -111,6 +113,14 @@ public class RentingData {
 
 	public void setBuyerIBAN(String buyerIBAN) {
 		this.buyerIBAN = buyerIBAN;
+	}
+
+	public String getProviderIban() {
+		return this.providerIban;
+	}
+
+	public void setProviderIban(String providerIban) {
+		this.providerIban = providerIban;
 	}
 
 	public Vehicle.Type getType() {

@@ -10,7 +10,7 @@ public class Renting extends Renting_Base {
 	private static final String TYPE = "RENTAL";
 
 	public Renting(String drivingLicense, LocalDate begin, LocalDate end, Vehicle vehicle, String buyerNif,
-			String buyerIban) {
+			String buyerIban, String providerIban) {
 		checkArguments(drivingLicense, begin, end, vehicle);
 
 		setKilometers(-1);
@@ -22,6 +22,7 @@ public class Renting extends Renting_Base {
 		setEnd(end);
 		setClientNif(buyerNif);
 		setClientIban(buyerIban);
+		setProviderIban(providerIban);
 		setPrice(vehicle.getPrice() * (end.getDayOfYear() - begin.getDayOfYear() + 1));
 		setTime(DateTime.now());
 

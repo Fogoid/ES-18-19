@@ -24,6 +24,7 @@ public class RestRentingData {
 	private String typeValue;
 	private Integer kilometers;
 	private String adventureId;
+	private String providerIban;
 
 	public RestRentingData() {
 	}
@@ -40,6 +41,7 @@ public class RestRentingData {
 		this.cancellationReference = renting.getCancellationReference();
 		this.price = convert_long_to_double(renting.getPrice());
 		this.adventureId = renting.getAdventureId();
+		this.providerIban = renting.getProviderIban();
 	}
 
 	public String getReference() {
@@ -128,6 +130,14 @@ public class RestRentingData {
 
 	public void setBuyerNIF(String buyerNIF) {
 		this.buyerNIF = buyerNIF;
+	}
+
+	public String getProviderIban() {
+		return this.providerIban;
+	}
+
+	public void setProviderIban(String providerIban) {
+		this.providerIban = providerIban;
 	}
 
 	public String getBuyerIBAN() {

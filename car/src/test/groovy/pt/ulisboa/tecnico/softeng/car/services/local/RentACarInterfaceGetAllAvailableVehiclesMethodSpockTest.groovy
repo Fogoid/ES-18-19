@@ -25,6 +25,7 @@ class RentACarInterfaceGetAllAvailableVehiclesMethodSpockTest extends SpockRollb
 	def NIF = 'NIF'
 	def IBAN = 'IBAN'
 	def IBAN_BUYER = 'IBAN'
+	def PROVIDER_IBAN = 'ProviderIban'
 	def rentACar1
 	def rentACar2
 	def rentACarInterface
@@ -49,7 +50,7 @@ class RentACarInterfaceGetAllAvailableVehiclesMethodSpockTest extends SpockRollb
 	def 'only cars'() {
 		given:
 		def car1 = new Car(PLATE_CAR1,10,10, rentACar1)
-		car1.rent(DRIVING_LICENSE,date1,date2,NIF,IBAN_BUYER,ADVENTURE_ID)
+		car1.rent(DRIVING_LICENSE,date1,date2,NIF,IBAN_BUYER,ADVENTURE_ID, PROVIDER_IBAN)
 		def car2 = new Car(PLATE_CAR2,10,10, rentACar2)
 		def motorcycle = new Motorcycle(PLATE_MOTORCYCLE,10,10, rentACar1)
 
@@ -66,7 +67,7 @@ class RentACarInterfaceGetAllAvailableVehiclesMethodSpockTest extends SpockRollb
 		given: 'creating two cars, and rentingOne one'
 		def car1 = new Car(PLATE_CAR1, 10, 10, rentACar1)
 		def car2 = new Car(PLATE_CAR2, 10, 10, rentACar2)
-		car1.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID)
+		car1.rent(DRIVING_LICENSE, date1, date2, NIF, IBAN_BUYER, ADVENTURE_ID, PROVIDER_IBAN)
 
 		when: 'when fetching available cars'
 		def cars = rentACarInterface.getAllAvailableCars(date1, date2)

@@ -21,6 +21,7 @@ class RentingConflictMethodSpockTest extends SpockRollbackTestAbstractClass {
 	def NIF = 'NIF'
 	def IBAN = 'IBAN'
 	def IBAN_BUYER = 'IBAN'
+	def PROVIDER_IBAN = 'ProviderIban'
 	def car
 
 	@Override
@@ -36,7 +37,7 @@ class RentingConflictMethodSpockTest extends SpockRollbackTestAbstractClass {
 	@Unroll("conflict and non-conflict test: #dt1, #dt2, #dt3, #dt4 || #res")
 	def 'conflict'() {
 		when: 'when rentingOne for a given days'
-		def renting = new Renting(DRIVING_LICENSE,dt1,dt2,car,NIF,IBAN_BUYER)
+		def renting = new Renting(DRIVING_LICENSE,dt1,dt2,car,NIF,IBAN_BUYER, PROVIDER_IBAN)
 
 		then: 'check it does not conflict'
 		renting.conflict(dt3,dt4) == res
@@ -52,7 +53,7 @@ class RentingConflictMethodSpockTest extends SpockRollbackTestAbstractClass {
 
 	def 'end before begin'() {
 		given: 'given a rentingOne'
-		def renting = new Renting(DRIVING_LICENSE,date1,date2,car,NIF,IBAN_BUYER)
+		def renting = new Renting(DRIVING_LICENSE,date1,date2,car,NIF,IBAN_BUYER, PROVIDER_IBAN)
 
 		when: 'throws an exception if end is before start'
 		renting.conflict(date2,date1)

@@ -14,7 +14,7 @@ public class Car extends Car_Base {
 	}
 
 	public Renting rent(String drivingLicense, LocalDate begin, LocalDate end, String buyerNIF, String buyerIBAN,
-						String adventureId) {
-		return super.rent(drivingLicense, begin, end, buyerNIF, buyerIBAN, adventureId);
+						String adventureId, String providerIban) {
+		return super.rent(drivingLicense, begin, end, buyerNIF, buyerIBAN, adventureId, providerIban);
 	}
 }

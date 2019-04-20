@@ -18,6 +18,7 @@ class RentingConstructorSpockTest extends SpockRollbackTestAbstractClass {
 	@Shared def NIF = 'NIF'
 	@Shared def IBAN = 'IBAN'
 	@Shared def IBAN_BUYER = 'IBAN'
+	@Shared def PROVIDER_IBAN = 'ProviderIban'
 	@Shared def car
 
 	@Override
@@ -32,29 +33,29 @@ class RentingConstructorSpockTest extends SpockRollbackTestAbstractClass {
 
 	def 'success'() {
 		when:
-		Renting renting = new Renting(DRIVING_LICENSE, date1, date2, car, NIF, IBAN_BUYER)
+		Renting renting = new Renting(DRIVING_LICENSE, date1, date2, car, NIF, IBAN_BUYER, PROVIDER_IBAN)
 
 		then:
 		renting.getDrivingLicense() == DRIVING_LICENSE
 		car.getPrice() * (date2.getDayOfYear() - date1.getDayOfYear() + 1) == renting.getPrice()
 	}
 
-	@Unroll('RentACar: #dl | #d1 | #d2 | #veh | #nif | #iban')
+	@Unroll('RentACar: #dl | #d1 | #d2 | #veh | #nif | #iban | #provIban')
 	def 'exceptions'() {
 		when: 'rentingOne with wrong arguments'
-		new Renting(dl, d1, d2, veh, nif, iban)
+		new Renting(dl, d1, d2, veh, nif, iban, provIban)
 
 		then: 'throws an exception'
 		thrown(CarException)
 
 		where:
-		dl   | d1 | d2 | veh | nif | iban
-		null | date1 | date2 | car | NIF | IBAN_BUYER
-		''   | date1 | date2 | car | NIF | IBAN_BUYER
-		'12' | date1 | date2 | car | NIF | IBAN_BUYER
-		DRIVING_LICENSE | null  | date2 | car  | NIF | IBAN_BUYER
-		DRIVING_LICENSE | date1 | null  | car  | NIF | IBAN_BUYER
-		DRIVING_LICENSE | date2 | date1 | car  | NIF | IBAN_BUYER
-		DRIVING_LICENSE | date1 | date2 | null | NIF | IBAN_BUYER
+		dl   | d1 | d2 | veh | nif | iban | provIban
+		null | date1 | date2 | car | NIF | IBAN_BUYER | PROVIDER_IBAN
+		''   | date1 | date2 | car | NIF | IBAN_BUYER | PROVIDER_IBAN
+		'12' | date1 | date2 | car | NIF | IBAN_BUYER | PROVIDER_IBAN
+		DRIVING_LICENSE | null  | date2 | car  | NIF | IBAN_BUYER | PROVIDER_IBAN
+		DRIVING_LICENSE | date1 | null  | car  | NIF | IBAN_BUYER | PROVIDER_IBAN
+		DRIVING_LICENSE | date2 | date1 | car  | NIF | IBAN_BUYER | PROVIDER_IBAN
+		DRIVING_LICENSE | date1 | date2 | null | NIF | IBAN_BUYER | PROVIDER_IBAN
 	}
 }
