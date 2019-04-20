@@ -12,7 +12,7 @@ public class AccountData {
 
 	public AccountData(Account account) {
 		this.iban = account.getIBAN();
-		this.balance = account.getBalance();
+		this.balance = convert_long_to_double(account.getBalance());
 	}
 
 	public String getIban() {
@@ -37,6 +37,11 @@ public class AccountData {
 
 	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+
+	public double convert_long_to_double(long money){
+		double currency = money/1000.0;
+		return currency;
 	}
 
 }

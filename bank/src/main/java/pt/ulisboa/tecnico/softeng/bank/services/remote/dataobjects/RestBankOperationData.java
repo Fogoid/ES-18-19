@@ -24,7 +24,7 @@ public class RestBankOperationData {
 		this.reference = operation.getReference();
 		this.type = operation.getType().name();
 		this.sourceIban = operation.getAccount().getIBAN();
-		this.value = operation.getValue();
+		this.value = convert_long_to_double(operation.getValue());
 		this.time = operation.getTime();
 		this.transactionSource = operation.getTransactionSource();
 		this.transactionReference = operation.getTransactionReference();
@@ -101,4 +101,8 @@ public class RestBankOperationData {
 		this.transactionReference = transactionReference;
 	}
 
+	public double convert_long_to_double(long money){
+		double currency = money/1000.0;
+		return currency;
+	}
 }

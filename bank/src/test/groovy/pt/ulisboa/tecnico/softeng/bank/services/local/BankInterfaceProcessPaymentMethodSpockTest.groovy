@@ -22,7 +22,7 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 		bank = new Bank('Money','BK01')
 		def client = new Client(bank,'António')
 		account = new Account(bank, client)
-		account.deposit(500)
+		account.deposit(500000)
 		iban = account.getIBAN()
 	}
 
@@ -35,8 +35,8 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 		newReference.startsWith('BK01')
 		bank.getOperation(newReference) != null
 		bank.getOperation(newReference).getType() == Operation.Type.WITHDRAW
-		bank.getOperation(newReference).getValue() == 100.0
-		account.getBalance() == 400.0
+		bank.getOperation(newReference).getValue() == 100000
+		account.getBalance() == 400000
 	}
 
 	def 'success two banks'() {
@@ -45,19 +45,19 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 		def otherClient = new Client(otherBank,'Manuel')
 		def otherAccount = new Account(otherBank,otherClient)
 		def otherIban = otherAccount.getIBAN()
-		otherAccount.deposit(1000)
+		otherAccount.deposit(1000000)
 
 		when:
 		BankInterface.processPayment(new BankOperationData(otherIban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
 
 		then:
-		otherAccount.getBalance() == 900.0
+		otherAccount.getBalance() == 900000
 
 		when:
 		BankInterface.processPayment(new BankOperationData(iban, 100, TRANSACTION_SOURCE, TRANSACTION_REFERENCE + 'PLUS'))
 
 		then:
-		account.getBalance() == 400
+		account.getBalance() == 400000
 	}
 
 	def 'redo an already payed'() {
@@ -70,7 +70,7 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 		then: 'the operation is idempotent'
 		secondReference == firstReference
 		and: 'does not withdraw twice'
-		account.getBalance() == 400.0
+		account.getBalance() == 400000
 	}
 
 	def 'one amount'() {
@@ -78,7 +78,7 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 		BankInterface.processPayment(new BankOperationData(this.iban, 1, TRANSACTION_SOURCE, TRANSACTION_REFERENCE))
 
 		then:
-		account.getBalance() == 499.0
+		account.getBalance() == 499000
 	}
 
 
