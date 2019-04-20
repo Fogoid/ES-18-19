@@ -26,7 +26,9 @@ public class Transfer extends Transfer_Base {
 
     @Override
     public String revert() {
-        return "ola";
+        setCancellation(getReference() + "_CANCEL");
+
+        return getTargetAccount().transfer(getAccount(), getValue()).getReference();
     }
 
     @Override

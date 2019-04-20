@@ -56,4 +56,15 @@ public class Account extends Account_Base {
 		return new Withdraw(this, amount);
 	}
 
+	public Operation transfer(Account target, long amount) {
+		if (amount <= 0 || amount > getBalance() || target == null) {
+			throw new BankException();
+		}
+
+		setBalance(getBalance() - amount);
+		target.deposit(amount);
+
+		return new Transfer(this, target, amount);
+	}
+
 }

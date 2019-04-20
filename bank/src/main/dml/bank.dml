@@ -89,7 +89,5 @@ relation TransferOperationHasAccount {
     Account playsRole targetAccount {
         multiplicity 1..1;
     }
-    Transfer playsRole transfer {
-        multiplicity 0..*;
-    }
+    Transfer playsRole transfer;
 }
