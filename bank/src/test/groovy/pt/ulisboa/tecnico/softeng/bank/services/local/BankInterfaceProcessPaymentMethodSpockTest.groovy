@@ -5,6 +5,7 @@ import pt.ulisboa.tecnico.softeng.bank.domain.Bank
 import pt.ulisboa.tecnico.softeng.bank.domain.Client
 import pt.ulisboa.tecnico.softeng.bank.domain.Operation
 import pt.ulisboa.tecnico.softeng.bank.domain.SpockRollbackTestAbstractClass
+import pt.ulisboa.tecnico.softeng.bank.domain.Withdraw
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException
 import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankOperationData
 import spock.lang.Shared
@@ -34,7 +35,7 @@ class BankInterfaceProcessPaymentMethodSpockTest extends SpockRollbackTestAbstra
 		newReference != null
 		newReference.startsWith('BK01')
 		bank.getOperation(newReference) != null
-		bank.getOperation(newReference).getType() == Operation.Type.WITHDRAW
+		bank.getOperation(newReference) instanceof Withdraw
 		bank.getOperation(newReference).getValue() == 100000
 		account.getBalance() == 400000
 	}

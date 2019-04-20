@@ -57,7 +57,6 @@ relation ClientHasAccounts {
 class Operation {
 	String reference;
 	String cancellation;
-	OperationType type;
 	long value;
 	DateTime time;
 	String transactionSource;
@@ -80,4 +79,17 @@ relation AccountHasOperation {
 	Operation playsRole operation {
 		multiplicity 0..*;
 	}
+}
+
+class Withdraw extends Operation;
+class Deposit extends Operation;
+class Transfer extends Operation;
+
+relation TransferOperationHasAccount {
+    Account playsRole targetAccount {
+        multiplicity 1..1;
+    }
+    Transfer playsRole transfer {
+        multiplicity 0..*;
+    }
 }

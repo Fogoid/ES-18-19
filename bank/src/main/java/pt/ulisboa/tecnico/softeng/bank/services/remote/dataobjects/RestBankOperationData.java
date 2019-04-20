@@ -22,7 +22,7 @@ public class RestBankOperationData {
 
 	public RestBankOperationData(Operation operation) {
 		this.reference = operation.getReference();
-		this.type = operation.getType().name();
+		this.type = operation.getName();
 		this.sourceIban = operation.getAccount().getIBAN();
 		this.value = convert_long_to_double(operation.getValue());
 		this.time = operation.getTime();
