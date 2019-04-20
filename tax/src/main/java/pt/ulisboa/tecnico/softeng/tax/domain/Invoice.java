@@ -20,7 +20,7 @@ public class Invoice extends Invoice_Base {
 		setBuyer(buyer);
 		setTime(time);
 
-		setIva(value * itemType.getTax() / 100.0);
+		setIva(value * itemType.getTax() / 100);
 
 		setIrs(getSeller().getIrs());
 	}
