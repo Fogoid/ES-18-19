@@ -9,7 +9,7 @@ class InvoiceConstructorSpockTest extends SpockRollbackTestAbstractClass {
     def SELLER_NIF = '123456789'
     def BUYER_NIF = '987654321'
     def FOOD = 'FOOD'
-    @Shared def VALUE = 16
+    @Shared def VALUE = 16000
     def TAX = 23
     @Shared def date = new LocalDate(2018, 02, 13)
     def seller
@@ -32,12 +32,12 @@ class InvoiceConstructorSpockTest extends SpockRollbackTestAbstractClass {
         then:
         with(invoice) {
             getReference() != null
-            16.0 == getValue()
+            16000.0 == getValue()
             getDate() == date
             getItemType() == itemType
             getSeller() == seller
             getBuyer() == buyer
-            3.68 == getIva()
+            3680 == getIva()
             !isCancelled()
         }
 

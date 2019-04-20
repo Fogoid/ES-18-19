@@ -42,7 +42,7 @@ public class InvoiceData {
 		this.itemType = invoice.getItemType().getName();
 		this.value = convert_long_to_double(invoice.getValue());
 		this.date = invoice.getDate();
-		this.iva = invoice.getIva();
+		this.iva = convert_long_to_double(invoice.getIva());
 		this.time = invoice.getTime();
 	}
 
