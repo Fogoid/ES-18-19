@@ -45,7 +45,7 @@ class AdventureConstructorMethodSpockTest extends SpockRollbackTestAbstractClass
         BEGIN | END   | MARGIN | AGE | 'normal'
         BEGIN | END   | MARGIN | 18  | '18 years old'
         BEGIN | END   | MARGIN | 100 | '100 years old'
-        BEGIN | END   | 1      | AGE | 'margin 1'
+        BEGIN | END   | 1000      | AGE | 'margin 1'
         BEGIN | BEGIN | MARGIN | AGE | 'begin begin'
     }
 

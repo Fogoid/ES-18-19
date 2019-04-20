@@ -72,7 +72,8 @@ public class BrokerInterface {
         Broker broker = getBrokerByCode(brokerCode);
         Client client = broker.getClientByNIF(clientNif);
         new Adventure(broker, adventureData.getBegin(), adventureData.getEnd(), client,
-                adventureData.getMargin() != null ? adventureData.getMargin() : -1, adventureData.getVehicle(), adventureData.getRoomType());
+                convert_double_to_long(adventureData.getMargin() != null ? adventureData.getMargin() : -1), adventureData.getVehicle(), adventureData.getRoomType());
+
     }
 
     @Atomic(mode = TxMode.WRITE)
@@ -114,6 +115,11 @@ public class BrokerInterface {
             }
         }
         return null;
+    }
+
+    public static long convert_double_to_long(double money){
+        long currency = (long)money*1000;
+        return currency;
     }
 
 }
