@@ -24,7 +24,7 @@ class AccountDepositMethodSpockTest extends SpockRollbackTestAbstractClass {
 		amnt == account.getBalance()
 		Operation operation = bank.getOperation(reference)
 		operation != null
-		operation.getType() == Operation.Type.DEPOSIT
+		operation instanceof Deposit
 		operation.getAccount() == account
 		balance == operation.getValue()
 
