@@ -18,11 +18,11 @@ public class Adventure extends Adventure_Base {
     }
 
 
-    public Adventure(Broker broker, LocalDate begin, LocalDate end, Client client, double margin, HotelInterface.Type roomType) {
+    public Adventure(Broker broker, LocalDate begin, LocalDate end, Client client, long margin, HotelInterface.Type roomType) {
         this(broker, begin, end, client, margin, false, roomType);
     }
 
-    public Adventure(Broker broker, LocalDate begin, LocalDate end, Client client, double margin, boolean rentVehicle, HotelInterface.Type roomType) {
+    public Adventure(Broker broker, LocalDate begin, LocalDate end, Client client, long margin, boolean rentVehicle, HotelInterface.Type roomType) {
         checkArguments(broker, begin, end, client, margin);
 
         setID(broker.getCode() + Integer.toString(broker.getCounter()));
@@ -64,14 +64,14 @@ public class Adventure extends Adventure_Base {
             throw new BrokerException();
         }
 
-        if (margin <= 0 || margin > 1) {
+        if (margin <= 0 || margin > 1000) {
             throw new BrokerException();
         }
 
         if(roomType != null && Days.daysBetween(begin,end).getDays()<1){
-        throw new BrokerException();
+            throw new BrokerException();
+        }
     }
-}
 
     public int getAge() {
         return getClient().getAge();

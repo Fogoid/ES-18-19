@@ -36,7 +36,7 @@ public class AdventureData {
 		this.end = adventure.getEnd();
 		this.age = adventure.getAge();
 		this.iban = adventure.getIban();
-		this.margin = adventure.getMargin();
+		this.margin = convert_long_to_double(adventure.getMargin());
 		this.vehicle = adventure.getRentVehicle();
 		this.state = adventure.getState().getValue();
 		this.roomType = adventure.getRoomType();
@@ -176,4 +176,10 @@ public class AdventureData {
 	public void setRoomType(HotelInterface.Type roomType) {
 		this.roomType = roomType;
 	}
+
+	public double convert_long_to_double(long money){
+		double currency = money/1000.0;
+		return currency;
+	}
+
 }
