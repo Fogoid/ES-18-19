@@ -14,9 +14,11 @@ Ordene a tabela por ordem crescente da data de término.
 |    #186    | 86408              | Fogoid                  | [#190](https://github.com/tecnico-softeng/es19al_04-project/pull/190)                | 19-04-2019         |
 |    #183    | 86408              | Fogoid                  | [#184](https://github.com/tecnico-softeng/es19al_04-project/pull/184)                | 19-04-2019         |
 |    #179    | 86408              | Fogoid                  | [#181](https://github.com/tecnico-softeng/es19al_04-project/pull/181)                | 19-04-2019         |
+|    #167    | 73751              | jotapero                | [#167](https://github.com/tecnico-softeng/es19al_04-project/issues/163)              | 19-04-2019         |
 |    #174    | 86408              | Fogoid                  | [#195](https://github.com/tecnico-softeng/es19al_04-project/pull/195)                | 20-04-2019         |
 |    #159    | 86408              | Fogoid                  | [#197](https://github.com/tecnico-softeng/es19al_04-project/pull/197)                | 20-04-2019         |
 |    #198    | 86408              | Fogoid                  | [#199](https://github.com/tecnico-softeng/es19al_04-project/pull/199)                | 21-04-2019         |
+
 
 ### Infrastructure
 
