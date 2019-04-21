@@ -15,8 +15,8 @@ public class BankInterface {
 	private static String ENDPOINT = "http://localhost:8082";
 
 	public String processPayment(RestBankOperationData bankOperationData) {
-		logger.info("processPayment iban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
-				bankOperationData.getSourceIban(), bankOperationData.getValue(), bankOperationData.getTransactionSource(),
+		this.logger.info("processPayment sourceIban:{}, targetIban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
+				bankOperationData.getSourceIban(), bankOperationData.getTargetIban(), bankOperationData.getValue(), bankOperationData.getTransactionSource(),
 				bankOperationData.getTransactionReference());
 
 		RestTemplate restTemplate = new RestTemplate();
@@ -25,14 +25,14 @@ public class BankInterface {
 					ENDPOINT + "/rest/banks/accounts/" + bankOperationData.getSourceIban() + "/processPayment",
 					bankOperationData, String.class);
 		} catch (HttpClientErrorException e) {
-			logger.info(
-					"processPayment HttpClientErrorException  iban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
-					bankOperationData.getSourceIban(), bankOperationData.getValue(), bankOperationData.getTransactionSource(),
+		    this.logger.info(
+					"processPayment HttpClientErrorException sourceIban:{}, targetIban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
+					bankOperationData.getSourceIban(), bankOperationData.getTargetIban(), bankOperationData.getValue(), bankOperationData.getTransactionSource(),
 					bankOperationData.getTransactionReference());
 			throw new BankException();
 		} catch (Exception e) {
-			logger.info("processPayment Exception iban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
-					bankOperationData.getSourceIban(), bankOperationData.getValue(), bankOperationData.getTransactionSource(),
+			this.logger.info("processPayment Exception sourceIban:{}, targetIban:{}, amount:{}, transactionSource:{}, transactionReference:{}",
+                    bankOperationData.getSourceIban(), bankOperationData.getTargetIban(), bankOperationData.getValue(), bankOperationData.getTransactionSource(),
 					bankOperationData.getTransactionReference());
 			throw new RemoteAccessException();
 		}

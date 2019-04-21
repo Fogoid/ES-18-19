@@ -62,7 +62,7 @@ public class Account extends Account_Base {
 		}
 
 		setBalance(getBalance() - amount);
-		target.deposit(amount);
+		target.setBalance(target.getBalance() + amount);
 
 		return new Transfer(this, target, amount);
 	}

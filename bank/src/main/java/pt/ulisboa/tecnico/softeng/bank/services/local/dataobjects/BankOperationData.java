@@ -27,8 +27,9 @@ public class BankOperationData {
 		this.transactionReference = operation.getTransactionReference();
 	}
 
-	public BankOperationData(String sourceIban, double value, String transactionSource, String transactionReference) {
+	public BankOperationData(String sourceIban, String targetIban, double value, String transactionSource, String transactionReference) {
 		this.sourceIban = sourceIban;
+		this.targetIban = targetIban;
 		this.value = value;
 		this.transactionSource = transactionSource;
 		this.transactionReference = transactionReference;

@@ -112,7 +112,22 @@ public class BankInterface {
 	}
 
 	@Atomic(mode = TxMode.WRITE)
+	public static void transfer(String sourceIban, String targetIban, double amount) {
+		Account sourceAccount = getAccountByIban(sourceIban);
+		if (sourceAccount == null) {
+			throw new BankException();
+		}
+		Account targetAccount = getAccountByIban(targetIban);
+		if (targetAccount == null) {
+			throw new BankException();
+		}
+
+		sourceAccount.transfer(targetAccount, convert_double_to_long(amount));
+	}
+
+	@Atomic(mode = TxMode.WRITE)
 	public static String processPayment(BankOperationData bankOperationData) {
+
 		Operation operation = getOperationBySourceAndReference(bankOperationData.getTransactionSource(),
 				bankOperationData.getTransactionReference());
 		if (operation != null) {
@@ -120,12 +135,15 @@ public class BankInterface {
 		}
 
 		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()) {
-			Account account = bank.getAccount(bankOperationData.getSourceIban());
-			if (account != null) {
-				Operation newOperation = account.withdraw(convert_double_to_long(bankOperationData.getValue()));
-				newOperation.setTransactionSource(bankOperationData.getTransactionSource());
-				newOperation.setTransactionReference(bankOperationData.getTransactionReference());
-				return newOperation.getReference();
+			Account sourceAccount = bank.getAccount(bankOperationData.getSourceIban());
+			for(Bank bank2 : FenixFramework.getDomainRoot().getBankSet()) {
+				Account targetAccount = bank2.getAccount(bankOperationData.getTargetIban());
+				if (sourceAccount != null && targetAccount != null) {
+					Operation newOperation = sourceAccount.transfer(targetAccount, convert_double_to_long(bankOperationData.getValue()));
+					newOperation.setTransactionSource(bankOperationData.getTransactionSource());
+					newOperation.setTransactionReference(bankOperationData.getTransactionReference());
+					return newOperation.getReference();
+				}
 			}
 		}
 		throw new BankException();
@@ -136,6 +154,8 @@ public class BankInterface {
 		Operation operation = getOperationByReference(paymentConfirmation);
 
 		if (operation == null) {
+			throw new BankException();
+		} else if (operation.getTransactionSource() != null && operation.getTransactionSource().equals("REVERT")) {
 			throw new BankException();
 		} else if (operation.getCancellation() != null) {
 			return operation.getCancellation();
