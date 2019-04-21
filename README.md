@@ -9,15 +9,14 @@ To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
 
 Ordene a tabela por ordem crescente da data de término.
 
-|   Issue id | Owner (ist number)      | Owner (github username) | PRs id (with link)  |            Date    |  
-| ---------- | ----------------------- | ----------------------- | ------------------- | ------------------ |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
+|   Issue id | Owner (ist number) | Owner (github username) | PRs id (with link)  |            Date    |  
+| ---------- | -------------------| ----------------------- | ------------------- | ------------------ |
+|    #198    | 86408              | Fogoid                  | #199                | 21-04-2019         |
+|    #186    | 86408              | Fogoid                  | #190                | 19-04-2019         |
+|    #183    | 86408              | Fogoid                  | #184                | 19-04-2019         |
+|    #179    | 86408              | Fogoid                  | #181                | 19-04-2019         |
+|    #174    | 86408              | Fogoid                  | #195                | 20-04-2019         |
+|    #159    | 86408              | Fogoid                  | #197                | 20-04-2019         |
 
 
 ### Infrastructure
