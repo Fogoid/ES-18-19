@@ -22,7 +22,7 @@ class BookRoomStateMethodSpockTest extends SpockRollbackTestAbstractClass {
         new Reference(bulk, REF_ONE)
         new Reference(bulk, REF_TWO)
         client = new Client(broker, CLIENT_IBAN, CLIENT_NIF, DRIVING_LICENSE, AGE)
-        adventure = new Adventure(broker, BEGIN, END, client, MARGIN, HotelInterface.Type.SINGLE)
+        adventure = new Adventure(broker, BEGIN, END, client, MARGIN, CarInterface.Type.CAR,HotelInterface.Type.SINGLE)
 
         bookingData = new RestRoomBookingData()
         bookingData.setRoomType(SINGLE)
@@ -62,7 +62,7 @@ class BookRoomStateMethodSpockTest extends SpockRollbackTestAbstractClass {
 
     def 'success book room move to renting'() {
         given: 'an adventure wich includes renting'
-        def adv = new Adventure(broker, BEGIN, END, client, MARGIN, true, HotelInterface.Type.SINGLE)
+        def adv = new Adventure(broker, BEGIN, END, client, MARGIN, true,CarInterface.Type.CAR, HotelInterface.Type.SINGLE)
         and: 'in book room state'
         adv.setState(Adventure.State.BOOK_ROOM)
         and: 'a successful room booking'

@@ -21,7 +21,7 @@ class ReserveActivityStateProcessMethodSpockTest extends SpockRollbackTestAbstra
                             new TaxInterface())
         client = new Client(broker, CLIENT_IBAN, CLIENT_NIF, DRIVING_LICENSE, AGE)
 
-        adventure = new Adventure(broker, BEGIN, END, client, MARGIN, HotelInterface.Type.SINGLE)
+        adventure = new Adventure(broker, BEGIN, END, client, MARGIN, CarInterface.Type.CAR, HotelInterface.Type.SINGLE)
         adventure.setState(Adventure.State.RESERVE_ACTIVITY)
 
         bookingData = new RestActivityBookingData()
@@ -34,7 +34,7 @@ class ReserveActivityStateProcessMethodSpockTest extends SpockRollbackTestAbstra
         given: 'activity reserved'
         activityInterface.reserveActivity(_) >> bookingData
         and: 'an adventure on the same day'
-        def sameDayAdventure = new Adventure(broker, BEGIN, BEGIN, client, MARGIN, rent_a_car, HotelInterface.Type.SINGLE)
+        def sameDayAdventure = new Adventure(broker, BEGIN, BEGIN, client, MARGIN, rent_a_car, CarInterface.Type.CAR,  HotelInterface.Type.SINGLE)
         sameDayAdventure.setState(Adventure.State.RESERVE_ACTIVITY)
 
         when: 'the adventure is processed'
