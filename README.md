@@ -9,15 +9,33 @@ To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
 
 Ordene a tabela por ordem crescente da data de término.
 
-|   Issue id | Owner (ist number)      | Owner (github username) | PRs id (with link)  |            Date    |  
-| ---------- | ----------------------- | ----------------------- | ------------------- | ------------------ |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
+|   Issue id | Owner (ist number) | Owner (github username) | PRs id (with link)  |            Date    |  
+| ---------- | -------------------| ----------------------- | ------------------- | ------------------ |
+|    #158    | 86460              | CallMeLeopoldo          | [#168](https://github.com/tecnico-softeng/es19al_04-project/pull/168)                | 17-04-2019         |
+|    #169    | 86495              | quickacid               | [#178](https://github.com/tecnico-softeng/es19al_04-project/pull/178)                | 18-04-2019
+|    #170    | 86495              | quickacid               | [#178](https://github.com/tecnico-softeng/es19al_04-project/pull/178)                | 18-04-2019
+|    #171    | 86495              | quickacid               | [#178](https://github.com/tecnico-softeng/es19al_04-project/pull/178)                | 18-04-2019
+|    #177    | 86495              | quickacid               | [#178](https://github.com/tecnico-softeng/es19al_04-project/pull/178)                | 18-04-2019
+|    #180    | 86495              | quickacid               | [#182](https://github.com/tecnico-softeng/es19al_04-project/pull/182)                | 19-04-2019
+|    #186    | 86408              | Fogoid                  | [#190](https://github.com/tecnico-softeng/es19al_04-project/pull/190)                | 19-04-2019         |
+|    #183    | 86408              | Fogoid                  | [#184](https://github.com/tecnico-softeng/es19al_04-project/pull/184)                | 19-04-2019         |
+|    #179    | 86408              | Fogoid                  | [#181](https://github.com/tecnico-softeng/es19al_04-project/pull/181)                | 19-04-2019         |
+|    #153    | 86460              | CallMeLeopoldo          | [#185](https://github.com/tecnico-softeng/es19al_04-project/pull/185)              | 19-04-2019           |
+|    #155    | 86460              | CallMeLeopoldo          | [#188](https://github.com/tecnico-softeng/es19al_04-project/pull/188)                | 19-04-2019         |
+|    #156    | 86460              | CallMeLeopoldo          | [#189](https://github.com/tecnico-softeng/es19al_04-project/pull/189)                | 19-04-2019         |
+|    #157    | 86460              | CallMeLeopoldo          | [#187](https://github.com/tecnico-softeng/es19al_04-project/pull/187)                | 19-04-2019         |
+|    #160    | 86460              | CallMeLeopoldo          | [#176](https://github.com/tecnico-softeng/es19al_04-project/pull/176)                | 19-04-2019         |
+|    #167    | 73751              | jotapero                | [#167](https://github.com/tecnico-softeng/es19al_04-project/issues/163)              | 19-04-2019         |
+|    #192    | 86460              | CallMeLeopoldo          | [#194](https://github.com/tecnico-softeng/es19al_04-project/pull/194)                | 20-04-2019         |
+|    #193    | 86460              | CallMeLeopoldo          | [#196](https://github.com/tecnico-softeng/es19al_04-project/pull/196)                | 20-04-2019         |
+|    #174    | 86408              | Fogoid                  | [#195](https://github.com/tecnico-softeng/es19al_04-project/pull/195)                | 20-04-2019         |
+|    #159    | 86408              | Fogoid                  | [#197](https://github.com/tecnico-softeng/es19al_04-project/pull/197)                | 20-04-2019         |
+|    #198    | 86408              | Fogoid                  | [#199](https://github.com/tecnico-softeng/es19al_04-project/pull/199)                | 21-04-2019         |
+|    #152    | 80888              | franciscomira           | [#200](https://github.com/tecnico-softeng/es19al_04-project/pull/200)                | 22-04-2018         |
+|    #161    | 86495              | quickacid  | [#201](https://github.com/tecnico-softeng/es19al_04-project/pull/201)                | 22-04-2019         |
+|    #164    | 80888              | franciscomira           | [#202](https://github.com/tecnico-softeng/es19al_04-project/pull/202) | 22-04-2018
+|    #162    | 73046              | Antunes10               | [#204](https://github.com/tecnico-softeng/es19al_04-project/pull/204) | 22-04-2018
+|    #165    | 73046              | Antunes10               | [#203](https://github.com/tecnico-softeng/es19al_04-project/pull/203) | 22-04-2018
 
 
 ### Infrastructure
