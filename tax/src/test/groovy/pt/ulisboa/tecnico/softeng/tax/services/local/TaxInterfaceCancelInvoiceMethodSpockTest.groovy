@@ -2,11 +2,11 @@ package pt.ulisboa.tecnico.softeng.tax.services.local
 
 import org.joda.time.LocalDate
 
-import pt.ulisboa.tecnico.softeng.tax.domain.Buyer
+
 import pt.ulisboa.tecnico.softeng.tax.domain.IRS
 import pt.ulisboa.tecnico.softeng.tax.domain.Invoice
 import pt.ulisboa.tecnico.softeng.tax.domain.ItemType
-import pt.ulisboa.tecnico.softeng.tax.domain.Seller
+
 import pt.ulisboa.tecnico.softeng.tax.domain.SpockRollbackTestAbstractClass
 import pt.ulisboa.tecnico.softeng.tax.domain.TaxPayer
 import pt.ulisboa.tecnico.softeng.tax.exception.TaxException

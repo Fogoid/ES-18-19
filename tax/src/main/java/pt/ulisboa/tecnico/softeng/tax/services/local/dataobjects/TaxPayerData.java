@@ -3,9 +3,9 @@ package pt.ulisboa.tecnico.softeng.tax.services.local.dataobjects;
 import java.util.Map;
 import java.util.TreeMap;
 
-import pt.ulisboa.tecnico.softeng.tax.domain.Buyer;
-import pt.ulisboa.tecnico.softeng.tax.domain.Seller;
+import pt.ulisboa.tecnico.softeng.tax.domain.Invoice;
 import pt.ulisboa.tecnico.softeng.tax.domain.TaxPayer;
+import pt.ulisboa.tecnico.softeng.tax.domain.IRS;
 
 public class TaxPayerData {
 	public enum Type {
@@ -22,17 +22,27 @@ public class TaxPayerData {
 	}
 
 	public TaxPayerData(TaxPayer taxPayer) {
-		Seller seller;
-		Buyer buyer;
+		TaxPayer seller;
+		TaxPayer buyer;
+		IRS irs=IRS.getIRSInstance();
 		this.nif = taxPayer.getNif();
 		this.name = taxPayer.getName();
 		this.address = taxPayer.getAddress();
-		this.type = taxPayer instanceof Buyer ? Type.BUYER : Type.SELLER;
-		if (taxPayer instanceof Seller) {
-			seller = (Seller) taxPayer;
+		for(Invoice invoice : irs.getTaxPayerByNIF(this.nif).getInvoice_sellerSet()) {
+			if (invoice.getSeller().getNif().equals(taxPayer.getNif())) {
+				this.type= Type.SELLER;
+			}
+		}
+		for(Invoice invoice : irs.getTaxPayerByNIF(this.nif).getInvoice_buyerSet()) {
+			if (invoice.getSeller().getNif().equals(taxPayer.getNif())) {
+				this.type= Type.BUYER;
+			}
+		}
+		if (this.type==Type.SELLER) {
+			seller = (TaxPayer) taxPayer;
 			this.taxes = seller.getToPayPerYear();
 		} else {
-			buyer = (Buyer) taxPayer;
+			buyer = (TaxPayer) taxPayer;
 			this.taxes = buyer.getTaxReturnPerYear();
 		}
 	}

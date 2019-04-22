@@ -10,11 +10,9 @@ import org.slf4j.LoggerFactory;
 import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.Atomic.TxMode;
 import pt.ist.fenixframework.FenixFramework;
-import pt.ulisboa.tecnico.softeng.tax.domain.Buyer;
 import pt.ulisboa.tecnico.softeng.tax.domain.IRS;
 import pt.ulisboa.tecnico.softeng.tax.domain.Invoice;
 import pt.ulisboa.tecnico.softeng.tax.domain.ItemType;
-import pt.ulisboa.tecnico.softeng.tax.domain.Seller;
 import pt.ulisboa.tecnico.softeng.tax.domain.TaxPayer;
 import pt.ulisboa.tecnico.softeng.tax.exception.TaxException;
 import pt.ulisboa.tecnico.softeng.tax.services.local.dataobjects.InvoiceData;
@@ -47,9 +45,9 @@ public class TaxInterface {
 	@Atomic(mode = TxMode.WRITE)
 	public static void createTaxPayer(TaxPayerData taxPayerData) {
 		if (taxPayerData.getType().equals(Type.BUYER)) {
-			new Buyer(IRS.getIRSInstance(), taxPayerData.getNif(), taxPayerData.getName(), taxPayerData.getAddress());
+			new TaxPayer(IRS.getIRSInstance(), taxPayerData.getNif(), taxPayerData.getName(), taxPayerData.getAddress());
 		} else {
-			new Seller(IRS.getIRSInstance(), taxPayerData.getNif(), taxPayerData.getName(), taxPayerData.getAddress());
+			new TaxPayer(IRS.getIRSInstance(), taxPayerData.getNif(), taxPayerData.getName(), taxPayerData.getAddress());
 		}
 	}
 
@@ -77,14 +75,7 @@ public class TaxInterface {
 				.sorted((i1, i2) -> i1.getBuyerNif().compareTo(i2.getBuyerNif())).collect(Collectors.toList());
 
 
-		/*
-		if (taxPayer instanceof Buyer) {
-			return ((TaxPayer) taxPayer).getInvoice_buyerSet().stream().map(i -> new InvoiceData(i))
-					.sorted((i1, i2) -> i1.getSellerNif().compareTo(i2.getSellerNif())).collect(Collectors.toList());
-		} else {
-			return ((TaxPayer) taxPayer).getInvoice_sellerSet().stream().map(i -> new InvoiceData(i))
-					.sorted((i1, i2) -> i1.getBuyerNif().compareTo(i2.getBuyerNif())).collect(Collectors.toList());
-		}*/
+
 	}
 
 	@Atomic(mode = TxMode.WRITE)
