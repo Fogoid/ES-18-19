@@ -19,6 +19,10 @@ Ordene a tabela por ordem crescente da data de término.
 |    #159    | 86408              | Fogoid                  | [#197](https://github.com/tecnico-softeng/es19al_04-project/pull/197)                | 20-04-2019         |
 |    #198    | 86408              | Fogoid                  | [#199](https://github.com/tecnico-softeng/es19al_04-project/pull/199)                | 21-04-2019         |
 |    #153  | 86460                | CallMeLeopoldo          | [#153](https://github.com/tecnico-softeng/es19al_04-project/pull/185)
+|    #152  | 80888                | franciscomira           | [#200](https://github.com/tecnico-softeng/es19al_04-project/pull/200)
+           | 22-04-2018         |
+|    #164  | 80888                | franciscomira           | [#202](https://github.com/tecnico-softeng/es19al_04-project/pull/202)
+           | 22-04-2018
 
 
 ### Infrastructure
