@@ -7,10 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException;
+import pt.ulisboa.tecnico.softeng.broker.services.remote.CarInterface;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.HotelInterface;
 
 public class Adventure extends Adventure_Base {
 
+    private  CarInterface.Type vehicleType;
     private HotelInterface.Type roomType;
 
     public enum State {
@@ -18,11 +20,11 @@ public class Adventure extends Adventure_Base {
     }
 
 
-    public Adventure(Broker broker, LocalDate begin, LocalDate end, Client client, long margin, HotelInterface.Type roomType) {
-        this(broker, begin, end, client, margin, false, roomType);
+    public Adventure(Broker broker, LocalDate begin, LocalDate end, Client client, long margin, CarInterface.Type vehicleType, HotelInterface.Type roomType) {
+        this(broker, begin, end, client, margin, false, vehicleType ,roomType);
     }
 
-    public Adventure(Broker broker, LocalDate begin, LocalDate end, Client client, long margin, boolean rentVehicle, HotelInterface.Type roomType) {
+    public Adventure(Broker broker, LocalDate begin, LocalDate end, Client client, long margin, boolean rentVehicle, CarInterface.Type vehicleType,  HotelInterface.Type roomType) {
         checkArguments(broker, begin, end, client, margin);
 
         setID(broker.getCode() + Integer.toString(broker.getCounter()));
@@ -32,6 +34,7 @@ public class Adventure extends Adventure_Base {
         setRentVehicle(rentVehicle);
         setClient(client);
         this.roomType = roomType;
+        this.vehicleType = vehicleType;
 
         broker.addAdventure(this);
         setBroker(broker);
@@ -176,5 +179,7 @@ public class Adventure extends Adventure_Base {
     public HotelInterface.Type getRoomType() {
         return roomType;
     }
+
+    public CarInterface.Type getVehicleType() { return vehicleType; }
 
 }
