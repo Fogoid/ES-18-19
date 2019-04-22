@@ -14,10 +14,19 @@ import pt.ulisboa.tecnico.softeng.car.services.remote.exceptions.TaxException;
 public class Processor extends Processor_Base {
 	private static final String TRANSACTION_SOURCE = "CAR";
 
-	private final BankInterface bankInterface;
-	private final TaxInterface taxInterface;
+	private BankInterface bankInterface;
+	private TaxInterface taxInterface;
 
 	public Processor(BankInterface bankInterface, TaxInterface taxInterface) {
+
+		if(taxInterface == null){
+			taxInterface= new TaxInterface();
+		}
+		
+		if(bankInterface == null){
+			bankInterface= new BankInterface();
+		}
+
 		this.bankInterface = bankInterface;
 		this.taxInterface = taxInterface;
 	}
@@ -32,6 +41,20 @@ public class Processor extends Processor_Base {
 		deleteDomainObject();
 	}
 
+	public BankInterface getBankInterface() {
+		if(this.bankInterface == null){
+			return new BankInterface();
+		}
+		return this.bankInterface;
+	}
+
+	public TaxInterface getTaxInterface() {
+		if(this.taxInterface == null){
+			return new TaxInterface();
+		}
+		return this.taxInterface;
+	}
+
 	public void submitRenting(Renting renting) {
 		addRenting(renting);
 		processInvoices();
@@ -44,7 +67,7 @@ public class Processor extends Processor_Base {
 				if (renting.getPaymentReference() == null) {
 					try {
 						renting.setPaymentReference(
-								this.bankInterface.processPayment(new RestBankOperationData(renting.getClientIban(),
+								getBankInterface().processPayment(new RestBankOperationData(renting.getClientIban(),
 										renting.getProviderIban(), renting.getPrice(), TRANSACTION_SOURCE, renting.getReference())));
 					} catch (BankException | RemoteAccessException ex) {
 						failedToProcess.add(renting);
@@ -56,7 +79,7 @@ public class Processor extends Processor_Base {
 						renting.getClientNif(), renting.getType(), convert_long_to_double(renting.getPrice()), renting.getBegin(),
 						renting.getTime());
 				try {
-					renting.setInvoiceReference(this.taxInterface.submitInvoice(invoiceData));
+					renting.setInvoiceReference(getTaxInterface().submitInvoice(invoiceData));
 				} catch (TaxException | RemoteAccessException ex) {
 					failedToProcess.add(renting);
 				}
@@ -64,9 +87,9 @@ public class Processor extends Processor_Base {
 				try {
 					if (renting.getCancelledPaymentReference() == null) {
 						renting.setCancelledPaymentReference(
-								this.bankInterface.cancelPayment(renting.getPaymentReference()));
+								getBankInterface().cancelPayment(renting.getPaymentReference()));
 					}
-					this.taxInterface.cancelInvoice(renting.getInvoiceReference());
+					getTaxInterface().cancelInvoice(renting.getInvoiceReference());
 					renting.setCancelledInvoice(true);
 				} catch (BankException | TaxException | RemoteAccessException ex) {
 					failedToProcess.add(renting);
