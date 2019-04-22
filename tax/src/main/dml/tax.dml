@@ -19,9 +19,6 @@ class TaxPayer {
     String address;
 }
 
-class Buyer extends TaxPayer;
-class Seller extends TaxPayer;
-
 
 relation IRSHasTaxPayers {
 	IRS playsRole irs {
