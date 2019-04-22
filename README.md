@@ -34,8 +34,8 @@ Ordene a tabela por ordem crescente da data de término.
 |    #152    | 80888              | franciscomira           | [#200](https://github.com/tecnico-softeng/es19al_04-project/pull/200)                | 22-04-2018         |
 |    #161    | 86495              | quickacid  | [#201](https://github.com/tecnico-softeng/es19al_04-project/pull/201)                | 22-04-2019         |
 |    #164    | 80888              | franciscomira           | [#202](https://github.com/tecnico-softeng/es19al_04-project/pull/202) | 22-04-2018
-|    #162    | 73046              | Antunes10               | [#162](https://github.com/tecnico-softeng/es19al_04-project/pull/162) | 22-04-2018
-|    #165    | 73046              | Antunes10               | [#165](https://github.com/tecnico-softeng/es19al_04-project/pull/165) | 22-04-2018
+|    #162    | 73046              | Antunes10               | [#204](https://github.com/tecnico-softeng/es19al_04-project/pull/204) | 22-04-2018
+|    #165    | 73046              | Antunes10               | [#203](https://github.com/tecnico-softeng/es19al_04-project/pull/203) | 22-04-2018
 
 
 ### Infrastructure
