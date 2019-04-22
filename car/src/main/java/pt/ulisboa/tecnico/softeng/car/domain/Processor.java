@@ -22,6 +22,10 @@ public class Processor extends Processor_Base {
 		if(taxInterface == null){
 			taxInterface= new TaxInterface();
 		}
+		
+		if(bankInterface == null){
+			bankInterface= new BankInterface();
+		}
 
 		this.bankInterface = bankInterface;
 		this.taxInterface = taxInterface;
