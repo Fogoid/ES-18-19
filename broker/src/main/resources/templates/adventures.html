@@ -32,23 +32,21 @@
                                        min="0.0" max="1.0" th:field="*{margin}"/>
         <label>Age: </label> <input class="form-control input-sm" type="number" th:field="*{age}"/>
         <label>Rent Room: </label>
-        <select class="form-control">
-            <option th:each="room : ${T(pt.ulisboa.tecnico.softeng.broker.domain.Adventure.BookRoom).values()}"
-                    th:value="${room}"
-                    th:text="${room}">
-            </option>
+        <select class="form-control" th:field="*{bookRoom}" >
+            <option th:each="rState : ${T(pt.ulisboa.tecnico.softeng.broker.domain.Adventure.BookRoom).values()}"
+                    th:value="${rState}"
+                    th:text="${rState.name()}">Room State</option>
         </select>
         <label>Rent Vehicle: </label>
-        <select class="form-control">
-            <option th:each="vehicle : ${T(pt.ulisboa.tecnico.softeng.broker.domain.Adventure.RentVehicle).values()}"
-                    th:value="${vehicle}"
-                    th:text="${vehicle}">
-            </option>
+        <select class="form-control" th:field="*{rentVehicle}">
+            <option th:each="vState : ${T(pt.ulisboa.tecnico.softeng.broker.domain.Adventure.RentVehicle).values()}"
+                    th:value="${vState}"
+                    th:text="${vState.name()}">Vehicle state</option>
         </select>
         <input class="btn btn-primary input-sm" type="submit" value="Submit"/>
     </form>
     <br/>
-    <!--<h3>Adventures</h3>
+    <h3>Adventures</h3>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -73,8 +71,8 @@
             <td th:text="${adventure.id}">id</td>
             <td th:text="${adventure.begin}">begin</td>
             <td th:text="${adventure.end}">end</td>
-            <td th:text="${adventure.getLongMargin()}">150</td>
-            <td th:text="${adventure.vehicle}">true</td>
+            <td th:text="${adventure.margin}">150</td>
+            <td th:text="${adventure.rentVehicle}">true</td>
             <td th:text="${adventure.amount}">amount</td>
             <td th:text="${adventure.state}">state</td>
             <td th:text="${adventure.paymentConfirmation}">Payment
@@ -96,7 +94,7 @@
             </td>
         </tr>
         </tbody>
-    </table>-->
+    </table>
 </div>
 </body>
 </html>
