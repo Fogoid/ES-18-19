@@ -165,8 +165,8 @@ public class AdventureData {
         return Math.round(getMargin() * Adventure.SCALE);
     }
 
-    public void setMargin(long margin) {
-        this.margin = Long.valueOf(margin).doubleValue() * Adventure.SCALE;
+    public void setMargin(double margin) {
+        this.margin = Double.valueOf(margin).doubleValue();
     }
 
     public Adventure.BookRoom getBookRoom() {
@@ -176,7 +176,6 @@ public class AdventureData {
     public void setBookRoom(Adventure.BookRoom bookRoom) {
         this.bookRoom = bookRoom;
     }
-
 
     public Adventure.RentVehicle getRentVehicle() {
         return this.rentVehicle;
