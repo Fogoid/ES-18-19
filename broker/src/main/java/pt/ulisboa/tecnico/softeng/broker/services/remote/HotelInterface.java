@@ -19,8 +19,8 @@ public class HotelInterface {
     private static final String ENDPOINT = "http://localhost:8085";
 
     public RestRoomBookingData reserveRoom(RestRoomBookingData roomBookingData) {
-        logger.info("reserveRoom arrival:{}, departure:{}, nif:{}, iban:{}, adventureId:{}",
-                roomBookingData.getArrival(), roomBookingData.getDeparture(), roomBookingData.getBuyerNif(),
+        logger.info("reserveRoom type:{}, arrival:{}, departure:{}, nif:{}, iban:{}, adventureId:{}",
+                roomBookingData.getRoomType(), roomBookingData.getArrival(), roomBookingData.getDeparture(), roomBookingData.getBuyerNif(),
                 roomBookingData.getBuyerIban(), roomBookingData.getAdventureId());
         RestTemplate restTemplate = new RestTemplate();
         try {
