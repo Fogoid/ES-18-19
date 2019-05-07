@@ -4,10 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 import pt.ulisboa.tecnico.softeng.bank.services.local.BankInterface;
@@ -104,6 +101,25 @@ public class AccountController {
 			model.addAttribute("error", "Error: it was not possible to execute the operation");
 			model.addAttribute("client", BankInterface.getClientDataById(code, id));
 			model.addAttribute("account", BankInterface.getAccountData(iban));
+			return "account";
+		}
+
+	}
+	@RequestMapping(value = "/{sourceIban}/transfer", method = RequestMethod.POST)
+	public String accountTransfer(Model model, @PathVariable String code, @PathVariable String id,
+								  @PathVariable String sourceIban, @RequestParam("targetIban") String targetIban, @ModelAttribute AccountData account) {
+		logger.info("accountTransfer bankCode:{}, clientId:{}, sourceIban:{},targetIban:{},amount:{} ", code, id, sourceIban,targetIban,
+				account.getAmount());
+
+		try {
+			BankInterface.transfer(sourceIban,targetIban,account.getAmount() != null ? account.getAmountLong() : -1);
+			model.addAttribute("client", BankInterface.getClientDataById(code, id));
+			model.addAttribute("account", BankInterface.getAccountData(sourceIban));
+			return "account";
+		} catch (BankException be) {
+			model.addAttribute("error", "Error: it was not possible to execute the operation");
+			model.addAttribute("client", BankInterface.getClientDataById(code, id));
+			model.addAttribute("account", BankInterface.getAccountData(sourceIban));
 			return "account";
 		}
 
