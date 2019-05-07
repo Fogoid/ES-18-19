@@ -61,4 +61,15 @@ public class Account extends Account_Base {
         return withdrawOperation;
     }
 
+
+    public TransferOperation transfer(WithdrawOperation withdrawOperation, DepositOperation depositOperation) {
+
+
+
+        TransferOperation transferOperation = new TransferOperation();
+        transferOperation.init(withdrawOperation,depositOperation,withdrawOperation.getSourceIban(),withdrawOperation.getReference());
+
+        return transferOperation;
+    }
+
 }
