@@ -65,12 +65,12 @@ public class ClientController {
 		}catch (BankException be) {
 			model.addAttribute("error", "Error: it was not possible to undo this operation");
 			model.addAttribute("bank", BankInterface.getBankDataByCode(code));
-			return "redirect:"+ redirectView;
+
 		}
 
 
 
-		return "redirect:"+ redirectView;
+		return "redirect:/banks/" + code + "/clients";
 	}
 
 }
