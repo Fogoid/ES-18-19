@@ -4,14 +4,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.servlet.view.RedirectView;
+import pt.ulisboa.tecnico.softeng.bank.domain.Bank;
+import pt.ulisboa.tecnico.softeng.bank.domain.Operation;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 import pt.ulisboa.tecnico.softeng.bank.services.local.BankInterface;
 import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankData;
+import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankOperationData;
 import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.ClientData;
 
 @Controller
@@ -52,4 +53,24 @@ public class ClientController {
 
 		return "redirect:/banks/" + code + "/clients";
 	}
+
+	@RequestMapping(value = "/{operationRef}/undo", method = RequestMethod.POST)
+	public String undoProcess(Model model , @PathVariable String code, @PathVariable String operationRef){
+		logger.info("clientSubmit bankCode:{},operationRef:{}", code,operationRef);
+		Operation operation = BankInterface.getOperationByReference(operationRef);
+		RedirectView redirectView = new RedirectView();
+		redirectView.setUrl("/banks/" + code + "/clients");
+		try {
+			BankInterface.revert(operation);
+		}catch (BankException be) {
+			model.addAttribute("error", "Error: it was not possible to undo this operation");
+			model.addAttribute("bank", BankInterface.getBankDataByCode(code));
+
+		}
+
+
+
+		return "redirect:/banks/" + code + "/clients";
+	}
+
 }

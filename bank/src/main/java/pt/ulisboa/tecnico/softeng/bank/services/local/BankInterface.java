@@ -110,6 +110,30 @@ public class BankInterface {
     }
 
     @Atomic(mode = TxMode.WRITE)
+    public static void transfer(String sourceIban,String targerIban ,long amount) {
+        Account accountSource = getAccountByIban(sourceIban);
+        Account accountTarget = getAccountByIban(targerIban);
+        if (accountSource == null || accountTarget==null) {
+            throw new BankException();
+        }
+
+        WithdrawOperation withdrawOperation= accountSource.withdraw(amount);
+        DepositOperation depositOperation = accountTarget.deposit(amount);
+        accountSource.transfer(withdrawOperation,depositOperation);
+    }
+
+    @Atomic(mode = TxMode.WRITE)
+    public static void revert(Operation operation ) {
+        if (operation.revert() == null ) {
+            throw new BankException();
+        }
+        
+
+
+
+    }
+
+    @Atomic(mode = TxMode.WRITE)
     public static String processPayment(RestBankOperationData bankOperationData) {
         if (bankOperationData.getTransactionSource() != null && bankOperationData.getTransactionSource().equals(TransferOperation.REVERT)) {
             throw new BankException();
@@ -170,7 +194,8 @@ public class BankInterface {
         FenixFramework.getDomainRoot().getBankSet().stream().forEach(b -> b.delete());
     }
 
-    private static Operation getOperationByReference(String reference) {
+    @Atomic(mode = TxMode.READ)
+    public static Operation getOperationByReference(String reference) {
         for (Bank bank : FenixFramework.getDomainRoot().getBankSet()) {
             Operation operation = bank.getOperation(reference);
             if (operation != null) {
