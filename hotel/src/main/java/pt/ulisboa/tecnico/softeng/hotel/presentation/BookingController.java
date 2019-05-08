@@ -59,4 +59,20 @@ public class BookingController {
 
 		return "redirect:/hotels/" + code + "/rooms/" + number + "/bookings";
 	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/{reference}/cancel")
+	public String bookingCancel(Model model,  @PathVariable String code, @PathVariable String number,@PathVariable String reference,
+								@ModelAttribute RoomBookingData booking) {
+
+		try {
+			hotelInterface.cancelBooking(reference);
+		} catch (HotelException be) {
+			model.addAttribute("error", "Error: it was not possible to book the room");
+			model.addAttribute("booking", booking);
+			model.addAttribute("room", hotelInterface.getRoomDataByNumber(code, number));
+			return "bookings";
+		}
+
+		return "redirect:/hotels/" + code + "/rooms/" + number + "/bookings";
+	}
 }
