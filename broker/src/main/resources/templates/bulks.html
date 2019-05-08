@@ -38,6 +38,7 @@
             <th>Cancelled</th>
             <th>Process</th>
             <th>References</th>
+            <th>Cancel</th>
         </tr>
         </thead>
         <tbody>
@@ -54,7 +55,14 @@
                     <input class="btn btn-primary" type="submit" value="Submit"/>
                 </form>
             </td>
-            <td><p th:each="reference: ${bulk.references}"><span th:text="${reference}">reference</span></p></td>
+            <td><p th:each="ref: ${bulk.references}"><a th:text="${ref}" th:href="@{/brokers/{code}/bulks/{bulkId}/{reference}/roomBooking(code=${broker.code}, bulkId=${bulk.id}, reference=${ref})}">reference</a></p></td>
+            <td><form class="form-inline"
+                      th:each="ref: ${bulk.references}" th:action="@{/brokers/{code}/bulks/{id}/reference/{reference}/cancel(code=${broker.code}, id=${bulk.id} ,reference=${ref})}"
+                      method="post">
+                    <input class="btn btn-primary btn-sm" type="submit" th:value="Submit"/>
+                </form>
+            </td>
+
         </tr>
         </tbody>
     </table>

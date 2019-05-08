@@ -2,6 +2,8 @@ package pt.ulisboa.tecnico.softeng.broker.domain;
 
 import org.joda.time.LocalDate;
 import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException;
+//import pt.ulisboa.tecnico.softeng.broker.services.local.dataobjects.RoomBookingData;
+import pt.ulisboa.tecnico.softeng.broker.services.local.dataobjects.RoomBookingData;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.dataobjects.RestRoomBookingData;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.HotelException;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.exception.RemoteAccessException;
@@ -97,6 +99,74 @@ public class BulkRoomBooking extends BulkRoomBooking_Base {
             }
         }
         return null;
+    }
+
+    public void cancelRoomReservation(String reference) {
+        String newReference = null;
+
+        try {
+            for(String ref : getReferences() ) {
+                if (reference.equals(ref)){
+                    newReference = getBroker().getHotelInterface().cancelBooking(reference);
+                    break;
+                }
+            }
+        } catch (HotelException he) {
+            setNumberOfRemoteErrors(0);
+        } catch (RemoteAccessException rae) {
+            setNumberOfRemoteErrors(getNumberOfRemoteErrors() + 1);
+            if (getNumberOfRemoteErrors() == MAX_REMOTE_ERRORS) {
+                setCancelled(true);
+            }
+        }
+
+        if(newReference == null)
+            return;
+
+        for(Reference ref: getReferenceSet()) {
+            if (ref.getValue().equals(reference)){
+                ref.setValue(newReference);
+                break;
+            }
+        }
+    }
+
+    public RoomBookingData getRoomBookingData(String reference) {
+        if (getCancelled()) {
+            return null;
+        }
+
+        if(getReferences().contains(reference)) {
+            RestRoomBookingData data = null;
+            try {
+                data = getBroker().getHotelInterface().getRoomBookingData(reference);
+                //setNumberOfRemoteErrors(0);
+            } catch (HotelException he) {
+                setNumberOfRemoteErrors(0);
+            } catch (RemoteAccessException rae) {
+                setNumberOfRemoteErrors(getNumberOfRemoteErrors() + 1);
+                if (getNumberOfRemoteErrors() == MAX_REMOTE_ERRORS) {
+                    setCancelled(true);
+                }
+            }
+
+            if (data != null) {
+                RoomBookingData roomBookingData = new RoomBookingData(data);
+                if (data.getCancellation() != null)
+                    roomBookingData.setCancellationData(data);
+                return roomBookingData;
+            }
+        }
+
+        return null;
+    }
+
+    public int getActualNumber() {
+        int i = 0;
+        for(String reference : getReferences())
+            if(!reference.contains("CANCEL"))
+                i++;
+        return i;
     }
 
 }

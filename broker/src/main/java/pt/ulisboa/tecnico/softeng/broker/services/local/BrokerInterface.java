@@ -8,11 +8,8 @@ import pt.ulisboa.tecnico.softeng.broker.domain.Broker;
 import pt.ulisboa.tecnico.softeng.broker.domain.BulkRoomBooking;
 import pt.ulisboa.tecnico.softeng.broker.domain.Client;
 import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException;
-import pt.ulisboa.tecnico.softeng.broker.services.local.dataobjects.AdventureData;
-import pt.ulisboa.tecnico.softeng.broker.services.local.dataobjects.BrokerData;
+import pt.ulisboa.tecnico.softeng.broker.services.local.dataobjects.*;
 import pt.ulisboa.tecnico.softeng.broker.services.local.dataobjects.BrokerData.CopyDepth;
-import pt.ulisboa.tecnico.softeng.broker.services.local.dataobjects.BulkData;
-import pt.ulisboa.tecnico.softeng.broker.services.local.dataobjects.ClientData;
 import pt.ulisboa.tecnico.softeng.broker.services.remote.*;
 
 import java.util.ArrayList;
@@ -114,6 +111,24 @@ public class BrokerInterface {
             }
         }
         return null;
+    }
+
+    @Atomic(mode = TxMode.WRITE)
+    public static void cancelRoomReservation(String brokerCode, String bulkId, String reference) {
+        BulkRoomBooking bulkRoomBooking = FenixFramework.getDomainRoot().getBrokerSet().stream()
+                .filter(b -> b.getCode().equals(brokerCode)).flatMap(b -> b.getRoomBulkBookingSet().stream())
+                .filter(r -> r.getId().equals(bulkId)).findFirst().orElseThrow(BrokerException::new);
+
+        bulkRoomBooking.cancelRoomReservation(reference);
+    }
+
+    @Atomic(mode = TxMode.READ)
+    public static RoomBookingData roomBookingInformation(String brokerCode, String bulkId, String reference) {
+        BulkRoomBooking bulkRoomBooking = FenixFramework.getDomainRoot().getBrokerSet().stream()
+                .filter(b -> b.getCode().equals(brokerCode)).flatMap(b -> b.getRoomBulkBookingSet().stream())
+                .filter(r -> r.getId().equals(bulkId)).findFirst().orElseThrow(BrokerException::new);
+
+        return bulkRoomBooking.getRoomBookingData(reference);
     }
 
 }
