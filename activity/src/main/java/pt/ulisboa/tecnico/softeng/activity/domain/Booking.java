@@ -51,7 +51,7 @@ public class Booking extends Booking_Base {
     }
 
     public String cancel() {
-        setCancel("CANCEL" + getReference());
+        setCancel("CANCELLED");
         setCancellationDate(new LocalDate());
 
         getActivityOffer().getActivity().getActivityProvider().getProcessor().submitBooking(this);

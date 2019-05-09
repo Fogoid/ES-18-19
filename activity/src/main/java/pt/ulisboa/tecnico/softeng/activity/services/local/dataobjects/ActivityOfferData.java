@@ -113,4 +113,15 @@ public class ActivityOfferData {
 		this.name = name;
 	}
 
+	public Integer getNotCancelled() {
+		int counter = 0;
+		for(RestActivityBookingData offer: reservations){
+			if(offer.getCancellationDate() == null)
+				counter++;
+		}
+		return counter;
+	}
+
+	public Integer getVacation(){ return this.capacity - getNotCancelled();}
+
 }
