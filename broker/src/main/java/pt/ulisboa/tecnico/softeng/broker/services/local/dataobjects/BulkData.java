@@ -26,7 +26,7 @@ public class BulkData {
         this.number = bulkRoomBooking.getNumber();
         this.arrival = bulkRoomBooking.getArrival();
         this.departure = bulkRoomBooking.getDeparture();
-        this.actualNumber = bulkRoomBooking.getReferenceSet().size();
+        this.actualNumber = bulkRoomBooking.getActualNumber();
         this.cancelled = bulkRoomBooking.getCancelled();
 
         this.references = bulkRoomBooking.getReferenceSet().stream().map(r -> r.getValue())

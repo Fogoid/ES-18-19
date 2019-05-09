@@ -64,4 +64,15 @@ public class BulkController {
 		return "redirect:/brokers/" + brokerCode + "/bulks";
 	}
 
+	@RequestMapping(value = "/{bulkId}/reference/{reference}/cancel", method = RequestMethod.POST)
+	public String cancelReservation(Model model, @PathVariable String brokerCode, @PathVariable String bulkId,
+								   @PathVariable String reference) {
+		logger.info("cancelReservation: brokerCode:{}, bulkId:{}, reference:{}", brokerCode, bulkId, reference);
+
+		BrokerInterface.cancelRoomReservation(brokerCode, bulkId, reference);
+
+		return "redirect:/brokers/" + brokerCode + "/bulks";
+	}
+
+
 }
