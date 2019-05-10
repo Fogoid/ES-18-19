@@ -30,11 +30,10 @@ Ordene a tabela por ordem crescente da data de término.
 |     222    |   73751                 |       jotapero          |        [#250](https://github.com/tecnico-softeng/es19al_04-project/commit/8bf32f366cf06cda5dbcf60926e5d6bfa2c1caac)       |     10-05-2019     |
 |     223    |   73751                 |       jotapero          |        [#247](https://github.com/tecnico-softeng/es19al_04-project/commit/8292755b9798d60424672b88bd10220defa3dac1)       |     10-05-2019     |
 |     229    |   73751                 |       jotapero          |        [#237](https://github.com/tecnico-softeng/es19al_04-project/pull/237)                                              |     08-05-2019     |
-
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
+|    218     |          73046          |        Antunes10        |      [#218](https://github.com/tecnico-softeng/es19al_04-project/pull/218)               |      09-05-2019              |
+|    220     |          73046          |        Antunes10        |      [#220](https://github.com/tecnico-softeng/es19al_04-project/pull/220)               |      10-05-2019              |
+|    221     |          73046          |        Antunes10        |      [#221](https://github.com/tecnico-softeng/es19al_04-project/pull/221)               |      10-05-2019              |
+|    230     |          73046          |        Antunes10        |      [#230](https://github.com/tecnico-softeng/es19al_04-project/pull/230)               |      10-05-2019              |
 
 
 
