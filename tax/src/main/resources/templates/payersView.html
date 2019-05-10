@@ -45,12 +45,17 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
+									<th>Year</th>
+									<th>To Pay</th>
+									<th>To Return</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="key: ${payer.getTaxes().keySet()}">
 									<td th:text="${key}">2018</td>
 									<td th:text="${payer.getTaxes().get(key)}">567.98</td>
+									<td th:text="${key}">2018</td>
+									<td th:text="${payer.getReturns().get(key)}">567.98</td>
 								</tr>
 							</tbody>
 						</table>
