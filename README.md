@@ -9,15 +9,15 @@ To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
 
 Ordene a tabela por ordem crescente da data de término.
 
-|   Issue id | Owner (ist number)      | Owner (github username) | PRs id (with link)  |            Date    |  
-| ---------- | ----------------------- | ----------------------- | ------------------- | ------------------ |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
+|   Issue id | Owner (ist number)      | Owner (github username) | PRs id (with link)                                                                                              |            Date    |  
+| ---------- | ----------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+|     213    |   73751                 |       jotapero          |#249(https://github.com/tecnico-softeng/es19al_04-project/commit/52cfba438f9e5b55ecab064a6d2be11a5ed55647)       |     10-05-2019     |
+|     222    |   73751                 |       jotapero          |#250(https://github.com/tecnico-softeng/es19al_04-project/commit/8bf32f366cf06cda5dbcf60926e5d6bfa2c1caac)       |     10-05-2019     |
+|     223    |   73751                 |       jotapero          |#247(https://github.com/tecnico-softeng/es19al_04-project/commit/8292755b9798d60424672b88bd10220defa3dac1)       |     10-05-2019     |
+|     229    |   73751                 |       jotapero          |#237(https://github.com/tecnico-softeng/es19al_04-project/pull/237)                                              |     08-05-2019     |
+|            |                         |                         |                                                                                                                 |                    |
+|            |                         |                         |                                                                                                                 |                    |
+|            |                         |                         |                                                                                                                 |                    |
 
 
 ### Infrastructure
@@ -37,9 +37,7 @@ docker exec -it mysql sh
 ```
 
 Once logged into the container, enter the mysql interactive console
-
-```
-mysql --password
+word
 ```
 
 And create the 6 databases for the project as specified in
