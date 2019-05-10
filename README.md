@@ -11,9 +11,10 @@ Ordene a tabela por ordem crescente da data de término.
 
 |   Issue id | Owner (ist number)      | Owner (github username) | PRs id (with link)  |            Date    |  
 | ---------- | ----------------------- | ----------------------- | ------------------- | ------------------ |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
+|    210     |          86495          |    quickacid            |        231          |    06-05-2019      |
+|    226     |          86495          |    quickacid            |        232          |    07-05-2019      |
+|    219     |          86495          |    quickacid            |        240          |    08-05-2019      |
+|    214     |          86495          |    quickacid            |        245          |    09-05-2019      |
 |            |                         |                         |                     |                    |
 |            |                         |                         |                     |                    |
 |            |                         |                         |                     |                    |
