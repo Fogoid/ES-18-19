@@ -1,54 +1,41 @@
 # Adventure Builder [![Build Status](https://travis-ci.com/tecnico-softeng/prototype-2019.svg?token=xDPBAaQ2epnFt9PRstYY&branch=master)](https://travis-ci.com/tecnico-softeng/prototype-2019)[![codecov](https://codecov.io/gh/tecnico-softeng/prototype-2019/branch/master/graph/badge.svg?token=bB74DA0VHo)](https://codecov.io/gh/tecnico-softeng/prototype-2019)
 
+This project was developed for the CU Software Engineering along the semester and consisted of doing four sprints, each one focused on certain aspects, as listed below. The project language is java and 6 modules: activity, bank, broker, car, hotel and tax. Each module takes a set of functions and together they provide an adventure to the client.
 
-To run tests execute: mvn clean install
+There exists in this repository 4 four branches, with each one having the work done for each sprint, being the topics of each spring listed below:
 
-To see the coverage reports, go to <module name>/target/site/jacoco/index.html.
+## 1st Deliver
 
-### Work traceability
+### Tools:
+- JUnit
+- Spock Framework
 
-Sort the table by finish date, ascending.
+### Objective:
+Realizing how to test a software product, by migrating JUnit tests to Groovy using the Spock Framework
 
-|   Issue id | Owner (ist number)      | Owner (github username) | PRs id (with link)  |            Date    |  
-| ---------- | ----------------------- | ----------------------- | ------------------- | ------------------ |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
-|            |                         |                         |                     |                    |
+## 2nd Deliver
 
+### Tools:
+- JUnit
+- Spock Framework
 
-### Infrastructure
+### Objective:
+Migrated some more tests and implemented new tests from JUnit to Spock Framework, but this time using Mocks and variable injection
 
-This project includes the persistent layer, as offered by the FénixFramework.
-This part of the project requires to create databases in mysql as defined in `resources/fenix-framework.properties` of each module.
+## 3rd Deliver
 
-See the lab about the FénixFramework for further details.
+### Tools:
+- DML
 
-#### Docker (Alternative to installing Mysql in your machine)
+### Objective:
+Made changes to core code, and implemented a new functionality across the different modules.
 
-To use a containerized version of mysql, follow these stesp:
+## 4th Deliver
 
-```
-docker-compose -f local.dev.yml up -d
-docker exec -it mysql sh
-```
+### Tools:
+- Spring-boot
+- Thymeleaf
+- Jmeter
 
-Once logged into the container, enter the mysql interactive console
-
-```
-mysql --password
-```
-
-And create the 6 databases for the project as specified in
-the `resources/fenix-framework.properties`.
-
-To launch a server execute in the module's top directory: mvn clean spring-boot:run
-
-To launch all servers execute in bin directory: startservers
-
-To stop all servers execute: bin/shutdownservers
-
-To run jmeter (nogui) execute in project's top directory: mvn -Pjmeter verify. Results are in target/jmeter/results/, open the .jtl file in jmeter, by associating the appropriate listeners to WorkBench and opening the results file in listener context
+### Objectives:
+Make a easier way to the user use the system by a user interface developed using controllers and html POST and GET methods. Use Jmeter in order to test the functionalities implemented see if the methods created were working properly. 
